@@ -263,79 +263,159 @@ const templates = [
   // ===== IMAGE (10) - เดิม + เพิ่มตัวแปร =====
   { 
     cat:'image', tag:'image', title:'Midjourney Master', desc:'สร้าง prompt วาดรูปสไตล์ Midjourney ละเอียดทุกมิติ', 
-    prompt:'จงสร้าง Midjourney prompt สำหรับภาพ: "[คำอธิบายภาพที่ต้องการ]"\n\nให้ระบุ:\n- Subject หลัก (อธิบายละเอียด)\n- สไตล์ศิลปะ (เช่น photorealistic, oil painting, cyberpunk, anime, watercolor)\n- แสง/บรรยากาศ (lighting: golden hour, neon, dramatic, soft)\n- มุมกล้อง (close-up, wide angle, bird eye, low angle)\n- โทนสี (warm, cool, muted, vibrant, monochrome)\n- รายละเอียดพิเศษ (texture, particles, reflections)\n- Aspect ratio (--ar 16:9 หรืออื่นๆ)\n- Quality tags (--q 2 --v 6.0)\n\nเขียนเป็น prompt ภาษาอังกฤษ 1 บรรทัด พร้อมคำอธิบายแยกเป็นภาษาไทย', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "คำอธิบายภาพที่ต้องการ", placeholder: "เช่น หุ่นยนต์ในป่า" }
+    prompt:'จงสร้าง Midjourney prompt สำหรับภาพ: "[คำอธิบายภาพที่ต้องการ]"\n\nรายละเอียด:\n- Subject หลัก: [subject] (อธิบายละเอียด)\n- สไตล์ศิลปะ: [สไตล์] (เช่น photorealistic, oil painting, cyberpunk, anime, watercolor)\n- แสง/บรรยากาศ: [แสง] (lighting: golden hour, neon, dramatic, soft)\n- มุมกล้อง: [มุมกล้อง] (close-up, wide angle, bird eye, low angle)\n- โทนสี: [โทนสี] (warm, cool, muted, vibrant, monochrome)\n- รายละเอียดพิเศษ: [รายละเอียด] (texture, particles, reflections)\n- Aspect ratio: [aspect ratio] (--ar 16:9 หรืออื่นๆ)\n- Quality tags: [quality] (--q 2 --v 6.0)\n- Camera/ Lens: [กล้อง] (85mm, macro)\n\nเขียนเป็น prompt ภาษาอังกฤษ 1 บรรทัด พร้อมคำอธิบายแยกเป็นภาษาไทย ([จำนวนคำอธิบาย] คำ)', 
+    favorite: false, rating: 0, tags: ['midjourney', 'ai-art'], variables: [
+      { name: "คำอธิบายภาพที่ต้องการ", placeholder: "เช่น หุ่นยนต์ในป่า" },
+      { name: "subject", placeholder: "robot standing in forest" },
+      { name: "สไตล์", placeholder: "cyberpunk" },
+      { name: "แสง", placeholder: "neon lighting" },
+      { name: "มุมกล้อง", placeholder: "wide angle" },
+      { name: "โทนสี", placeholder: "cool blue" },
+      { name: "รายละเอียด", placeholder: "glowing particles" },
+      { name: "aspect ratio", placeholder: "--ar 16:9" },
+      { name: "quality", placeholder: "--q 2 --v 6.0" },
+      { name: "กล้อง", placeholder: "85mm lens" },
+      { name: "จำนวนคำอธิบาย", placeholder: "50" }
     ]
   },
   { 
     cat:'image', tag:'image', title:'Character Designer', desc:'ออกแบบตัวละคร ละเอียดทั้งหน้าตา ชุด อาวุธ บุคลิก', 
-    prompt:'จงออกแบบตัวละครสำหรับ [ประเภท] โดยมีคอนเซ็ปต์: "[คอนเซ็ปต์ตัวละคร]"\n\nให้ระบุ:\n1. ชื่อและฉายา\n2. อายุ, เพศ, เชื้อชาติ/สปีชีส์\n3. รูปร่างหน้าตา (ผม, ตา, ผิว, ความสูง, รูปร่าง)\n4. ชุด/เสื้อผ้า (ละเอียดทุกชิ้น สี วัสดุ)\n5. อาวุธ/อุปกรณ์ พร้อมความพิเศษ\n6. บุคลิก/นิสัย 3 ข้อ\n7. จุดเด่น/แผนเป็น 1 จุด\n8. Backstory สั้น 3 บรรทัด\n9. Prompt สำหรับ AI วาดภาพ (ภาษาอังกฤษ)', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงออกแบบตัวละครสำหรับ [ประเภท] โดยมีคอนเซ็ปต์: "[คอนเซ็ปต์ตัวละคร]"\n\nให้ระบุ:\n1. ชื่อและฉายา: [ชื่อและฉายา]\n2. อายุ: [อายุ], เพศ: [เพศ], เชื้อชาติ/สปีชีส์\n3. รูปร่างหน้าตา: [รูปร่างหน้าตา] (ผม, ตา, ผิว, ความสูง, รูปร่าง)\n4. ชุด/เสื้อผ้า: [ชุด/เสื้อผ้า] (ละเอียดทุกชิ้น สี วัสดุ)\n5. อาวุธ/อุปกรณ์: [อาวุธ/อุปกรณ์] พร้อมความพิเศษ\n6. บุคลิก/นิสัย: [บุคลิก] 3 ข้อ\n7. จุดเด่น/แผนเป็น: [จุดเด่น] 1 จุด\n8. Backstory: [backstory] สั้น 3 บรรทัด\n9. Prompt สำหรับ AI วาดภาพ (ภาษาอังกฤษ): [prompt AI]\n\nให้ครบถ้วนทุกข้อ', 
+    favorite: false, rating: 0, tags: ['character', 'design'], variables: [
       { name: "ประเภท", placeholder: "เกม/นิยาย/อนิเมะ" },
-      { name: "คอนเซ็ปต์ตัวละคร", placeholder: "นักรบอวกาศ" }
+      { name: "คอนเซ็ปต์ตัวละคร", placeholder: "นักรบอวกาศ" },
+      { name: "ชื่อและฉายา", placeholder: "เคน หมาป่าแห่งอวกาศ" },
+      { name: "อายุ", placeholder: "28" },
+      { name: "เพศ", placeholder: "ชาย" },
+      { name: "รูปร่างหน้าตา", placeholder: "ผมสีเงิน, ตาเหลือง" },
+      { name: "ชุด/เสื้อผ้า", placeholder: "เกราะไลท์weight" },
+      { name: "บุคลิก", placeholder: "กล้าหาญ, สุขุม" }
     ]
   },
   { 
     cat:'image', tag:'image', title:'Stable Diffusion Prompt', desc:'สร้าง prompt สำหรับ Stable Diffusion เน้นเทคนิคและ negative prompt', 
-    prompt:'จงสร้าง Stable Diffusion prompt สำหรับภาพ "[ภาพ]" ในสไตล์ "[สไตล์]"\n\nให้เขียน:\n- Positive prompt (อังกฤษ, ใส่ค่าน้ำหนักด้วย (word:1.2))\n- Negative prompt (สิ่งที่ไม่อยากให้เกิด)\n- Steps, Sampler, CFG scale แนะนำ\n- Seed (ถ้าต้องการความคงที่)\n\nอธิบายเหตุผลแต่ละส่วนเป็นภาษาไทย', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงสร้าง Stable Diffusion prompt สำหรับภาพ "[ภาพ]" ในสไตล์ "[สไตล์]"\n\nรายละเอียด:\n- Positive prompt (อังกฤษ, ใส่ค่าน้ำหนักด้วย (word:1.2)): [positive prompt]\n- Negative prompt (สิ่งที่ไม่อยากให้เกิด): [negative prompt]\n- Steps: [steps], Sampler: [sampler], CFG scale: [cfg scale] แนะนำ\n- Seed: [seed] (ถ้าต้องการความคงที่)\n- Resolution: [resolution]\n- Model: [model]\n\nอธิบายเหตุผลแต่ละส่วนเป็นภาษาไทย ([จำนวนคำอธิบาย] คำ)', 
+    favorite: false, rating: 0, tags: ['stable-diffusion', 'ai-art'], variables: [
       { name: "ภาพ", placeholder: "ภูมิทัศน์เมือง" },
-      { name: "สไตล์", placeholder: "cyberpunk" }
+      { name: "สไตล์", placeholder: "cyberpunk" },
+      { name: "positive prompt", placeholder: "cityscape, neon lights" },
+      { name: "negative prompt", placeholder: "blurry, low quality" },
+      { name: "steps", placeholder: "30" },
+      { name: "sampler", placeholder: "DPM++ 2M Karras" },
+      { name: "cfg scale", placeholder: "7" },
+      { name: "resolution", placeholder: "512x512" },
+      { name: "model", placeholder: "v1.5/v2.1" },
+      { name: "จำนวนคำอธิบาย", placeholder: "100" }
     ]
   },
   { 
     cat:'image', tag:'image', title:'ออกแบบ Game Environment', desc:'ออกแบบฉาก 3D สำหรับเกม', 
-    prompt:'จงออกแบบฉากสำหรับเกม "[แนวเกม]" เช่น ป่า, เมืองไซเบอร์พังค์\n\nให้ระบุ:\n- Mood board description (3-4 ประโยค)\n- องค์ประกอบในฉาก (สิ่งก่อสร้าง, พืช, แสง, อุปกรณ์)\n- Palette สี (primary, secondary, accent)\n- Lighting setup (ตำแหน่ง, ความเข้ม, สี)\n- Point of interest\n- Prompt สำหรับ AI image generator', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "แนวเกม", placeholder: "RPG/Action" }
+    prompt:'จงออกแบบฉากสำหรับเกม "[แนวเกม]" เช่น ป่า, เมืองไซเบอร์พังค์\n\nรายละเอียด:\n- Mood board description (3-4 ประโยค): [mood board]\n- องค์ประกอบในฉาก: [องค์ประกอบ] (สิ่งก่อสร้าง, พืช, แสง, อุปกรณ์)\n- Palette สี: [palette] (primary, secondary, accent)\n- Lighting setup: [lighting] (ตำแหน่ง, ความเข้ม, สี)\n- Point of interest: [point of interest]\n- Prompt สำหรับ AI image generator: [prompt AI]\n- ขนาดฉาก: [ขนาด] (กว้างxลึก)\n- ธาตุหลัก: [ธาตุหลัก] (ไฟ, น้ำ, ลม, ดิน)\n\nให้ครบถ้วนทุกข้อ', 
+    favorite: false, rating: 0, tags: ['game', 'environment'], variables: [
+      { name: "แนวเกม", placeholder: "RPG/Action" },
+      { name: "mood board", placeholder: "dark forest with glowing mushrooms" },
+      { name: "องค์ประกอบ", placeholder: "trees, rocks, river" },
+      { name: "palette", placeholder: "green, brown, blue" },
+      { name: "lighting", placeholder: "moonlight from above" },
+      { name: "point of interest", placeholder: "ancient temple" },
+      { name: "prompt AI", placeholder: "fantasy forest environment" },
+      { name: "ขนาด", placeholder: "100x100 เมตร" },
+      { name: "ธาตุหลัก", placeholder: "nature/earth" }
     ]
   },
   { 
     cat:'image', tag:'image', title:'Infographic Prompt', desc:'สร้างภาพ Infographic อธิบายข้อมูล', 
-    prompt:'จงสร้าง Prompt สำหรับ AI วาด Infographic หัวข้อ "[หัวข้อ]"\n\nข้อมูล:\n[ใส่ข้อมูลสำคัญ]\n\nแนวคิด:\n- ใช้กราฟิกประเภทใด (bar chart, timeline, flowchart)\n- ใช้สีอะไร\n- ข้อความสั้นที่แสดง\n- Icon ที่ใช้\n- Layout แนวตั้ง/แนวนอน\n\nเขียนเป็น prompt ภาษาอังกฤษ กระชับ', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "หัวข้อ", placeholder: "สถิติการใช้งานอินเทอร์เน็ต" }
+    prompt:'จงสร้าง Prompt สำหรับ AI วาด Infographic หัวข้อ "[หัวข้อ]"\n\nข้อมูล:\n[ใส่ข้อมูลสำคัญ]\n\nรายละเอียด:\n- ใช้กราฟิกประเภทใด: [กราฟิก] (bar chart, timeline, flowchart)\n- ใช้สี: [สี] (หลัก, รอง, accent)\n- ข้อความสั้นที่แสดง: [ข้อความ]\n- Icon ที่ใช้: [icon]\n- Layout: [layout] (แนวตั้ง/แนวนอน)\n- จำนวนส่วน: [จำนวนส่วน] ส่วน\n- สไตล์: [สไตล์] (minimal, flat, 3D)\n\nเขียนเป็น prompt ภาษาอังกฤษ กระชับ ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['infographic', 'data'], variables: [
+      { name: "หัวข้อ", placeholder: "สถิติการใช้งานอินเทอร์เน็ต" },
+      { name: "กราฟิก", placeholder: "bar chart, pie chart" },
+      { name: "สี", placeholder: "blue, white, orange" },
+      { name: "ข้อความ", placeholder: "Growth 50% in 2025" },
+      { name: "icon", placeholder: "arrow, chart icons" },
+      { name: "layout", placeholder: "แนวตั้ง" },
+      { name: "จำนวนส่วน", placeholder: "5" },
+      { name: "สไตล์", placeholder: "flat design" },
+      { name: "จำนวนคำ", placeholder: "30" }
     ]
   },
   { 
     cat:'image', tag:'image', title:'ภาพประกอบหนังสือเด็ก', desc:'ออกแบบภาพประกอบสำหรับหนังสือนิทาน', 
-    prompt:'จงออกแบบภาพประกอบสำหรับหนังสือนิทานเด็ก เรื่อง "[เรื่องย่อ]"\n\nตัวละคร: [ชื่อ, ลักษณะ]\nฉาก: [สถานที่]\nอารมณ์ที่ต้องการ: สดใส, อบอุ่น, มหัศจรรย์\n\nสร้าง prompt สำหรับภาพ:\n- หน้า 1: [คำอธิบาย]\n- หน้า 2: ...\n\nสไตล์: soft watercolor, cute character design', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงออกแบบภาพประกอบสำหรับหนังสือนิทานเด็ก เรื่อง "[เรื่องย่อ]"\n\nรายละเอียด:\nตัวละคร: [ชื่อ], [ลักษณะ], [อายุ]\nฉาก: [สถานที่]\nอารมณ์ที่ต้องการ: [อารมณ์] (สดใส, อบอุ่น, มหัศจรรย์)\nจำนวนหน้า: [จำนวนหน้า] หน้า\n\nสร้าง prompt สำหรับภาพ:\n- หน้า 1: [คำอธิบาย หน้า 1]\n- หน้า 2: [คำอธิบาย หน้า 2]\n- หน้า 3: [คำอธิบาย หน้า 3]\n\nสไตล์: [สไตล์] (soft watercolor, cute character design)\nโทนสี: [โทนสี] (pastel, bright)\n\nให้ครบทุกหน้า', 
+    favorite: false, rating: 0, tags: ['kids', 'illustration'], variables: [
       { name: "เรื่องย่อ", placeholder: "กระต่ายกับนายพราน" },
-      { name: "ตัวละคร", placeholder: "กระต่ายสีขาว" }
+      { name: "ชื่อ", placeholder: "บันนี่" },
+      { name: "ลักษณะ", placeholder: "กระต่ายสีขาว, ใส่ผ้าพันคอสีแดง" },
+      { name: "อายุ", placeholder: "5 ขวบ" },
+      { name: "สถานที่", placeholder: "ป่าสน" },
+      { name: "อารมณ์", placeholder: "สดใส, อบอุ่น" },
+      { name: "จำนวนหน้า", placeholder: "3" },
+      { name: "สไตล์", placeholder: "soft watercolor" },
+      { name: "โทนสี", placeholder: "pastel pink, green" }
     ]
   },
   { 
     cat:'image', tag:'image', title:'NFT Profile Picture', desc:'สร้างภาพ avatar สำหรับ NFT', 
-    prompt:'จงสร้าง prompt สำหรับ NFT PFP ในธีม "[ธีม]"\n\nกำหนด:\n- Species (human, animal, robot)\n- Traits 5 อย่าง (สีพื้นหลัง, ทรงผม, ตา, เครื่องประดับ, เสื้อผ้า)\n- สไตล์ art: pixel art / 3D render / flat vector\n- จำนวนรูปแบบ (regular/rare/legendary)\n\nให้ prompt พร้อมคำอธิบาย layer แต่ละแบบ', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงสร้าง prompt สำหรับ NFT PFP ในธีม "[ธีม]"\n\nรายละเอียด:\n- Species: [species] (human, animal, robot)\n- Traits 5 อย่าง: [traits] (สีพื้นหลัง, ทรงผม, ตา, เครื่องประดับ, เสื้อผ้า)\n- สไตล์ art: [สไตล์] (pixel art / 3D render / flat vector)\n- จำนวนรูปแบบ: [จำนวนรูปแบบ] (regular/rare/legendary)\n- จำนวน traits: [จำนวน traits] traits\n- Background: [background]\n- Rarity level: [rarity] (common, rare, legendary)\n\nให้ prompt พร้อมคำอธิบาย layer แต่ละแบบ ([จำนวน layer] layers)', 
+    favorite: false, rating: 0, tags: ['nft', 'avatar'], variables: [
       { name: "ธีม", placeholder: "นักรบอวกาศ" },
-      { name: "Species", placeholder: "human/animal/robot" }
+      { name: "species", placeholder: "human/animal/robot" },
+      { name: "traits", placeholder: "blue hair, cyber eye" },
+      { name: "สไตล์", placeholder: "3D render" },
+      { name: "จำนวนรูปแบบ", placeholder: "3" },
+      { name: "จำนวน traits", placeholder: "5" },
+      { name: "background", placeholder: "space nebula" },
+      { name: "rarity", placeholder: "legendary" },
+      { name: "จำนวน layer", placeholder: "7" }
     ]
   },
   { 
     cat:'image', tag:'image', title:'ภาพถ่ายสินค้า', desc:'สร้าง prompt สำหรับภาพถ่ายสินค้าแบบมืออาชีพ', 
-    prompt:'จงสร้าง AI prompt สำหรับถ่ายภาพสินค้า "[สินค้า]" บนฉากหลัง "[ฉาก]"\n\nกำหนด:\n- มุมกล้อง: 45 องศา, close-up\n- แสง: studio softbox\n- Props: [อุปกรณ์ประกอบ]\n- Mood: premium, minimal\n- กล้อง: 85mm f/1.4\n\nเขียน prompt ภาษาอังกฤษ พร้อมคำอธิบายภาษาไทย', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงสร้าง AI prompt สำหรับถ่ายภาพสินค้า "[สินค้า]" บนฉากหลัง "[ฉาก]"\n\nรายละเอียด:\n- มุมกล้อง: [มุมกล้อง] (45 องศา, close-up, top-down)\n- แสง: [แสง] (studio softbox, natural light)\n- Props: [props] (อุปกรณ์ประกอบ)\n- Mood: [mood] (premium, minimal, luxury)\n- กล้อง: [กล้อง] (85mm f/1.4, 50mm f/2.8)\n- สีโทน: [โทนสี] (warm, cool, neutral)\n- จำนวนรูป: [จำนวนรูป] รูป\n\nเขียน prompt ภาษาอังกฤษ ([จำนวนคำ] คำ) พร้อมคำอธิบายภาษาไทย', 
+    favorite: false, rating: 0, tags: ['product', 'photography'], variables: [
       { name: "สินค้า", placeholder: "นาฬิกา/กระเป๋า" },
-      { name: "ฉาก", placeholder: "โต๊ะไม้สีขาว" }
+      { name: "ฉาก", placeholder: "โต๊ะไม้สีขาว" },
+      { name: "มุมกล้อง", placeholder: "close-up" },
+      { name: "แสง", placeholder: "studio softbox" },
+      { name: "props", placeholder: "กล่องสีดำ, ดอกไม้" },
+      { name: "mood", placeholder: "premium, minimal" },
+      { name: "กล้อง", placeholder: "85mm f/1.4" },
+      { name: "โทนสี", placeholder: "warm brown tones" },
+      { name: "จำนวนรูป", placeholder: "3" },
+      { name: "จำนวนคำ", placeholder: "50" }
     ]
   },
   { 
     cat:'image', tag:'image', title:'UI/UX Design Mockup', desc:'สร้าง mockup หน้าจอแอป/เว็บ ด้วย AI', 
-    prompt:'จงสร้าง prompt สำหรับ AI generate UI mockup ของแอป "[ชื่อแอป]" สำหรับ "[แพลตฟอร์ม]"\n\nหน้าจอ: [Login/Home/Dashboard]\n- สีหลัก: [hex]\n- Typography: [font]\n- Layout: [grid/list/card]\n- Elements: ปุ่ม, input, icon\n\nให้ระบุ detail และ prompt', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงสร้าง prompt สำหรับ AI generate UI mockup ของแอป "[ชื่อแอป]" สำหรับ "[แพลตฟอร์ม]"\n\nรายละเอียด:\nหน้าจอ: [หน้าจอ] (Login/Home/Dashboard)\n- สีหลัก: [สีหลัก] ([hex])\n- สีรอง: [สีรอง] ([hex2])\n- Typography: [typography] (font)\n- Layout: [layout] (grid/list/card)\n- Elements: [elements] (ปุ่ม, input, icon)\n- จำนวนหน้าจอ: [จำนวนหน้าจอ] หน้า\n- Style: [style] (flat, material, glassmorphism)\n\nให้ระบุ detail และ prompt ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['ui', 'ux', 'design'], variables: [
       { name: "ชื่อแอป", placeholder: "แอปส่งอาหาร" },
-      { name: "แพลตฟอร์ม", placeholder: "iOS/Android/Web" }
+      { name: "แพลตฟอร์ม", placeholder: "iOS/Android/Web" },
+      { name: "หน้าจอ", placeholder: "Home screen" },
+      { name: "สีหลัก", placeholder: "สีส้ม" },
+      { name: "hex", placeholder: "#FF6600" },
+      { name: "สีรอง", placeholder: "สีเทา" },
+      { name: "hex2", placeholder: "#666666" },
+      { name: "typography", placeholder: "Roboto" },
+      { name: "layout", placeholder: "card layout" },
+      { name: "elements", placeholder: "button, search bar" },
+      { name: "จำนวนหน้าจอ", placeholder: "3" },
+      { name: "style", placeholder: "material design" },
+      { name: "จำนวนคำ", placeholder: "100" }
     ]
   },
   { 
     cat:'image', tag:'image', title:'Abstract Art Prompt', desc:'สร้างภาพ abstract แนวศิลปะร่วมสมัย', 
-    prompt:'จงสร้าง AI prompt สำหรับภาพ abstract art แนว "[แนว]" เช่น expressionism, geometric\n\nอารมณ์ที่สื่อ: [สงบ/ตื่นเต้น/วุ่นวาย]\nส่วนประกอบ: [รูปทรง, เส้น, จุดสี]\nสี: [กำหนด palette]\nเทคนิค: [drip painting, digital glitch, oil texture]\n\nเขียน prompt อังกฤษและไทย', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงสร้าง AI prompt สำหรับภาพ abstract art แนว "[แนว]" เช่น expressionism, geometric\n\nรายละเอียด:\nอารมณ์ที่สื่อ: [อารมณ์] (สงบ/ตื่นเต้น/วุ่นวาย)\nส่วนประกอบ: [ส่วนประกอบ] (รูปทรง, เส้น, จุดสี)\nสี: [สี] (กำหนด palette)\nเทคนิค: [เทคนิค] (drip painting, digital glitch, oil texture)\nขนาดภาพ: [ขนาด] (512x512, 1024x1024)\nจำนวนชั้น: [จำนวนชั้น] ชั้น\nสไตล์: [สไตล์] (contemporary, modern)\n\nเขียน prompt อังกฤษและไทย ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['abstract', 'art'], variables: [
       { name: "แนว", placeholder: "expressionism/geometric" },
-      { name: "อารมณ์ที่สื่อ", placeholder: "สงบ/ตื่นเต้น" }
+      { name: "อารมณ์", placeholder: "สงบ/ตื่นเต้น" },
+      { name: "ส่วนประกอบ", placeholder: "circles, lines, dots" },
+      { name: "สี", placeholder: "blue, yellow, red" },
+      { name: "เทคนิค", placeholder: "drip painting" },
+      { name: "ขนาด", placeholder: "1024x1024" },
+      { name: "จำนวนชั้น", placeholder: "3" },
+      { name: "สไตล์", placeholder: "contemporary" },
+      { name: "จำนวนคำ", placeholder: "50" }
     ]
   },
 
