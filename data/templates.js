@@ -5,27 +5,65 @@ const templates = [
   // ===== WRITING (10) - เดิม + เพิ่มตัวแปร =====
   { 
     cat:'writing', tag:'writing', title:'นักเขียนบล็อกมืออาชีพ', desc:'เขียนบทความบล็อกให้น่าสนใจ มีโครงสร้างชัดเจน จบด้วย CTA', 
-    prompt:'คุณเป็นนักเขียนบล็อกมืออาชีพที่มีประสบการณ์ 10 ปี จงเขียนบทความเรื่อง "[หัวข้อ]" ให้มีโครงสร้างดังนี้:\n1. หัวข้อเปิดที่ดึงดูด attention\n2. บทนำ 2-3 ย่อหน้าสร้างความน่าสนใจ\n3. เนื้อหาหลัก แบ่งเป็น 3-5 หัวข้อย่อย พร้อมตัวอย่างประกอบ\n4. สรุปปิดท้ายพร้อม Call-to-Action\n\nสไตล์: เป็นกันเอง, ใช้ภาษาเข้าใจง่าย, มีเรื่องเล่าแทรก\nความยาว: 800-1200 คำ\nกลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'คุณเป็นนักเขียนบล็อกมืออาชีพที่มีประสบการณ์ [จำนวนปี] ปี จงเขียนบทความเรื่อง "[หัวข้อ]" ให้มีโครงสร้างดังนี้:\n1. หัวข้อเปิดที่ดึงดูด attention\n2. บทนำ 2-3 ย่อหน้าสร้างความน่าสนใจ\n3. เนื้อหาหลัก แบ่งเป็น [จำนวนหัวข้อย่อย] หัวข้อย่อย พร้อมตัวอย่างประกอบ\n4. สรุปปิดท้ายพร้อม Call-to-Action\n\nสไตล์: [โทน]\nความยาว: [ความยาว] คำ\nกลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\nภาษาที่ใช้: [ภาษา]\nจุดประสงค์: [จุดประสงค์]\nLSI keywords: [LSI keywords]', 
+    favorite: false, rating: 0, tags: ['blog'], variables: [
       { name: "หัวข้อ", placeholder: "ใส่หัวข้อบทความ" },
-      { name: "กลุ่มเป้าหมาย", placeholder: "เช่น วัยรุ่น, ผู้ประกอบการ" }
+      { name: "กลุ่มเป้าหมาย", placeholder: "เช่น วัยรุ่น, ผู้ประกอบการ" },
+      { name: "จำนวนปี", placeholder: "10/15/20" },
+      { name: "จำนวนหัวข้อย่อย", placeholder: "3-5" },
+      { name: "โทน", placeholder: "เป็นกันเอง/ทางการ/ให้ความรู้" },
+      { name: "ความยาว", placeholder: "800-1200" },
+      { name: "ภาษา", placeholder: "ไทย/อังกฤษ" },
+      { name: "จุดประสงค์", placeholder: "เพื่อขายของ/สร้างแบรนด์" },
+      { name: "LSI keywords", placeholder: "คำที่เกี่ยวข้อง เช่น AI, Prompt" }
+    ]
+  },
+  // ===== NEW: Advanced Blog Template with many variables =====
+  { 
+    cat:'writing', tag:'writing', title:'นักเขียนบล็อกมืออาชีพ (ตัวแปรหลากหลาย)', desc:'เขียนบทความบล็อกให้น่าสนใจ มีโครงสร้างชัดเจน จบด้วย CTA พร้อมตัวแปรหลากหลาย', 
+    prompt:'คุณเป็นนักเขียนบล็อกมืออาชีพที่มีประสบการณ์ 10 ปี จงเขียนบทความเรื่อง "[หัวข้อ]" ให้มีโครงสร้างดังนี้:\n1. หัวข้อเปิดที่ดึงดูด attention\n2. บทนำ 2-3 ย่อหน้าสร้างความน่าสนใจ\n3. เนื้อหาหลัก แบ่งเป็น [จำนวนหัวข้อย่อย] หัวข้อย่อย พร้อมตัวอย่างประกอบ\n4. สรุปปิดท้ายพร้อม Call-to-Action\n\nสไตล์: [โทน], ใช้ภาษา[ภาษาที่ใช้], มีเรื่องเล่าแทรก\nความยาว: [ความยาว] คำ\nกลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\nคีย์เวิร์ดหลัก: [คีย์เวิร์ดหลัก]\nจุดประสงค์: [จุดประสงค์]', 
+    favorite: false, rating: 0, tags: ['advanced', 'variables'], variables: [
+      { name: "หัวข้อ", placeholder: "ใส่หัวข้อบทความ" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "เช่น วัยรุ่น, ผู้ประกอบการ" },
+      { name: "คีย์เวิร์ดหลัก", placeholder: "เช่น AI, Prompt Engineering" },
+      { name: "ความยาว", placeholder: "800-1200 คำ" },
+      { name: "โทน", placeholder: "เป็นกันเอง/ทางการ/ให้ความรู้" },
+      { name: "จำนวนหัวข้อย่อย", placeholder: "3-5 หัวข้อ" },
+      { name: "ภาษาที่ใช้", placeholder: "ไทย/อังกฤษ" },
+      { name: "จุดประสงค์", placeholder: "เพื่อขายของ/สร้างแบรนด์" }
     ]
   },
   { 
     cat:'writing', tag:'writing', title:'นักเล่าเรื่องแนวซ่อนเงื่อน', desc:'เขียนเรื่องสั้น มีพล็อตหักมุม ตอนจบพลิกคาดเดา', 
-    prompt:'จงเขียนเรื่องสั้นแนวซ่อนเงื่อน โดยมีเงื่อนไขดังนี้:\n- ธีมหลัก: "[ธีม]" (เช่น ความลับ, การแก้แค้น, ความจริงที่ซ่อนอยู่)\n- ตัวละครหลัก: [คำอธิบายตัวละคร]\n- ฉาก: [สถานที่/ยุคสมัย]\n- พล็อตหักมุม: ตอนจบต้องทำให้ผู้อ่านตกใจและกลับไปอ่านใหม่เพื่อหาเบาะแส\n- ความยาว: 500-800 คำ\n- ใช้มุมมองบุคคลที่ 1\n- แทรกเบาะแสซ่อน 3 จุดที่บอกว่าจบจะเป็นอย่างไร', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงเขียนเรื่องสั้นแนวซ่อนเงื่อน โดยมีเงื่อนไขดังนี้:\n- ธีมหลัก: "[ธีม]" (เช่น ความลับ, การแก้แค้น, ความจริงที่ซ่อนอยู่)\n- ตัวละครหลัก: [คำอธิบายตัวละคร]\n- ฉาก: [สถานที่/ยุคสมัย]\n- พล็อตหักมุม: ตอนจบต้องทำให้ผู้อ่านตกใจและกลับไปอ่านใหม่เพื่อหาเบาะแส\n- ความยาว: [ความยาว] คำ\n- ใช้มุมมองบุคคลที่ [มุมมอง]\n- แทรกเบาะแสซ่อน [จำนวนเบาะแส] จุดที่บอกว่าจบจะเป็นอย่างไร\n- โทนเรื่อง: [โทน]\n- กลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]', 
+    favorite: false, rating: 0, tags: ['story', 'mystery'], variables: [
       { name: "ธีม", placeholder: "ความลับ/การแก้แค้น" },
-      { name: "คำอธิบายตัวละคร", placeholder: "เช่น ชายวัยกลางคนที่มีความลับ" }
+      { name: "คำอธิบายตัวละคร", placeholder: "ชายวัยกลางคนที่มีความลับ" },
+      { name: "สถานที่/ยุคสมัย", placeholder: "คฤหาสน์เก่าในกรุงเทพ" },
+      { name: "ความยาว", placeholder: "500-800" },
+      { name: "มุมมอง", placeholder: "1 (บุคคลที่ 1)" },
+      { name: "จำนวนเบาะแส", placeholder: "3" },
+      { name: "โทน", placeholder: "ลึกลับ/ตื่นเต้น" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "วัยรุ่น/ผู้ใหญ่" }
     ]
   },
   { 
     cat:'writing', tag:'writing', title:'SEO Content Writer', desc:'เขียนบทความ SEO ที่ติดอันดับ Google', 
-    prompt:'คุณเป็น SEO Content Writer จงเขียนบทความเรื่อง "[หัวข้อ]" โดยมี keyword หลักคือ "[keyword]"\n\nข้อกำหนด:\n- ความยาว 1,500-2,000 คำ\n- ใช้ keyword หลักใน H1, first paragraph, และ 2-3 ครั้งในเนื้อหา\n- ใช้ LSI keywords อย่างน้อย 5 คำ\n- มีหัวข้อย่อย (H2) อย่างน้อย 5 หัวข้อ\n- มีตารางเปรียบเทียบ 1 ตาราง\n- มี list อย่างน้อย 2 จุด\n- เขียน Meta Description (150-160 ตัวอักษร)\n- เพิ่ม FAQ 3-5 ข้อท้ายบทความ\n- ใช้โทน: [โทน]', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'คุณเป็น SEO Content Writer จงเขียนบทความเรื่อง "[หัวข้อ]" โดยมี keyword หลักคือ "[keyword]"\n\nข้อกำหนด:\n- ความยาว [ความยาว] คำ\n- ใช้ keyword หลักใน H1, first paragraph, และ 2-3 ครั้งในเนื้อหา\n- ใช้ LSI keywords อย่างน้อย [จำนวน LSI] คำ (เช่น: [LSI keywords])\n- มีหัวข้อย่อย (H2) อย่างน้อย [จำนวนหัวข้อ] หัวข้อ\n- มีตารางเปรียบเทียบ [จำนวนตาราง] ตาราง\n- มี list อย่างน้อย [จำนวน list] จุด\n- เขียน Meta Description (150-160 ตัวอักษร): "[Meta Description]"\n- เพิ่ม FAQ [จำนวน FAQ] ข้อท้ายบทความ\n- ใช้โทน: [โทน]\n- กลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\n- ภาษาที่ใช้: [ภาษา]', 
+    favorite: false, rating: 0, tags: ['seo', 'advanced'], variables: [
       { name: "หัวข้อ", placeholder: "ใส่หัวข้อบทความ" },
       { name: "keyword", placeholder: "คีย์เวิร์ดหลัก" },
-      { name: "โทน", placeholder: "เป็นกันเอง/ทางการ/ให้ความรู้" }
+      { name: "โทน", placeholder: "เป็นกันเอง/ทางการ/ให้ความรู้" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "วัยรุ่น/วัยทำงาน" },
+      { name: "ความยาว", placeholder: "1500-2000 คำ" },
+      { name: "จำนวน LSI", placeholder: "5" },
+      { name: "LSI keywords", placeholder: "คำที่เกี่ยวข้อง เช่น AI, Prompt" },
+      { name: "จำนวนหัวข้อ", placeholder: "5" },
+      { name: "จำนวนตาราง", placeholder: "1" },
+      { name: "จำนวน list", placeholder: "2" },
+      { name: "Meta Description", placeholder: "สรุปสั้นๆ 150 ตัวอักษร" },
+      { name: "จำนวน FAQ", placeholder: "3-5" },
+      { name: "ภาษา", placeholder: "ไทย/อังกฤษ" }
     ]
   },
   { 
@@ -103,63 +141,121 @@ const templates = [
   },
   { 
     cat:'code', tag:'code', title:'เขียน Unit Test', desc:'สร้าง Unit Test สำหรับฟังก์ชัน/โมดูลที่กำหนด', 
-    prompt:'จงเขียน Unit Test สำหรับโค้ดต่อไปนี้:\n\n```[placement]\n[วางโค้ด]\n```\n\nFramework: [Framework]\n\nให้ทดสอบ:\n- Happy path\n- Edge cases\n- Error handling\n- Async (ถ้ามี)\n\nเขียน test case อย่างน้อย 5 กรณี พร้อมคำอธิบายว่าแต่ละกรณีทดสอบอะไร', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "Framework", placeholder: "Jest/Mocha/Pytest" }
+    prompt:'จงเขียน Unit Test สำหรับโค้ดต่อไปนี้:\n\n```[placement]\n[วางโค้ด]\n```\n\nFramework: [Framework]\nภาษา: [ภาษา]\nชื่อฟังก์ชัน: [ชื่อฟังก์ชัน]\n\nให้ทดสอบ:\n- Happy path ([จำนวน happy path] กรณี)\n- Edge cases ([จำนวน edge cases] กรณี)\n- Error handling ([จำนวน error handling] กรณี)\n- Async (ถ้ามี): [async cases]\n\nเขียน test case อย่างน้อย [จำนวนทั้งหมด] กรณี พร้อมคำอธิบายว่าแต่ละกรณีทดสอบอะไร\nMock data: [mock data]', 
+    favorite: false, rating: 0, tags: ['test', 'unit'], variables: [
+      { name: "Framework", placeholder: "Jest/Mocha/Pytest" },
+      { name: "ภาษา", placeholder: "JavaScript/Python" },
+      { name: "ชื่อฟังก์ชัน", placeholder: "calculateTotal" },
+      { name: "จำนวน happy path", placeholder: "2" },
+      { name: "จำนวน edge cases", placeholder: "3" },
+      { name: "จำนวน error handling", placeholder: "2" },
+      { name: "async cases", placeholder: "ทดสอบ async/await" },
+      { name: "จำนวนทั้งหมด", placeholder: "7" },
+      { name: "mock data", placeholder: "ข้อมูลจำลองสำหรับทดสอบ" }
     ]
   },
   { 
     cat:'code', tag:'code', title:'Refactor Code', desc:'ปรับปรุงโค้ดให้สะอาด อ่านง่าย มีประสิทธิภาพ', 
-    prompt:'คุณเป็น Senior Developer จง refactor โค้ดนี้:\n\n```[language]\n[โค้ดเดิม]\n```\n\nหลักการ:\n- ตั้งชื่อตัวแปร/ฟังก์ชันให้สื่อความหมาย\n- แยกฟังก์ชันให้เป็น modular\n- ลบ code ซ้ำ (DRY)\n- เพิ่ม type hint/comment ที่จำเป็น\n- รักษาพฤติกรรมเดิม\n\nให้โค้ดเวอร์ชันใหม่ และอธิบายการเปลี่ยนแปลง', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "language", placeholder: "ภาษาของโค้ด" }
+    prompt:'คุณเป็น Senior Developer จง refactor โค้ดนี้:\n\n```[language]\n[โค้ดเดิม]\n```\n\nหลักการ:\n- ตั้งชื่อตัวแปร/ฟังก์ชันให้สื่อความหมาย ([จำนวนตัวแปร] ตัวแปร)\n- แยกฟังก์ชันให้เป็น modular ([จำนวนฟังก์ชัน] ฟังก์ชัน)\n- ลบ code ซ้ำ (DRY)\n- เพิ่ม type hint/comment ที่จำเป็น ([จำนวน comment] บรรทัด)\n- รักษาพฤติกรรมเดิม\n- ปรับปรุงประสิทธิภาพ: [เทคนิค]\n\nให้โค้ดเวอร์ชันใหม่ และอธิบายการเปลี่ยนแปลง ([จำนวนข้อเปลี่ยนแปลง] ข้อ)', 
+    favorite: false, rating: 0, tags: ['refactor', 'clean'], variables: [
+      { name: "language", placeholder: "ภาษาของโค้ด" },
+      { name: "จำนวนตัวแปร", placeholder: "5" },
+      { name: "จำนวนฟังก์ชัน", placeholder: "3" },
+      { name: "จำนวน comment", placeholder: "10" },
+      { name: "เทคนิค", placeholder: "ใช้ map แทน loop" },
+      { name: "จำนวนข้อเปลี่ยนแปลง", placeholder: "5" }
     ]
   },
   { 
     cat:'code', tag:'code', title:'เขียน API Documentation', desc:'สร้างเอกสาร API แบบ OpenAPI/Swagger จากโค้ด', 
-    prompt:'จงเขียน API documentation สำหรับ endpoint ต่อไปนี้:\n\n[HTTP Method] [URL]\nRequest Body/Params: [อธิบาย]\nResponse: [ตัวอย่าง JSON]\n\nให้สร้างเอกสารในรูปแบบ:\n- คำอธิบายสั้น\n- Parameters table\n- Example request (curl)\n- Example response\n- Error codes\n\nใช้รูปแบบ Markdown หรือ YAML ตามต้องการ', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงเขียน API documentation สำหรับ endpoint ต่อไปนี้:\n\n[HTTP Method] [URL]\nRequest Body/Params: [อธิบาย]\nResponse: [ตัวอย่าง JSON]\nHeaders: [Headers]\n\nให้สร้างเอกสารในรูปแบบ:\n- คำอธิบายสั้น ([จำนวนคำ] คำ)\n- Parameters table ([จำนวน params] พารามิเตอร์)\n- Example request (curl): [curl example]\n- Example response ([จำนวน response fields] ฟิลด์)\n- Error codes ([จำนวน error codes] รหัส)\n- Authentication: [Authentication]\n\nใช้รูปแบบ Markdown หรือ YAML ตามต้องการ: [รูปแบบ]', 
+    favorite: false, rating: 0, tags: ['api', 'documentation'], variables: [
       { name: "HTTP Method", placeholder: "GET/POST/PUT" },
-      { name: "URL", placeholder: "/api/users" }
+      { name: "URL", placeholder: "/api/users" },
+      { name: "Headers", placeholder: "Authorization: Bearer token" },
+      { name: "จำนวนคำ", placeholder: "50" },
+      { name: "จำนวน params", placeholder: "3" },
+      { name: "curl example", placeholder: "curl -X GET http://..." },
+      { name: "จำนวน response fields", placeholder: "5" },
+      { name: "จำนวน error codes", placeholder: "3" },
+      { name: "Authentication", placeholder: "JWT Token" },
+      { name: "รูปแบบ", placeholder: "Markdown/YAML" }
     ]
   },
   { 
     cat:'code', tag:'code', title:'แปลงโค้ดระหว่างภาษา', desc:'แปลโค้ดจากภาษาหนึ่งไปอีกภาษา พร้อมเทียบความแตกต่าง', 
-    prompt:'จงแปลงโค้ดต่อไปนี้จาก [ภาษาต้นทาง] เป็น [ภาษาเป้าหมาย]:\n\n```[ภาษาต้นทาง]\n[โค้ด]\n```\n\nให้อธิบาย:\n- ส่วนที่แปลตรงตัว\n- ส่วนที่ต้องปรับเนื่องจาก syntax/library ต่างกัน\n- ผลลัพธ์ต้องเหมือนเดิม\n\nเขียนโค้ดใหม่ทั้งหมด พร้อมคอมเมนต์เทียบ', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงแปลงโค้ดต่อไปนี้จาก [ภาษาต้นทาง] เป็น [ภาษาเป้าหมาย]:\n\n```[ภาษาต้นทาง]\n[โค้ด]\n```\n\nบริบทการใช้งาน: [บริบท]\nเวอร์ชันภาษา: [เวอร์ชัน]\n\nให้อธิบาย:\n- ส่วนที่แปลตรงตัว ([จำนวนตรงตัว] ส่วน)\n- ส่วนที่ต้องปรับเนื่องจาก syntax/library ต่างกัน ([จำนวนปรับเปลี่ยน] ส่วน)\n- ผลลัพธ์ต้องเหมือนเดิม\n- ไลบรารีทดแทน: [ไลบรารี]\n\nเขียนโค้ดใหม่ทั้งหมด ([จำนวนบรรทัด] บรรทัด) พร้อมคอมเมนต์เทียบ', 
+    favorite: false, rating: 0, tags: ['convert', 'translation'], variables: [
       { name: "ภาษาต้นทาง", placeholder: "Python" },
-      { name: "ภาษาเป้าหมาย", placeholder: "JavaScript" }
+      { name: "ภาษาเป้าหมาย", placeholder: "JavaScript" },
+      { name: "บริบท", placeholder: "Web API/Data Processing" },
+      { name: "เวอร์ชัน", placeholder: "Python 3.10, ES6" },
+      { name: "จำนวนตรงตัว", placeholder: "3" },
+      { name: "จำนวนปรับเปลี่ยน", placeholder: "2" },
+      { name: "ไลบรารี", placeholder: "axios แทน requests" },
+      { name: "จำนวนบรรทัด", placeholder: "20" }
     ]
   },
   { 
     cat:'code', tag:'code', title:'ออกแบบฐานข้อมูล', desc:'ออกแบบ Schema ฐานข้อมูล พร้อมความสัมพันธ์', 
-    prompt:'คุณเป็น Database Architect จงออกแบบ schema สำหรับระบบ "[ระบบ]" ที่มี entities:\n[list entities]\n\nให้สร้าง:\n- ER Diagram (อธิบายด้วยตัวอักษร)\n- CREATE TABLE statements (SQL)\n- Indexes ที่แนะนำ\n- ตัวอย่าง query ที่ใช้บ่อย\n- การกำหนด foreign key และ constraints', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'คุณเป็น Database Architect จงออกแบบ schema สำหรับระบบ "[ระบบ]" ที่มี entities:\n[list entities]\n\nประเภทฐานข้อมูล: [ประเภท]\nจำนวนผู้ใช้งาน: [จำนวนผู้ใช้งาน] คนต่อวัน\n\nให้สร้าง:\n- ER Diagram (อธิบายด้วยตัวอักษร) ([จำนวน entities] entities)\n- CREATE TABLE statements (SQL) ([จำนวนตาราง] ตาราง)\n- Indexes ที่แนะนำ ([จำนวน indexes] indexes)\n- ตัวอย่าง query ที่ใช้บ่อย ([จำนวน queries] queries)\n- การกำหนด foreign key และ constraints ([จำนวน constraints] constraints)\n- ความสัมพันธ์: [ความสัมพันธ์]', 
+    favorite: false, rating: 0, tags: ['database', 'schema'], variables: [
       { name: "ระบบ", placeholder: "เช่น ระบบจัดการสินค้า" },
-      { name: "list entities", placeholder: "User, Product, Order" }
+      { name: "list entities", placeholder: "User, Product, Order" },
+      { name: "ประเภท", placeholder: "SQL/NoSQL/PostgreSQL" },
+      { name: "จำนวนผู้ใช้งาน", placeholder: "10000" },
+      { name: "จำนวน entities", placeholder: "3" },
+      { name: "จำนวนตาราง", placeholder: "5" },
+      { name: "จำนวน indexes", placeholder: "3" },
+      { name: "จำนวน queries", placeholder: "4" },
+      { name: "จำนวน constraints", placeholder: "6" },
+      { name: "ความสัมพันธ์", placeholder: "1-to-many, many-to-many" }
     ]
   },
   { 
     cat:'code', tag:'code', title:'Debugging Assistant', desc:'วิเคราะห์บั๊กจาก log หรือ error message', 
-    prompt:'จงวิเคราะห์ปัญหาจาก error/log ต่อไปนี้:\n\n```\n[error message/log]\n```\n\nให้อธิบาย:\n1. สาเหตุที่เป็นไปได้\n2. วิธีตรวจสอบเพิ่มเติม\n3. แนวทางแก้ไข 3 วิธี\n4. โค้ดที่ปรับแก้\n\nภาษา/stack: [ระบุ]', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ระบุ", placeholder: "Node.js/Python/Java" }
+    prompt:'จงวิเคราะห์ปัญหาจาก error/log ต่อไปนี้:\n\n```\n[error message/log]\n```\n\nสภาพแวดล้อม: [สภาพแวดล้อม]\nเวอร์ชัน: [เวอร์ชัน]\n\nให้อธิบาย:\n1. สาเหตุที่เป็นไปได้ ([จำนวนสาเหตุ] สาเหตุ)\n2. วิธีตรวจสอบเพิ่มเติม ([จำนวนวิธีตรวจสอบ] วิธี)\n3. แนวทางแก้ไข ([จำนวนแนวทาง] วิธี)\n4. โค้ดที่ปรับแก้ ([จำนวนบรรทัด] บรรทัด)\n5. การป้องกันในอนาคต: [การป้องกัน]\n\nภาษา/stack: [ระบุ]', 
+    favorite: false, rating: 0, tags: ['debug', 'troubleshoot'], variables: [
+      { name: "ระบุ", placeholder: "Node.js/Python/Java" },
+      { name: "สภาพแวดล้อม", placeholder: "Production/Staging/Dev" },
+      { name: "เวอร์ชัน", placeholder: "Node 18, Python 3.10" },
+      { name: "จำนวนสาเหตุ", placeholder: "3" },
+      { name: "จำนวนวิธีตรวจสอบ", placeholder: "2" },
+      { name: "จำนวนแนวทาง", placeholder: "3" },
+      { name: "จำนวนบรรทัด", placeholder: "10" },
+      { name: "การป้องกัน", placeholder: "เพิ่ม error handling" }
     ]
   },
   { 
     cat:'code', tag:'code', title:'เขียน Shell Script ขั้นเทพ', desc:'สร้าง Bash/PowerShell script สำหรับงานอัตโนมัติ', 
-    prompt:'จงเขียน Shell script สำหรับ [OS] ที่ทำงาน:\n[อธิบายงาน]\n\nข้อกำหนด:\n- ตรวจสอบ environment ก่อนรัน\n- มี error handling\n- ใช้งาน flag/option\n- แสดง progress bar หรือ log\n- ใช้คำสั่ง native เป็นหลัก\n\nเขียนโค้ดพร้อมคอมเมนต์', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงเขียน Shell script สำหรับ [OS] ที่ทำงาน:\n[อธิบายงาน]\n\nชื่อสคริปต์: [ชื่อสคริปต์]\nจำนวนพารามิเตอร์: [จำนวนพารามิเตอร์] ตัว\n\nข้อกำหนด:\n- ตรวจสอบ environment ก่อนรัน ([จำนวน checks] checks)\n- มี error handling ([จำนวน error handling] กรณี)\n- ใช้งาน flag/option ([flags] flags)\n- แสดง progress bar หรือ log ([log format] format)\n- ใช้คำสั่ง native เป็นหลัก\n- จัดการไฟล์: [จัดการไฟล์]\n\nเขียนโค้ดพร้อมคอมเมนต์ ([จำนวนบรรทัด] บรรทัด)', 
+    favorite: false, rating: 0, tags: ['shell', 'script'], variables: [
       { name: "OS", placeholder: "Linux/macOS/Windows" },
-      { name: "อธิบายงาน", placeholder: "เช่น backup ไฟล์" }
+      { name: "อธิบายงาน", placeholder: "เช่น backup ไฟล์" },
+      { name: "ชื่อสคริปต์", placeholder: "backup.sh" },
+      { name: "จำนวนพารามิเตอร์", placeholder: "2" },
+      { name: "จำนวน checks", placeholder: "3" },
+      { name: "จำนวน error handling", placeholder: "2" },
+      { name: "flags", placeholder: "-v, -h" },
+      { name: "log format", placeholder: "timestamp + message" },
+      { name: "จัดการไฟล์", placeholder: "compress, move" },
+      { name: "จำนวนบรรทัด", placeholder: "50" }
     ]
   },
   { 
     cat:'code', tag:'code', title:'สร้างโปรเจกต์เรียนรู้', desc:'ออกแบบโปรเจกต์ขนาดเล็กสำหรับฝึกเขียนโค้ด', 
-    prompt:'จงออกแบบโปรเจกต์ฝึกหัดสำหรับผู้เริ่มต้นภาษา "[ภาษา]" ในหัวข้อ "[หัวข้อ]"\n\nให้ระบุ:\n- โจทย์/ฟีเจอร์ที่ต้องทำ\n- Milestone 5 ขั้น\n- ตัวอย่างโค้ดเริ่มต้น\n- Learning outcome\n- คำแนะนำแหล่งอ้างอิง\n\nความยาก: [ความยาก]', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงออกแบบโปรเจกต์ฝึกหัดสำหรับผู้เริ่มต้นภาษา "[ภาษา]" ในหัวข้อ "[หัวข้อ]"\n\nระดับ: [ระดับ]\nจำนวนชั่วโมง: [จำนวนชั่วโมง] ชั่วโมง\n\nให้ระบุ:\n- โจทย์/ฟีเจอร์ที่ต้องทำ ([จำนวนฟีเจอร์] ฟีเจอร์)\n- Milestone ([จำนวน milestone] ขั้น)\n- ตัวอย่างโค้ดเริ่มต้น ([จำนวนบรรทัด] บรรทัด)\n- Learning outcome ([จำนวนผลลัพธ์] ข้อ)\n- คำแนะนำแหล่งอ้างอิง ([จำนวนแหล่ง] แหล่ง)\n- ทรัพยากรที่ต้องใช้: [ทรัพยากร]\n\nความยาก: [ความยาก]', 
+    favorite: false, rating: 0, tags: ['project', 'learning'], variables: [
       { name: "ภาษา", placeholder: "Python/JavaScript" },
       { name: "หัวข้อ", placeholder: "Web Scraping/API" },
+      { name: "ระดับ", placeholder: "เริ่มต้น/ปานกลาง" },
+      { name: "จำนวนชั่วโมง", placeholder: "10" },
+      { name: "จำนวนฟีเจอร์", placeholder: "3" },
+      { name: "จำนวน milestone", placeholder: "5" },
+      { name: "จำนวนบรรทัด", placeholder: "20" },
+      { name: "จำนวนผลลัพธ์", placeholder: "4" },
+      { name: "จำนวนแหล่ง", placeholder: "3" },
+      { name: "ทรัพยากร", placeholder: "IDE, API key" },
       { name: "ความยาก", placeholder: "ง่าย/ปานกลาง" }
     ]
   },
@@ -246,34 +342,65 @@ const templates = [
   // ===== CHAT (10) - เดิม + เพิ่มตัวแปร =====
   { 
     cat:'chat', tag:'chat', title:'Roleplay Character Card', desc:'สร้างการ์ดตัวละครสำหรับแชท มีบุคลิกครบ', 
-    prompt:'จงสร้าง Roleplay Character Card สำหรับ AI แชท โดยมีรายละเอียดดังนี้:\n\nชื่อตัวละคร: "[ชื่อ]"\nบทบาท: "[บทบาท]"\n\nให้เขียน:\n1. **Personality** - นิสัย 5 ข้อ (บวก+ลบ ผสมกัน)\n2. **Speaking Style** - วิธีพูด (สุภาพ/กึ่งกึ่ง/ไม่เป็นทางการ, ใช้คำว่าอะไรเรียกตัวเอง, ใช้คำว่าอะไรเรียกผู้ใช้)\n3. **Background** - ประวัติสั้น 3 บรรทัด\n4. **Knowledge** - สิ่งที่รู้ดี / สิ่งที่ไม่รู้\n5. **Rules** - 3 ข้อที่ตัวละครต้องไม่ทำ (ขอบเขต)\n6. **Greeting** - ข้อความเปิดแชทแรก 2-3 บรรทัด\n7. **Example Dialog** - 3 คู่ (ผู้ใช้: ... / ตัวละคร: ...)', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ชื่อ", placeholder: "ชื่อตัวละคร" },
-      { name: "บทบาท", placeholder: "พ่อสอนภาษา/เพื่อนที่ปรึกษา" }
+    prompt:'จงสร้าง Roleplay Character Card สำหรับ AI แชท โดยมีรายละเอียดดังนี้:\n\nชื่อตัวละคร: "[ชื่อ]"\nบทบาท: "[บทบาท]"\nอายุ: [อายุ], เพศ: [เพศ]\nอาชีพ: [อาชีพ]\n\nให้เขียน:\n1. **Personality** - นิสัย [จำนวนข้อ] ข้อ (บวก+ลบ ผสมกัน): [บุคลิก]\n2. **Speaking Style** - วิธีพูด: [วิธีพูด] (สุภาพ/กึ่งกึ่ง/ไม่เป็นทางการ, ใช้คำว่าอะไรเรียกตัวเอง, ใช้คำว่าอะไรเรียกผู้ใช้)\n3. **Background** - ประวัติสั้น [จำนวนบรรทัด] บรรทัด: [ประวัติ]\n4. **Knowledge** - สิ่งที่รู้ดี: [สิ่งที่รู้ดี] / สิ่งที่ไม่รู้: [สิ่งที่ไม่รู้]\n5. **Rules** - [จำนวนกฎ] ข้อที่ตัวละครต้องไม่ทำ (ขอบเขต): [กฎ]\n6. **Greeting** - ข้อความเปิดแชทแรก [จำนวนบรรทัด] บรรทัด: [Greeting]\n7. **Example Dialog** - [จำนวนตัวอย่าง] คู่ (ผู้ใช้: ... / ตัวละคร: ...)', 
+    favorite: false, rating: 0, tags: ['roleplay', 'chat'], variables: [
+      { name: "ชื่อ", placeholder: "อาจารย์นภา" },
+      { name: "บทบาท", placeholder: "พ่อสอนภาษาไทย" },
+      { name: "อายุ", placeholder: "35" },
+      { name: "เพศ", placeholder: "หญิง" },
+      { name: "อาชีพ", placeholder: "ครูสอนภาษา" },
+      { name: "จำนวนข้อ", placeholder: "5" },
+      { name: "บุคลิก", placeholder: "ใจดี, อดทน, ชอบสอน" },
+      { name: "วิธีพูด", placeholder: "สุภาพ, เรียกตัวเองว่า ครู" },
+      { name: "จำนวนบรรทัด", placeholder: "3" },
+      { name: "ประวัติ", placeholder: "สอนมาตลอด 10 ปี" },
+      { name: "สิ่งที่รู้ดี", placeholder: "ภาษาไทย, วัฒนธรรม" },
+      { name: "สิ่งที่ไม่รู้", placeholder: "คณิตศาสตร์" },
+      { name: "จำนวนกฎ", placeholder: "3" },
+      { name: "กฎ", placeholder: "ห้ามด่า, ห้ามโกหก" },
+      { name: "Greeting", placeholder: "สวัสดีนักเรียน วันนี้เรียนเรื่องอะไรดี?" },
+      { name: "จำนวนตัวอย่าง", placeholder: "3" }
     ]
   },
   { 
     cat:'chat', tag:'chat', title:'Socratic Tutor', desc:'ติวเตอร์สอนแบบถาม-ตอบ กระตุ้นคิดเอง', 
-    prompt:'คุณเป็นติวเตอร์ที่ใช้วิธี Socratic Method ในการสอน\n\nวิชา/หัวข้อ: "[วิชา/หัวข้อ]"\nระดับ: [ระดับ]\n\nกฎ:\n1. ห้ามตอบตรงๆ ต้องถามคำถามนำให้ผู้เรียนคิดเอง\n2. ถ้าผู้เรียนตอบผิด อย่าบอกว่าผิด แต่ถามคำถามที่ทำให้เห็นจุดขัดแย้งเอง\n3. ใช้ตัวอย่าง/การเปรียบเทียบในชีวิตประจำวัน\n4. ทำเป็นบทสนทนาทีละคำถาม รอคำตอบทุกครั้ง\n5. เมื่อผู้เรียนเข้าใจแล้ว สรุปประเด็นสำคัญ 1 บรรทัด\n6. ใช้ภาษาเป็นกันเอง ไม่เกรี้ยวกราด\n\nเริ่มต้น: ทักทายและถามว่าผู้เรียนรู้เรื่องนี้มาแค่ไหน', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'คุณเป็นติวเตอร์ที่ใช้วิธี Socratic Method ในการสอน\n\nวิชา/หัวข้อ: "[วิชา/หัวข้อ]"\nระดับ: [ระดับ]\n\nกฎ:\n1. ห้ามตอบตรงๆ ต้องถามคำถามนำให้ผู้เรียนคิดเอง\n2. ถ้าผู้เรียนตอบผิด อย่าบอกว่าผิด แต่ถามคำถามที่ทำให้เห็นจุดขัดแย้งเอง\n3. ใช้ตัวอย่าง/การเปรียบเทียบในชีวิตประจำวัน\n4. ทำเป็นบทสนทนาทีละคำถาม รอคำตอบทุกครั้ง\n5. เมื่อผู้เรียนเข้าใจแล้ว สรุปประเด็นสำคัญ 1 บรรทัด\n6. ใช้ภาษาเป็นกันเอง ไม่เกรี้ยวกราด\n\nวัตถุประสงค์การเรียนรู้: [วัตถุประสงค์]\nจำนวนคำถามทีละรอบ: [จำนวนคำถาม]\nภาษาที่ใช้สอน: [ภาษา]\nเวลาต่อคำถาม: [เวลา] นาที\n\nเริ่มต้น: ทักทายและถามว่าผู้เรียนรู้เรื่องนี้มาแค่ไหน', 
+    favorite: false, rating: 0, tags: ['tutor', 'education'], variables: [
       { name: "วิชา/หัวข้อ", placeholder: "คณิตศาสตร์/ประวัติศาสตร์" },
-      { name: "ระดับ", placeholder: "มัธยม/ปริญญาตรี" }
+      { name: "ระดับ", placeholder: "มัธยม/ปริญญาตรี" },
+      { name: "วัตถุประสงค์", placeholder: "เข้าใจแนวคิดหลัก" },
+      { name: "จำนวนคำถาม", placeholder: "3-5" },
+      { name: "ภาษา", placeholder: "ไทย/อังกฤษ" },
+      { name: "เวลา", placeholder: "2-3" }
     ]
   },
   { 
     cat:'chat', tag:'chat', title:'Career Coach', desc:'โค้ชด้านอาชีพ ให้คำแนะนำการหางาน', 
-    prompt:'คุณเป็น Career Coach จงให้คำแนะนำเกี่ยวกับ "[หัวข้อ]"\n\nรายละเอียดผู้ใช้:\n- อายุ/ประสบการณ์: [ปี]\n- สาขาที่สนใจ: [สาขา]\n- เป้าหมาย: [เป้าหมาย]\n\nให้ถามคำถามเพิ่มเติมเพื่อเจาะลึก แล้วให้คำแนะนำดังนี้:\n1. วิเคราะห์จุดแข็ง-จุดอ่อน\n2. เส้นทางอาชีพที่น่าสนใจ\n3. ทักษะที่ควรพัฒนา\n4. แหล่งเรียนรู้\n5. วิธีเขียน Resume/Portfolio\n\nเป็นกันเอง และกระตุ้นให้ตั้งเป้าหมาย', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'คุณเป็น Career Coach จงให้คำแนะนำเกี่ยวกับ "[หัวข้อ]"\n\nรายละเอียดผู้ใช้:\n- อายุ/ประสบการณ์: [ปี]\n- สาขาที่สนใจ: [สาขา]\n- เป้าหมาย: [เป้าหมาย]\n- กลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\n\nให้ถามคำถามเพิ่มเติมเพื่อเจาะลึก แล้วให้คำแนะนำดังนี้:\n1. วิเคราะห์จุดแข็ง-จุดอ่อน\n2. เส้นทางอาชีพที่น่าสนใจ (จำนวนเส้นทาง: [จำนวนเส้นทาง])\n3. ทักษะที่ควรพัฒนา\n4. แหล่งเรียนรู้ (แหล่งเรียนรู้: [แหล่งเรียนรู้])\n5. วิธีเขียน Resume/Portfolio\n6. แนวทางสัมภาษณ์ (เทคนิค: [เทคนิค])\n\nเป็นกันเอง และกระตุ้นให้ตั้งเป้าหมาย', 
+    favorite: false, rating: 0, tags: ['career', 'coach'], variables: [
       { name: "หัวข้อ", placeholder: "การเปลี่ยนงาน/เลื่อนขั้น" },
-      { name: "สาขา", placeholder: "IT/การตลาด" }
+      { name: "สาขา", placeholder: "IT/การตลาด" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "วัยรุ่น/วัยทำงาน" },
+      { name: "จำนวนเส้นทาง", placeholder: "3" },
+      { name: "แหล่งเรียนรู้", placeholder: "Coursera, Udemy" },
+      { name: "เทคนิค", placeholder: "STAR Method" }
     ]
   },
   { 
     cat:'chat', tag:'chat', title:'Travel Planner', desc:'วางแผนเที่ยวแบบละเอียด ตามงบและสไตล์', 
-    prompt:'คุณเป็น Travel Planner จงวางแผนทริปให้กับผู้ใช้\n\nรายละเอียด:\n- ปลายทาง: [เมือง/ประเทศ]\n- จำนวนวัน: [วัน]\n- งบประมาณ: [บาท]\n- สไตล์เที่ยว: [สไตล์]\n\nให้ตอบ:\n1. ตารางเที่ยววันต่อวัน (เช้า-บ่าย-ค่ำ)\n2. งบประมาณคร่าวๆ ต่อวัน\n3. ที่พักแนะนำ\n4. อาหาร/คาเฟ่\n5. เคล็ดลับการเดินทาง\n\nถามข้อมูลเพิ่มหากจำเป็น', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'คุณเป็น Travel Planner จงวางแผนทริปให้กับผู้ใช้\n\nรายละเอียด:\n- ปลายทาง: [เมือง/ประเทศ]\n- จำนวนวัน: [จำนวนวัน]\n- งบประมาณ: [งบประมาณ] (บาท)\n- สไตล์เที่ยว: [สไตล์]\n- จำนวนคน: [จำนวนคน]\n- ฤดูกาล: [ฤดูกาล]\n\nให้ตอบ:\n1. ตารางเที่ยววันต่อวัน (เช้า-บ่าย-ค่ำ) [จำนวนวัน]\n2. งบประมาณคร่าวๆ ต่อวัน (จำนวนบาท)\n3. ที่พักแนะนำ (จุดเด่น): [ที่พัก]\n4. อาหาร/คาเฟ่ (ร้านดัง): [อาหาร]\n5. เคล็ดลับการเดินทาง (วิธีเดินทาง): [เทคนิค]\n6. แผนสำรอง (กรณีฝน/ปิด): [แผนรอง]\n\nถามข้อมูลเพิ่มหากจำเป็น', 
+    favorite: false, rating: 0, tags: ['travel', 'planning'], variables: [
       { name: "เมือง/ประเทศ", placeholder: "เชียงใหม่/ญี่ปุ่น" },
-      { name: "สไตล์", placeholder: "ผจญภัย/ชิลล์/วัฒนธรรม" }
+      { name: "จำนวนวัน", placeholder: "3 วัน 2 คืน" },
+      { name: "งบประมาณ", placeholder: "15000" },
+      { name: "สไตล์", placeholder: "ผจญภัย/ชิลล์/วัฒนธรรม" },
+      { name: "จำนวนคน", placeholder: "2 คน" },
+      { name: "ฤดูกาล", placeholder: "ฤดูร้อน" },
+      { name: "จำนวนวัน", placeholder: "3" },
+      { name: "จำนวนบาท", placeholder: "5000" },
+      { name: "ที่พัก", placeholder: "โรงแรมริมแม่นำ" },
+      { name: "อาหาร", placeholder: "กาแฟชื่อดัง" },
+      { name: "เทคนิค", placeholder: "เช่าารถ/รถไฟ" }
     ]
   },
   { 
