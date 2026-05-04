@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-blob a"></div>
+<div class="bg-blob b"></div>
+
+<div class="app">
+  <header>
+    <div class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-terminal"></i></div>
+      <div class="logo-text">Prompt<span>Studio</span></div>
+    </div>
+    <div class="header-actions">
+      <button onclick="exportAll()" title="Export ทั้งหมด"><i class="fa-solid fa-download"></i> Export</button>
+      <button onclick="importPrompts()" title="Import"><i class="fa-solid fa-upload"></i> Import</button>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="editor"><i class="fa-solid fa-pen-nib"></i>&ensp;เขียน</button>
+    <button class="tab" data-tab="templates"><i class="fa-solid fa-shapes"></i>&ensp;เทมเพลต</button>
+    <button class="tab" data-tab="history"><i class="fa-solid fa-clock-rotate-left"></i>&ensp;ประวัติ</button>
+    <button class="tab" data-tab="viewer"><i class="fa-regular fa-file-code"></i>&ensp;Viewer</button>
+  </div>
+
+  <div class="panel active" id="panel-editor">
+    <div class="editor-wrap">
+      <div class="editor-bar">
+        <div class="editor-bar-left">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="editor-bar-label">prompt.txt</span>
+        </div>
+      </div>
+      <textarea class="editor-area" id="promptInput" placeholder="เขียน prompt ที่นี่... แล้วกดบันทึกหรือคัดลอกได้เลย" spellcheck="false"></textarea>
+      <div class="editor-footer">
+        <div class="stats">
+          <span class="stat">ตัวอักษร <b id="charCount">0</b></span>
+          <span class="stat">คำ <b id="wordCount">0</b></span>
+          <span class="stat">บรรทัด <b id="lineCount">0</b></span>
+        </div>
+        <div class="editor-actions">
+          <button class="btn-sm danger" onclick="clearEditor()"><i class="fa-solid fa-trash-can"></i> ล้าง</button>
+          <button class="btn-sm" onclick="savePrompt()"><i class="fa-solid fa-floppy-disk"></i> บันทึก</button>
+          <button class="btn-sm primary" onclick="copyPrompt()"><i class="fa-solid fa-copy"></i> คัดลอก</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-templates">
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input class="search-bar" id="templateSearch" placeholder="ค้นหาเทมเพลต..." oninput="filterTemplates()">
+    </div>
+    <div class="filter-chips">
+      <button class="chip active" data-filter="all" onclick="setFilter(this,'all')">ทั้งหมด</button>
+      <button class="chip" data-filter="writing" onclick="setFilter(this,'writing')">เขียน</button>
+      <button class="chip" data-filter="code" onclick="setFilter(this,'code')">โค้ด</button>
+      <button class="chip" data-filter="image" onclick="setFilter(this,'image')">รูปภาพ</button>
+      <button class="chip" data-filter="chat" onclick="setFilter(this,'chat')">แชท</button>
+      <button class="chip" data-filter="market" onclick="setFilter(this,'market')">การตลาด</button>
+      <button class="chip" data-filter="termux" onclick="setFilter(this,'termux')">Termux</button>
+      <button class="chip" data-filter="music" onclick="setFilter(this,'music')">Music</button>
+      <button class="chip" data-filter="video" onclick="setFilter(this,'video')">Video</button>
+      <button class="chip" data-filter="business" onclick="setFilter(this,'business')">Business</button>
+    </div>
+    <div style="display:flex; gap:8px; margin:12px 0 14px;">
+      <button class="btn-sm" id="favBtn" onclick="toggleFavorites()"><i class="fa-regular fa-heart"></i> รายการโปรด</button>
+      <button class="btn-sm primary" onclick="addNewTemplate()"><i class="fa-solid fa-plus"></i> เพิ่มเทมเพลต</button>
+    </div>
+    <div class="template-grid" id="templateGrid"></div>
+  </div>
+
+  <div class="panel" id="panel-history">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <div class="section-title" style="margin:0;">บันทึกล่าสุด</div>
+      <button class="btn-sm danger" onclick="confirmClearAll()" id="clearAllBtn" style="display:none;"><i class="fa-solid fa-trash"></i> ล้างทั้งหมด</button>
+    </div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+
+  <div class="panel" id="panel-viewer">
+    <div class="viewer-container">
+      <div class="viewer-header">
+        <div class="viewer-file-info">
+          <div class="viewer-file-icon"><i class="fa-regular fa-file-lines"></i></div>
+          <div class="viewer-file-details">
+            <span class="viewer-file-name" id="currentFileName">ยังไม่ได้เลือกไฟล์</span>
+            <span class="viewer-file-meta" id="currentFileMeta">—</span>
+          </div>
+        </div>
+        <div class="viewer-actions">
+          <button class="btn-sm" id="viewerCopyBtn" onclick="copyViewerContent()" disabled><i class="fa-regular fa-copy"></i> คัดลอก</button>
+          <button class="btn-sm" id="viewerSaveBtn" onclick="saveViewerContent()" disabled><i class="fa-regular fa-floppy-disk"></i> บันทึก</button>
+          <button class="btn-sm danger" id="viewerClearBtn" onclick="clearViewer()"><i class="fa-regular fa-trash-can"></i> ล้าง</button>
+        </div>
+      </div>
+      <div class="viewer-dropzone" id="viewerDropzone" onclick="document.getElementById('viewerFileInput').click()">
+        <i class="fa-regular fa-cloud-arrow-up"></i>
+        <p>ลากไฟล์มาวางที่นี่ หรือคลิกเพื่อเลือก</p>
+        <p class="small">รองรับไฟล์ข้อความ, โค้ด, config, log, markdown ฯลฯ</p>
+      </div>
+      <div class="viewer-content-wrapper" id="viewerContentWrapper" style="display: none;">
+        <pre id="viewerPre" class="line-numbers language-none" style="margin:0;"><code id="viewerCode" class="language-none"></code></pre>
+      </div>
+      <div class="viewer-footer">
+        <div class="viewer-stats">
+          <span class="stat">ตัวอักษร <b id="viewerCharCount">0</b></span>
+          <span class="stat">บรรทัด <b id="viewerLineCount">0</b></span>
+          <span class="stat">ภาษา <b id="viewerLanguage">plain</b></span>
+        </div>
+        <div>
+          <span class="stat" id="viewerEncoding">UTF-8</span>
+        </div>
+      </div>
+    </div>
+    <input type="file" id="viewerFileInput" style="display:none" accept=".txt,.json,.js,.py,.html,.css,.xml,.yaml,.yml,.md,.log,.ini,.cfg,.conf,.sh,.bat,.ps1,.c,.cpp,.java,.go,.rs,.php,.rb,.sql,.vue,.ts,.jsx,.tsx,text/*,application/json,application/xml,application/javascript,application/x-python-code" />
+  </div>
+
+  <!-- ส่วนทดสอบ Prompt กับ AI ฟรี (ไม่ต้อง Login) -->
+  <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+    <div class="section-title" style="margin-bottom: 16px;">🚀 ทดสอบ Prompt กับ AI ฟรี (ไม่ต้อง Login)</div>
+    <div class="ai-links-grid">
+      <!-- Perplexity AI -->
+      <a href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer" class="ai-link-item">
+        <img src="https://www.perplexity.ai/favicon.ico" alt="Perplexity" class="ai-logo" onerror="this.onerror=null;this.src='https://img.icons8.com/color/48/000000/perplexity-ai.png';">
+        <span>Perplexity</span>
+      </a>
+      <!-- Poe (Quora) -->
+      <a href="https://poe.com" target="_blank" rel="noopener noreferrer" class="ai-link-item">
+        <img src="https://poe.com/favicon.ico" alt="Poe" class="ai-logo" onerror="this.onerror=null;this.src='https://img.icons8.com/color/48/000000/poe.png';">
+        <span>Poe</span>
+      </a>
+      <!-- You.com -->
+      <a href="https://you.com" target="_blank" rel="noopener noreferrer" class="ai-link-item">
+        <img src="https://you.com/favicon.ico" alt="You.com" class="ai-logo" onerror="this.onerror=null;this.src='https://img.icons8.com/color/48/000000/you.png';">
+        <span>You.com</span>
+      </a>
+      <!-- Hugging Face Chat -->
+      <a href="https://huggingface.co/chat" target="_blank" rel="noopener noreferrer" class="ai-link-item">
+        <img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" class="ai-logo" onerror="this.onerror=null;this.src='https://img.icons8.com/color/48/000000/hugging-face.png';">
+        <span>Hugging Face</span>
+      </a>
+      <!-- Character.AI -->
+      <a href="https://character.ai" target="_blank" rel="noopener noreferrer" class="ai-link-item">
+        <img src="https://character.ai/images/logo.svg" alt="Character.AI" class="ai-logo" onerror="this.onerror=null;this.src='https://img.icons8.com/color/48/000000/character-ai.png';">
+        <span>Character.AI</span>
+      </a>
+      <!-- ChatSono (ฟรี ไม่ต้อง Login) -->
+      <a href="https://chatsono.com" target="_blank" rel="noopener noreferrer" class="ai-link-item">
+        <img src="https://chatsono.com/favicon.ico" alt="ChatSono" class="ai-logo" onerror="this.onerror=null;this.src='https://img.icons8.com/color/48/000000/chat.png';">
+        <span>ChatSono</span>
+      </a>
+    </div>
+    <p style="font-size: 12px; color: var(--muted); margin-top: 12px;">* คลิกลิงก์เพื่อทดสอบ Prompt ที่สร้างใน Editor ได้ทันที (บางแพลตฟอร์มอาจมีข้อจำกัดการใช้งานฟรี)</p>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3>ล้างประวัติทั้งหมด?</h3>
+    <p>การกระทำนี้ไม่สามารถย้อนกลับได้ prompt ที่บันทึกไว้ทั้งหมดจะถูกลบถาวร</p>
+    <div class="modal-actions">
+      <button class="cancel" onclick="closeModal()">ยกเลิก</button>
+      <button class="confirm" onclick="clearAllHistory()">ล้างทั้งหมด</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="variableModal">
+  <div class="modal">
+    <div id="variableForm"></div>
+    <div class="modal-actions">
+      <button class="cancel" onclick="closeVariableModal()">ยกเลิก</button>
+      <button class="confirm" onclick="generatePromptFromVariables()">สร้าง Prompt</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="fileInput" accept=".json,.txt" style="display:none" onchange="handleImport(event)">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="data/templates.js"></script>
+<script src="js/viewer.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
