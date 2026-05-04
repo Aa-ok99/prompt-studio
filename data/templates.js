@@ -595,256 +595,685 @@ const templates = [
   // ===== MARKET (10) - เดิม + เพิ่มตัวแปร =====
   { 
     cat:'market', tag:'market', title:'Marketing Campaign', desc:'วางแผนการตลาดออนไลน์แบบครบวงจร', 
-    prompt:'คุณเป็น Marketing Strategist จงวางแผนการตลาดสำหรับ "[สินค้า/บริการ]"\n\nข้อมูลเพิ่มเติม:\n- กลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\n- งบประมาณ: [จำนวน]\n- ระยะเวลาแคมเปญ: [ระยะเวลา]\n- เป้าหมาย: [เป้าหมาย]\n\nให้ตอบตามโครงสร้าง:\n1. กลยุทธ์หลัก\n2. ช่องทางที่ใช้ (Social Media, SEO, Email, ฯลฯ) พร้อมเหตุผล\n3. Content Ideas 5 ข้อ\n4. Timeline การปล่อยคอนเทนต์\n5. วิธีการวัดผล (KPIs)\n6. งบประมาณโดยประมาณแยกตามช่องทาง', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'คุณเป็น Marketing Strategist จงวางแผนการตลาดสำหรับ "[สินค้า/บริการ]"\n\nข้อมูลเพิ่มเติม:\n- กลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\n- งบประมาณ: [งบประมาณ] (บาท)\n- ระยะเวลาแคมเปญ: [ระยะเวลา]\n- เป้าหมาย: [เป้าหมาย]\n- สไตล์แบรนด์: [สไตล์แบรนด์]\n- จำนวนคอนเทนต์: [จำนวนคอนเทนต์] ชิ้น\n\nให้ตอบตามโครงสร้าง:\n1. กลยุทธ์หลัก ([จำนวนกลยุทธ์] ข้อ)\n2. ช่องทางที่ใช้ (Social Media, SEO, Email, ฯลฯ) พร้อมเหตุผล ([จำนวนช่องทาง] ช่องทาง)\n3. Content Ideas ([จำนวน Content] ข้อ)\n4. Timeline การปล่อยคอนเทนต์ ([จำนวนวัน] วัน)\n5. วิธีการวัดผล (KPIs): [KPIs]\n6. งบประมาณโดยประมาณแยกตามช่องทาง ([จำนวนช่องทางงบ] ช่องทาง)\n\nเขียนอย่างละเอียด ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['marketing', 'campaign'], variables: [
       { name: "สินค้า/บริการ", placeholder: "เครื่องดื่มเพื่อสุขภาพ" },
-      { name: "กลุ่มเป้าหมาย", placeholder: "วัยรุ่น/วัยทำงาน" }
+      { name: "กลุ่มเป้าหมาย", placeholder: "วัยรุ่น/วัยทำงาน" },
+      { name: "งบประมาณ", placeholder: "50000" },
+      { name: "ระยะเวลา", placeholder: "1 เดือน" },
+      { name: "เป้าหมาย", placeholder: "เพิ่มยอดขาย" },
+      { name: "สไตล์แบรนด์", placeholder: "ทันสมัย, สดใส" },
+      { name: "จำนวนคอนเทนต์", placeholder: "10" },
+      { name: "จำนวนกลยุทธ์", placeholder: "3" },
+      { name: "จำนวนช่องทาง", placeholder: "3" },
+      { name: "จำนวน Content", placeholder: "5" },
+      { name: "จำนวนวัน", placeholder: "30" },
+      { name: "KPIs", placeholder: "ยอดขาย, Engagement" },
+      { name: "จำนวนช่องทางงบ", placeholder: "3" },
+      { name: "จำนวนคำ", placeholder: "300" }
     ]
   },
   { 
     cat:'market', tag:'market', title:'Social Media Calendar', desc:'ปฏิทินคอนเทนต์รายเดือนสำหรับโซเชียลมีเดีย', 
-    prompt:'จงออกแบบ Social Media Content Calendar สำหรับแบรนด์ "[ชื่อแบรนด์]" ในเดือน "[เดือน]" แพลตฟอร์ม: [แพลตฟอร์ม]\n\nให้ระบุ:\n- Theme แต่ละสัปดาห์\n- จำนวนโพสต์ต่อวัน\n- ประเภทคอนเทนต์ (ภาพ, วิดีโอ, สตอรี่)\n- Caption ตัวอย่าง 3 อัน\n- Hashtag แนะนำ\n- วัน/เวลาที่โพสต์ดีที่สุด\n\nเขียนเป็นตารางรายวัน', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงออกแบบ Social Media Content Calendar สำหรับแบรนด์ "[ชื่อแบรนด์]" ในเดือน "[เดือน]" แพลตฟอร์ม: [แพลตฟอร์ม]\n\nข้อมูลเพิ่มเติม:\n- จำนวนโพสต์ต่อวัน: [จำนวนโพสต์] โพสต์\n- ประเภทคอนเทนต์: [ประเภทคอนเทนต์] (ภาพ, วิดีโอ, สตอรี่)\n- Theme แต่ละสัปดาห์: [theme]\n- กลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\n\nให้ระบุ:\n- Theme แต่ละสัปดาห์ ([จำนวน theme] themes)\n- Caption ตัวอย่าง ([จำนวน caption] อัน)\n- Hashtag แนะนำ ([จำนวน hashtag] hashtags): [hashtags]\n- วัน/เวลาที่โพสต์ดีที่สุด: [วันเวลา]\n- งบประมาณโฆษณา: [งบประมาณ]\n\nเขียนเป็นตารางรายวัน ([จำนวนวัน] วัน)', 
+    favorite: false, rating: 0, tags: ['social-media', 'calendar'], variables: [
       { name: "ชื่อแบรนด์", placeholder: "แบรนด์เสื้อผ้า" },
-      { name: "แพลตฟอร์ม", placeholder: "Facebook, Instagram, TikTok" }
+      { name: "แพลตฟอร์ม", placeholder: "Facebook, Instagram, TikTok" },
+      { name: "เดือน", placeholder: "มกราคม 2026" },
+      { name: "จำนวนโพสต์", placeholder: "2" },
+      { name: "ประเภทคอนเทนต์", placeholder: "ภาพ 70%, วิดีโอ 30%" },
+      { name: "theme", placeholder: "ความสุข, สุขภาพ" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "วัยรุ่น 15-25 ปี" },
+      { name: "จำนวน theme", placeholder: "4" },
+      { name: "จำนวน caption", placeholder: "3" },
+      { name: "จำนวน hashtag", placeholder: "5" },
+      { name: "hashtags", placeholder: "#fashion #style" },
+      { name: "วันเวลา", placeholder: "จันทร์-ศุกร์ 18:00" },
+      { name: "งบประมาณ", placeholder: "10000 บาท" },
+      { name: "จำนวนวัน", placeholder: "30" }
     ]
   },
   { 
     cat:'market', tag:'market', title:'เขียนอีเมลการตลาด', desc:'ร่างอีเมลแคมเปญ EDM สำหรับลูกค้า', 
-    prompt:'จงเขียนอีเมลการตลาดสำหรับแคมเปญ "[ชื่อแคมเปญ]"\n\nสินค้า/บริการ: [รายละเอียด]\nกลุ่มลูกค้า: [กลุ่ม]\nวัตถุประสงค์: [วัตถุประสงค์]\n\nรูปแบบ:\n- Subject line (3 แบบ)\n- Preheader\n- เนื้อหาอีเมล (HTML แบบง่าย)\n- ปุ่ม CTA\n- ส่วนลด/ข้อเสนอพิเศษ\n\nใช้น้ำเสียง: [น้ำเสียง]', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงเขียนอีเมลการตลาดสำหรับแคมเปญ "[ชื่อแคมเปญ]"\n\nรายละเอียด:\nสินค้า/บริการ: [รายละเอียด]\nกลุ่มลูกค้า: [กลุ่ม]\nวัตถุประสงค์: [วัตถุประสงค์]\nจำนวนอีเมลในซีรีย์: [จำนวนอีเมล] ฉบับ\n\nรูปแบบ:\n- Subject line ([จำนวน subject] แบบ): [subject examples]\n- Preheader: [preheader]\n- เนื้อหาอีเมล (HTML แบบง่าย) ([จำนวนคำ] คำ)\n- ปุ่ม CTA: [CTA]\n- ส่วนลด/ข้อเสนอพิเศษ: [ส่วนลด]\n- วันเวลาส่ง: [วันเวลาส่ง]\n\nใช้น้ำเสียง: [น้ำเสียง]', 
+    favorite: false, rating: 0, tags: ['email', 'marketing'], variables: [
       { name: "ชื่อแคมเปญ", placeholder: "โปรโมชั่นปีใหม่" },
+      { name: "รายละเอียด", placeholder: "สินค้าแฟชั่น" },
+      { name: "กลุ่ม", placeholder: "ลูกค้าเก่า" },
+      { name: "วัตถุประสงค์", placeholder: "เพิ่มยอดขาย" },
+      { name: "จำนวนอีเมล", placeholder: "3" },
+      { name: "จำนวน subject", placeholder: "3" },
+      { name: "subject examples", placeholder: "ส่วนลด 50% วันนี้ only!" },
+      { name: "preheader", placeholder: "อย่าพลาดโอกาส" },
+      { name: "จำนวนคำ", placeholder: "150" },
+      { name: "CTA", placeholder: "ช็อปเลย" },
+      { name: "ส่วนลด", placeholder: "ลด 30%" },
+      { name: "วันเวลาส่ง", placeholder: "จันทร์ 10:00" },
       { name: "น้ำเสียง", placeholder: "เป็นกันเอง/หรูหรา/ด่วน" }
     ]
   },
   { 
     cat:'market', tag:'market', title:'วิเคราะห์คู่แข่ง', desc:'วิเคราะห์ SWOT และกลยุทธ์ของคู่แข่ง', 
-    prompt:'จงวิเคราะห์คู่แข่งของ "[แบรนด์ของเรา]" ในตลาด "[ตลาด]"\n\nคู่แข่งหลัก 3 ราย:\n1. [ชื่อ]\n2. [ชื่อ]\n3. [ชื่อ]\n\nให้วิเคราะห์:\n- SWOT แต่ละราย\n- ราคา/ช่องทางขาย\n- จุดเด่น/จุดอ่อนเมื่อเทียบกับเรา\n- กลยุทธ์ที่เรา adapt ได้\n\nสรุปเป็นตารางและข้อเสนอแนะ', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงวิเคราะห์คู่แข่งของ "[แบรนด์ของเรา]" ในตลาด "[ตลาด]"\n\nคู่แข่งหลัก [จำนวนคู่แข่ง] ราย:\n1. [ชื่อคู่แข่ง 1]\n2. [ชื่อคู่แข่ง 2]\n3. [ชื่อคู่แข่ง 3]\n\nให้วิเคราะห์:\n- SWOT แต่ละราย ([จำนวน SWOT] ข้อ)\n- ราคา/ช่องทางขาย: [ราคา/ช่องทาง]\n- จุดเด่น/จุดอ่อนเมื่อเทียบกับเรา: [จุดเด่น/จุดอ่อน]\n- กลยุทธ์ที่เรา adapt ได้ ([จำนวนกลยุทธ์] กลยุทธ์)\n- ส่วนแบ่งการตลาด: [ส่วนแบ่งการตลาด]\n\nสรุปเป็นตาราง ([จำนวนตาราง] ตาราง) และข้อเสนอแนะ ([จำนวนข้อเสนอแนะ] ข้อ)', 
+    favorite: false, rating: 0, tags: ['competitor', 'analysis'], variables: [
       { name: "แบรนด์ของเรา", placeholder: "แบรนด์ของคุณ" },
-      { name: "ตลาด", placeholder: "ตลาดเครื่องสำอาง" }
+      { name: "ตลาด", placeholder: "ตลาดเครื่องสำอาง" },
+      { name: "จำนวนคู่แข่ง", placeholder: "3" },
+      { name: "ชื่อคู่แข่ง 1", placeholder: "Brand A" },
+      { name: "ชื่อคู่แข่ง 2", placeholder: "Brand B" },
+      { name: "ชื่อคู่แข่ง 3", placeholder: "Brand C" },
+      { name: "จำนวน SWOT", placeholder: "4" },
+      { name: "ราคา/ช่องทาง", placeholder: "ราคาสูง, ออนไลน์" },
+      { name: "จุดเด่น/จุดอ่อน", placeholder: "แบรนด์แข็งแกร่ง, ราคาสูง" },
+      { name: "จำนวนกลยุทธ์", placeholder: "3" },
+      { name: "ส่วนแบ่งการตลาด", placeholder: "30%" },
+      { name: "จำนวนตาราง", placeholder: "2" },
+      { name: "จำนวนข้อเสนอแนะ", placeholder: "3" }
     ]
   },
   { 
     cat:'market', tag:'market', title:'สร้างแบบสอบถามลูกค้า', desc:'ออกแบบแบบสอบถามเพื่อเก็บข้อมูลลูกค้า', 
-    prompt:'จงสร้างแบบสอบถามลูกค้าสำหรับธุรกิจ "[ธุรกิจ]"\n\nวัตถุประสงค์: [วัตถุประสงค์]\nจำนวนข้อ: 10-12 ข้อ\n\nรูปแบบ:\n- คำถามปลายปิด (rating scale)\n- คำถามปลายเปิด\n- Demographic\n- ข้อเสนอแนะ\n\nให้เขียนทั้งคำถาม และตัวเลือกตอบ', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงสร้างแบบสอบถามลูกค้าสำหรับธุรกิจ "[ธุรกิจ]"\n\nรายละเอียด:\nวัตถุประสงค์: [วัตถุประสงค์]\nจำนวนข้อ: [จำนวนข้อ] ข้อ\nกลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\nระยะเวลาทำแบบสอบถาม: [ระยะเวลา] นาที\n\nรูปแบบ:\n- คำถามปลายปิด (rating scale) ([จำนวนปลายปิด] ข้อ)\n- คำถามปลายเปิด ([จำนวนปลายเปิด] ข้อ)\n- Demographic ([จำนวน demographic] ข้อ)\n- ข้อเสนอแนะ: [ข้อเสนอแนะ]\n- รางวัลสำหรับตอบ: [รางวัล]\n\nให้เขียนทั้งคำถาม และตัวเลือกตอบ ([จำนวนคำถามทั้งหมด] คำถาม)', 
+    favorite: false, rating: 0, tags: ['survey', 'customer'], variables: [
       { name: "ธุรกิจ", placeholder: "ร้านกาแฟ/ร้านเสื้อผ้า" },
-      { name: "วัตถุประสงค์", placeholder: "วัดความพึงพอใจ/วิจัยตลาด" }
+      { name: "วัตถุประสงค์", placeholder: "วัดความพึงพอใจ/วิจัยตลาด" },
+      { name: "จำนวนข้อ", placeholder: "10" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "ลูกค้าปัจจุบัน" },
+      { name: "ระยะเวลา", placeholder: "5" },
+      { name: "จำนวนปลายปิด", placeholder: "5" },
+      { name: "จำนวนปลายเปิด", placeholder: "3" },
+      { name: "จำนวน demographic", placeholder: "2" },
+      { name: "ข้อเสนอแนะ", placeholder: "แนะนำเพื่อน" },
+      { name: "รางวัล", placeholder: "ส่วนลด 10%" },
+      { name: "จำนวนคำถามทั้งหมด", placeholder: "10" }
     ]
   },
   { 
     cat:'market', tag:'market', title:'Advertising Copy', desc:'เขียนข้อความโฆษณาสำหรับ Facebook/Google Ads', 
-    prompt:'จงเขียน Advertising Copy สำหรับแพลตฟอร์ม "[แพลตฟอร์ม]" สินค้า "[สินค้า]"\n\nกลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\nงบประมาณ: [ต่อวัน]\n\nให้สร้าง:\n- Headline 5 แบบ\n- Primary text 2 แบบ\n- Description (ถ้ามี)\n- Call to Action\n- A/B testing idea\n\nใช้หลักการ copywriting เช่น AIDA, PAS', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงเขียน Advertising Copy สำหรับแพลตฟอร์ม "[แพลตฟอร์ม]" สินค้า "[สินค้า]"\n\nรายละเอียด:\nกลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\nงบประมาณ: [งบประมาณ] (ต่อวัน)\nระยะเวลาโฆษณา: [ระยะเวลา]\n\nให้สร้าง:\n- Headline ([จำนวน headline] แบบ): [headline examples]\n- Primary text ([จำนวน primary text] แบบ): [primary text examples]\n- Description (ถ้ามี): [description]\n- Call to Action ([จำนวน CTA] แบบ): [CTA examples]\n- A/B testing idea ([จำนวน A/B] ไอเดีย): [A/B ideas]\n- หลักการ copywriting: [หลักการ] (AIDA, PAS)\n\nใช้ภาษา: [ภาษา]', 
+    favorite: false, rating: 0, tags: ['advertising', 'copywriting'], variables: [
       { name: "แพลตฟอร์ม", placeholder: "Facebook/Google" },
-      { name: "สินค้า", placeholder: "อุปกรณ์ออกกำลังกาย" }
+      { name: "สินค้า", placeholder: "อุปกรณ์ออกกำลังกาย" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "วัยรุ่น 20-30 ปี" },
+      { name: "งบประมาณ", placeholder: "500" },
+      { name: "ระยะเวลา", placeholder: "7 วัน" },
+      { name: "จำนวน headline", placeholder: "5" },
+      { name: "headline examples", placeholder: "ฟิตเนสที่บ้าน" },
+      { name: "จำนวน primary text", placeholder: "2" },
+      { name: "primary text examples", placeholder: "ออกกำลังกายง่ายๆ" },
+      { name: "description", placeholder: "อุปกรณ์คุณภาพสูง" },
+      { name: "จำนวน CTA", placeholder: "3" },
+      { name: "CTA examples", placeholder: "ช็อปเลย" },
+      { name: "จำนวน A/B", placeholder: "2" },
+      { name: "A/B ideas", placeholder: "ทดสอบรูปภาพ" },
+      { name: "หลักการ", placeholder: "AIDA" },
+      { name: "ภาษา", placeholder: "ไทย/อังกฤษ" }
     ]
   },
   { 
     cat:'market', tag:'market', title:'ไอเดียโปรโมชั่น', desc:'คิดโปรโมชั่นดึงดูดลูกค้า สำหรับร้านค้า', 
-    prompt:'จงเสนอไอเดียโปรโมชั่นสำหรับร้าน "[ประเภทร้าน]" ช่วง "[ช่วงเวลา]"\n\nผลิตภัณฑ์เด่น: [สินค้า]\nกลุ่มลูกค้า: [กลุ่ม]\nงบ: [งบ]\n\nให้ออกแบบ 5 โปรโมชั่น:\n- ชื่อโปร\n- กลไก (ซื้อ 1 แถม 1, ลด %, สะสมแต้ม)\n- ระยะเวลา\n- ช่องทางประชาสัมพันธ์\n- ข้อดี/ข้อเสีย', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงเสนอไอเดียโปรโมชั่นสำหรับร้าน "[ประเภทร้าน]" ช่วง "[ช่วงเวลา]"\n\nรายละเอียด:\nผลิตภัณฑ์เด่น: [สินค้า]\nกลุ่มลูกค้า: [กลุ่ม]\nงบ: [งบ]\nจำนวนโปรโมชั่น: [จำนวนโปรโมชั่น] โปรโมชั่น\n\nให้ออกแบบ [จำนวนโปรโมชั่น] โปรโมชั่น:\n- ชื่อโปร: [ชื่อโปร]\n- กลไก (ซื้อ 1 แถม 1, ลด %, สะสมแต้ม): [กลไก]\n- ระยะเวลา: [ระยะเวลา]\n- ช่องทางประชาสัมพันธ์ ([จำนวนช่องทาง] ช่องทาง): [ช่องทาง]\n- ข้อดี/ข้อเสีย: [ข้อดี/ข้อเสีย]\n- งบประมาณแต่ละโปร: [งบแต่ละโปร]\n\nให้ครบถ้วนทุกข้อ ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['promotion', 'ideas'], variables: [
       { name: "ประเภทร้าน", placeholder: "ร้านกาแฟ/ร้านอาหาร" },
-      { name: "ช่วงเวลา", placeholder: "เทศกาลปีใหม่/ฤดูร้อน" }
+      { name: "ช่วงเวลา", placeholder: "เทศกาลปีใหม่/ฤดูร้อน" },
+      { name: "สินค้า", placeholder: "กาแฟเย็น" },
+      { name: "กลุ่ม", placeholder: "วัยรุ่น" },
+      { name: "งบ", placeholder: "10000" },
+      { name: "จำนวนโปรโมชั่น", placeholder: "5" },
+      { name: "ชื่อโปร", placeholder: "ซื้อ 1 แถม 1" },
+      { name: "กลไก", placeholder: "ซื้อ 1 แถม 1" },
+      { name: "ระยะเวลา", placeholder: "1 เดือน" },
+      { name: "จำนวนช่องทาง", placeholder: "3" },
+      { name: "ช่องทาง", placeholder: "Facebook, LINE" },
+      { name: "ข้อดี/ข้อเสีย", placeholder: "ดูดลูกค้าใหม่, กำไรลด" },
+      { name: "งบแต่ละโปร", placeholder: "2000" },
+      { name: "จำนวนคำ", placeholder: "200" }
     ]
   },
   { 
     cat:'market', tag:'market', title:'Brand Storytelling', desc:'เล่าเรื่องแบรนด์ให้น่าสนใจ', 
-    prompt:'จงเขียน Brand Story สำหรับแบรนด์ "[ชื่อแบรนด์]" ที่ขาย "[สินค้า/บริการ]"\n\nประวัติผู้ก่อตั้ง: [สั้น]\nแรงบันดาลใจ: [เหตุผลที่ก่อตั้ง]\nคุณค่าหลัก: [3 ข้อ]\n\nรูปแบบ:\n1. เรื่องเล่าที่มาของแบรนด์\n2. ปัญหาที่แบรนด์แก้\n3. ความแตกต่างจากตลาด\n4. วิสัยทัศน์\n\nความยาว 300-400 คำ', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงเขียน Brand Story สำหรับแบรนด์ "[ชื่อแบรนด์]" ที่ขาย "[สินค้า/บริการ]"\n\nรายละเอียด:\nประวัติผู้ก่อตั้ง: [ประวัติผู้ก่อตั้ง] (สั้น)\nแรงบันดาลใจ: [แรงบันดาลใจ] (เหตุผลที่ก่อตั้ง)\nคุณค่าหลัก: [คุณค่าหลัก] (3 ข้อ)\nกลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\nปีที่ก่อตั้ง: [ปีที่ก่อตั้ง]\n\nรูปแบบ:\n1. เรื่องเล่าที่มาของแบรนด์ ([จำนวนประโยค] ประโยค)\n2. ปัญหาที่แบรนด์แก้: [ปัญหา]\n3. ความแตกต่างจากตลาด ([จำนวนข้อ] ข้อ): [ความแตกต่าง]\n4. วิสัยทัศน์: [วิสัยทัศน์]\n5. สโลแกน: [สโลแกน]\n\nความยาว [ความยาว] คำ', 
+    favorite: false, rating: 0, tags: ['brand', 'storytelling'], variables: [
       { name: "ชื่อแบรนด์", placeholder: "แบรนด์ของคุณ" },
-      { name: "สินค้า/บริการ", placeholder: "สินค้าที่ขาย" }
+      { name: "สินค้า/บริการ", placeholder: "สินค้าที่ขาย" },
+      { name: "ประวัติผู้ก่อตั้ง", placeholder: "อดีตพนักงานออฟฟิศ" },
+      { name: "แรงบันดาลใจ", placeholder: "อยากมีเวลากับครอบครัว" },
+      { name: "คุณค่าหลัก", placeholder: "ซื่อสัตย์, คุณภาพ, นวัตกรรม" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "วัยทำงาน 30-45 ปี" },
+      { name: "ปีที่ก่อตั้ง", placeholder: "2020" },
+      { name: "จำนวนประโยค", placeholder: "3" },
+      { name: "ปัญหา", placeholder: "สินค้าราคาแพง" },
+      { name: "จำนวนข้อ", placeholder: "3" },
+      { name: "ความแตกต่าง", placeholder: "ราคาย่อมเยาว์" },
+      { name: "วิสัยทัศน์", placeholder: "เป็นแบรนด์ระดับประเทศ" },
+      { name: "สโลแกน", placeholder: "คุณภาพที่คุณเอื้อมถึง" },
+      { name: "ความยาว", placeholder: "300-400" }
     ]
   },
   { 
     cat:'market', tag:'market', title:'SEO Off-page Strategy', desc:'วางแผน Off-page SEO เพื่อเพิ่ม authority', 
-    prompt:'จงวางแผน Off-page SEO ให้เว็บ "[URL เว็บ]" ในธุรกิจ "[ประเภทธุรกิจ]"\n\nปัจจุบัน: [DA/PA ถ้ามี]\nเป้าหมาย: [เป้าหมาย]\n\nกลยุทธ์:\n- Link building (guest post, directory, broken link)\n- Social signals\n- Influencer outreach\n- Content promotion\n\nให้ทำ action plan 1 เดือน', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงวางแผน Off-page SEO ให้เว็บ "[URL เว็บ]" ในธุรกิจ "[ประเภทธุรกิจ]"\n\nรายละเอียด:\nปัจจุบัน: [DA/PA] (ถ้ามี)\nเป้าหมาย: [เป้าหมาย]\nระยะเวลา: [ระยะเวลา]\nจำนวน backlinks เป้าหมาย: [จำนวน backlinks] ลิงค์\n\nกลยุทธ์:\n- Link building ([จำนวน link building] วิธี): [link building methods] (guest post, directory, broken link)\n- Social signals ([จำนวน social signals] ช่องทาง): [social signals]\n- Influencer outreach ([จำนวน influencer] คน): [influencer outreach]\n- Content promotion ([จำนวน content] ชิ้น): [content promotion]\n- PR & Branding: [PR & Branding]\n\nให้ทำ action plan [จำนวนเดือน] เดือน ([จำนวนขั้นตอน] ขั้นตอน)', 
+    favorite: false, rating: 0, tags: ['seo', 'off-page'], variables: [
       { name: "URL เว็บ", placeholder: "https://example.com" },
-      { name: "ประเภทธุรกิจ", placeholder: "E-commerce/บริการ" }
+      { name: "ประเภทธุรกิจ", placeholder: "E-commerce/บริการ" },
+      { name: "DA/PA", placeholder: "DA 20, PA 30" },
+      { name: "เป้าหมาย", placeholder: "เพิ่ม DA เป็น 40" },
+      { name: "ระยะเวลา", placeholder: "3 เดือน" },
+      { name: "จำนวน backlinks", placeholder: "50" },
+      { name: "จำนวน link building", placeholder: "3" },
+      { name: "link building methods", placeholder: "guest post, directory" },
+      { name: "จำนวน social signals", placeholder: "3" },
+      { name: "social signals", placeholder: "Facebook, Twitter" },
+      { name: "จำนวน influencer", placeholder: "5" },
+      { name: "influencer outreach", placeholder: "ส่งสินค้าให้รีวิว" },
+      { name: "จำนวน content", placeholder: "10" },
+      { name: "content promotion", placeholder: "แจก e-book" },
+      { name: "PR & Branding", placeholder: "ออกข่าวสาร" },
+      { name: "จำนวนเดือน", placeholder: "1" },
+      { name: "จำนวนขั้นตอน", placeholder: "4" }
     ]
   },
   { 
     cat:'market', tag:'market', title:'สร้าง Lead Magnet', desc:'ออกแบบของแจกเพื่อเก็บอีเมลลูกค้า', 
-    prompt:'จงออกแบบ Lead Magnet สำหรับธุรกิจ "[ธุรกิจ]" กลุ่มเป้าหมาย "[กลุ่ม]"\n\nวัตถุประสงค์: เก็บอีเมล\n\nให้เสนอ 3 ไอเดีย:\n1. ชื่อ Lead Magnet\n2. รูปแบบ (ebook, checklist, webinar, template)\n3. เนื้อหาคร่าวๆ\n4. Landing page headline\n5. วิธีการโปรโมท\n\nอธิบายว่าแต่ละอันเหมาะกับกลุ่มเป้าหมายอย่างไร', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงออกแบบ Lead Magnet สำหรับธุรกิจ "[ธุรกิจ]" กลุ่มเป้าหมาย "[กลุ่ม]"\n\nรายละเอียด:\nวัตถุประสงค์: [วัตถุประสงค์] (เก็บอีเมล)\nจำนวน Lead Magnet: [จำนวน lead magnet] ไอเดีย\nรูปแบบ: [รูปแบบ] (ebook, checklist, webinar, template)\n\nให้เสนอ [จำนวน lead magnet] ไอเดีย:\n1. ชื่อ Lead Magnet: [ชื่อ lead magnet]\n2. เนื้อหาคร่าวๆ: [เนื้อหา]\n3. Landing page headline: [headline]\n4. วิธีการโปรโมท ([จำนวนวิธี] วิธี): [วิธีโปรโมท]\n5. ระยะเวลาส่ง: [ระยะเวลา]\n\nอธิบายว่าแต่ละอันเหมาะกับกลุ่มเป้าหมายอย่างไร ([จำนวนคำอธิบาย] คำ)', 
+    favorite: false, rating: 0, tags: ['lead-magnet', 'email-marketing'], variables: [
       { name: "ธุรกิจ", placeholder: "ร้านกาแฟ/ออนไลน์" },
-      { name: "กลุ่ม", placeholder: "วัยรุ่น/วัยทำงาน" }
+      { name: "กลุ่ม", placeholder: "วัยรุ่น/วัยทำงาน" },
+      { name: "วัตถุประสงค์", placeholder: "เก็บอีเมล 1000 ราย" },
+      { name: "จำนวน lead magnet", placeholder: "3" },
+      { name: "รูปแบบ", placeholder: "e-book, checklist" },
+      { name: "ชื่อ lead magnet", placeholder: "10 วิธีชงกาแฟ" },
+      { name: "เนื้อหา", placeholder: "วิธีการชง 10 แบบ" },
+      { name: "headline", placeholder: "ดาวน์โหลดฟรี!" },
+      { name: "จำนวนวิธี", placeholder: "3" },
+      { name: "วิธีโปรโมท", placeholder: "Facebook Ads" },
+      { name: "ระยะเวลา", placeholder: "7 วัน" },
+      { name: "จำนวนคำอธิบาย", placeholder: "100" }
     ]
   },
 
   // ===== TERMUX (10) - เดิม + เพิ่มตัวแปร =====
   { 
     cat:'termux', tag:'termux', title:'Termux Automation', desc:'เขียนสคริปต์อัตโนมัติสำหรับ Termux', 
-    prompt:'จงเขียน Bash script สำหรับ Termux ที่ทำงานดังนี้:\n[งานที่ต้องการ]\n\nข้อกำหนด:\n- ใช้เฉพาะคำสั่งที่มีใน Termux โดยไม่ต้องติดตั้งแพ็กเกจเพิ่มเติม (ยกเว้นระบุ)\n- มีการตรวจสอบข้อผิดพลาด\n- มีการแจ้งเตือนเมื่อทำงานเสร็จ\n- สามารถรันซ้ำได้โดยไม่เกิดปัญหา\n\nให้ตอบเป็นโค้ด Bash พร้อมคำอธิบายแต่ละส่วน', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "งานที่ต้องการ", placeholder: "backup ไฟล์/ส่งข้อความ" }
+    prompt:'จงเขียน Bash script สำหรับ Termux ที่ทำงานดังนี้:\n[งานที่ต้องการ]\n\nรายละเอียด:\n- ชื่อสคริปต์: [ชื่อสคริปต์]\n- ผู้ใช้: [ผู้ใช้] (whoami)\n- วันที่/เวลา: [วันที่เวลา]\n\nข้อกำหนด:\n- ใช้เฉพาะคำสั่งที่มีใน Termux โดยไม่ต้องติดตั้งแพ็กเกจเพิ่มเติม (ยกเว้นระบุ): [คำสั่งเพิ่มเติม]\n- มีการตรวจสอบข้อผิดพลาด ([จำนวนการตรวจสอบ] ครั้ง)\n- มีการแจ้งเตือนเมื่อทำงานเสร็จ ([วิธีแจ้งเตือน]): termux-notification\n- สามารถรันซ้ำได้โดยไม่เกิดปัญหา ([จำนวนรอบ] รอบ)\n- บันทึก log ไฟล์: [log file]\n\nให้ตอบเป็นโค้ด Bash ([จำนวนบรรทัด] บรรทัด) พร้อมคำอธิบายแต่ละส่วน ([จำนวนคำอธิบาย] คำ)', 
+    favorite: false, rating: 0, tags: ['termux', 'automation'], variables: [
+      { name: "งานที่ต้องการ", placeholder: "backup ไฟล์/ส่งข้อความ" },
+      { name: "ชื่อสคริปต์", placeholder: "backup.sh" },
+      { name: "ผู้ใช้", placeholder: "user" },
+      { name: "วันที่เวลา", placeholder: "$(date)" },
+      { name: "คำสั่งเพิ่มเติม", placeholder: "rsync" },
+      { name: "จำนวนการตรวจสอบ", placeholder: "3" },
+      { name: "วิธีแจ้งเตือน", placeholder: "termux-notification" },
+      { name: "จำนวนรอบ", placeholder: "5" },
+      { name: "log file", placeholder: "/sdcard/backup.log" },
+      { name: "จำนวนบรรทัด", placeholder: "50" },
+      { name: "จำนวนคำอธิบาย", placeholder: "100" }
     ]
   },
   { 
     cat:'termux', tag:'termux', title:'Termux Hacking Tools', desc:'สคริปต์ติดตั้งเครื่องมือ security testing บน Termux', 
-    prompt:'จงเขียนสคริปต์ติดตั้งเครื่องมือสำหรับ Security Testing บน Termux โดยมีรายละเอียด:\n\nเครื่องมือที่ต้องการ:\n- Nmap\n- Hydra\n- SQLmap\n- Metasploit (ถ้าเป็นไปได้)\n- Nikto\n\nให้สคริปต์:\n1. อัปเดตแพ็กเกจ\n2. ติดตั้ง dependencies ที่จำเป็น\n3. ติดตั้งเครื่องมือทีละตัว\n4. ตรวจสอบว่าติดตั้งสำเร็จหรือไม่\n5. แสดงวิธีใช้งานเบื้องต้น\n\nคำเตือน: ใช้เพื่อการศึกษาหรือระบบที่ได้รับอนุญาตเท่านั้น', 
-    favorite: false, rating: 0, tags: [], variables: []
+    prompt:'จงเขียนสคริปต์ติดตั้งเครื่องมือสำหรับ Security Testing บน Termux โดยมีรายละเอียด:\n\nเครื่องมือที่ต้องการ ([จำนวนเครื่องมือ] เครื่องมือ):\n- [เครื่องมือ 1]\n- [เครื่องมือ 2]\n- [เครื่องมือ 3]\n- [เครื่องมือ 4] (ถ้าเป็นไปได้)\n- [เครื่องมือ 5]\n\nให้สคริปต์:\n1. อัปเดตแพ็กเกจ ([จำนวน repositories] repositories)\n2. ติดตั้ง dependencies ที่จำเป็น ([จำนวน dependencies] packages): [dependencies]\n3. ติดตั้งเครื่องมือทีละตัว ([จำนวนขั้นตอน] ขั้น)\n4. ตรวจสอบว่าติดตั้งสำเร็จหรือไม่ ([วิธีตรวจสอบ])\n5. แสดงวิธีใช้งานเบื้องต้น ([จำนวนคำสั่ง] คำสั่ง): [คำสั่ง]\n6. ตั้งค่าสภาพแวดล้อม: [สภาพแวดล้อม]\n\nคำเตือน: ใช้เพื่อการศึกษาหรือระบบที่ได้รับอนุญาตเท่านั้น ([จำนวนคำเตือน] คำ)', 
+    favorite: false, rating: 0, tags: ['termux', 'security', 'tools'], variables: [
+      { name: "จำนวนเครื่องมือ", placeholder: "5" },
+      { name: "เครื่องมือ 1", placeholder: "Nmap" },
+      { name: "เครื่องมือ 2", placeholder: "Hydra" },
+      { name: "เครื่องมือ 3", placeholder: "SQLmap" },
+      { name: "เครื่องมือ 4", placeholder: "Metasploit" },
+      { name: "เครื่องมือ 5", placeholder: "Nikto" },
+      { name: "จำนวน repositories", placeholder: "2" },
+      { name: "จำนวน dependencies", placeholder: "3" },
+      { name: "dependencies", placeholder: "git, wget, curl" },
+      { name: "จำนวนขั้นตอน", placeholder: "5" },
+      { name: "วิธีตรวจสอบ", placeholder: "nmap --version" },
+      { name: "จำนวนคำสั่ง", placeholder: "3" },
+      { name: "คำสั่ง", placeholder: "nmap -sV target.com" },
+      { name: "สภาพแวดล้อม", placeholder: "export PATH=$PATH:~/bin" },
+      { name: "จำนวนคำเตือน", placeholder: "2" }
+    ]
   },
   { 
     cat:'termux', tag:'termux', title:'ติดตั้ง Web Server', desc:'สคริปต์ติดตั้ง Apache/Nginx บน Termux', 
-    prompt:'จงเขียนสคริปต์ติดตั้ง Web Server บน Termux (เลือก Apache หรือ Nginx)\n\nให้ทำ:\n1. อัปเดต repo\n2. ติดตั้ง package\n3. สร้าง virtual host\n4. ตั้งค่า permissions\n5. สร้างหน้า index.html ทดสอบ\n6. ตรวจสอบว่า server ทำงาน\n7. แสดงวิธีเข้าใช้งานจาก browser', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "Apache หรือ Nginx", placeholder: "Apache/Nginx" }
+    prompt:'จงเขียนสคริปต์ติดตั้ง Web Server บน Termux (เลือก [Apache หรือ Nginx])\n\nรายละเอียด:\n- ชื่อสคริปต์: [ชื่อสคริปต์]\n- พอร์ต: [พอร์ต] (80, 8080)\n- ไดเรกทอรีเว็บ: [ไดเรกทอรี]\n\nให้ทำ:\n1. อัปเดต repo ([จำนวน repositories] repositories)\n2. ติดตั้ง package ([จำนวน packages] packages): [packages]\n3. สร้าง virtual host ([จำนวน virtual hosts] hosts)\n4. ตั้งค่า permissions ([สิทธิ์])\n5. สร้างหน้า index.html ทดสอบ ([เนื้อหา])\n6. ตรวจสอบว่า server ทำงาน ([วิธีตรวจสอบ])\n7. แสดงวิธีเข้าใช้งานจาก browser ([URL])\n8. ตั้งค่า auto start: [auto start]\n\nให้ตอบเป็นโค้ด Bash ([จำนวนบรรทัด] บรรทัด)', 
+    favorite: false, rating: 0, tags: ['termux', 'web-server'], variables: [
+      { name: "Apache หรือ Nginx", placeholder: "Apache/Nginx" },
+      { name: "ชื่อสคริปต์", placeholder: "install-web.sh" },
+      { name: "พอร์ต", placeholder: "8080" },
+      { name: "ไดเรกทอรี", placeholder: "/data/data/com.termux/files/home/www" },
+      { name: "จำนวน repositories", placeholder: "1" },
+      { name: "จำนวน packages", placeholder: "2" },
+      { name: "packages", placeholder: "apache2, curl" },
+      { name: "จำนวน virtual hosts", placeholder: "1" },
+      { name: "สิทธิ์", placeholder: "chmod 755" },
+      { name: "เนื้อหา", placeholder: "Welcome to Termux Web" },
+      { name: "วิธีตรวจสอบ", placeholder: "curl localhost:8080" },
+      { name: "URL", placeholder: "http://localhost:8080" },
+      { name: "auto start", placeholder: "termux-service" },
+      { name: "จำนวนบรรทัด", placeholder: "60" }
     ]
   },
   { 
     cat:'termux', tag:'termux', title:'สร้าง Telegram Bot ด้วย Python', desc:'ติดตั้ง python-telegram-bot และรันบอทเบื้องต้น', 
-    prompt:'จงเขียนสคริปต์ Termux เพื่อ:\n1. ติดตั้ง python\n2. ติดตั้ง python-telegram-bot\n3. เขียนโค้ดบอทที่ตอบกลับข้อความ "สวัสดี" และ "/help"\n4. ให้ใส่ token ในตัวแปร environment\n5. วิธีรันบอทใน background\n\nอธิบายการขอ token จาก BotFather', 
-    favorite: false, rating: 0, tags: [], variables: []
+    prompt:'จงเขียนสคริปต์ Termux เพื่อ:\n\nรายละเอียด:\n- ชื่อบอท: [ชื่อบอท]\n- Token: [token] (เก็บใน env)\n- ภาษาที่ใช้: [ภาษา] (Python version)\n\nให้ทำ:\n1. ติดตั้ง python ([เวอร์ชัน]): [คำสั่งติดตั้ง]\n2. ติดตั้ง python-telegram-bot ([เวอร์ชัน] pip): [pip install]\n3. เขียนโค้ดบอทที่ตอบกลับข้อความ "[ข้อความตอบกลับ]" และ "/help" ([จำนวนบรรทัด] บรรทัด)\n4. ให้ใส่ token ในตัวแปร environment ([ชื่อตัวแปร]): [คำสั่ง export]\n5. วิธีรันบอทใน background ([วิธีรัน]): [คำสั่งรัน]\n6. ตรวจสอบสถานะ: [วิธีตรวจสอบ]\n\nอธิบายการขอ token จาก BotFather ([จำนวนขั้นตอน] ขั้นตอน)', 
+    favorite: false, rating: 0, tags: ['termux', 'telegram', 'bot'], variables: [
+      { name: "ชื่อบอท", placeholder: "MyBot" },
+      { name: "token", placeholder: "123456:ABC-DEF1234ghIkl" },
+      { name: "ภาษา", placeholder: "Python 3.10" },
+      { name: "เวอร์ชัน", placeholder: "3.10" },
+      { name: "คำสั่งติดตั้ง", placeholder: "pkg install python" },
+      { name: "pip install", placeholder: "pip install python-telegram-bot" },
+      { name: "ข้อความตอบกลับ", placeholder: "สวัสดี!" },
+      { name: "จำนวนบรรทัด", placeholder: "30" },
+      { name: "ชื่อตัวแปร", placeholder: "TELEGRAM_BOT_TOKEN" },
+      { name: "คำสั่ง export", placeholder: "export TELEGRAM_BOT_TOKEN=..." },
+      { name: "วิธีรัน", placeholder: "nohup python bot.py &" },
+      { name: "วิธีตรวจสอบ", placeholder: "ps aux | grep bot.py" },
+      { name: "จำนวนขั้นตอน", placeholder: "3" }
+    ]
   },
   { 
     cat:'termux', tag:'termux', title:'สำรองข้อมูลอัตโนมัติ', desc:'สคริปต์ backup โฟลเดอร์ไปยังที่เก็บข้อมูลอื่น', 
-    prompt:'จงเขียนสคริปต์สำรองข้อมูลใน Termux ให้:\n- เลือกโฟลเดอร์ต้นทาง (ระบุ)\n- ปลายทาง: /sdcard/backup\n- ตั้งชื่อไฟล์ด้วยวันที่\n- บีบอัดเป็น .tar.gz\n- ลบไฟล์เก่ากว่า 7 วัน\n- แจ้งเตือนเมื่อเสร็จ\n\nใช้คำสั่งที่มีอยู่แล้ว', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "โฟลเดอร์ต้นทาง", placeholder: "/data/data/com.termux/files/home" }
+    prompt:'จงเขียนสคริปต์สำรองข้อมูลใน Termux ให้:\n\nรายละเอียด:\n- ชื่อสคริปต์: [ชื่อสคริปต์]\n- โฟลเดอร์ต้นทาง: [โฟลเดอร์ต้นทาง]\n- ปลายทาง: [ปลายทาง] (/sdcard/backup)\n- ชื่อไฟล์: [ชื่อไฟล์] (ตั้งชื่อไฟล์ด้วยวันที่)\n- รูปแบบไฟล์: [รูปแบบไฟล์] (.tar.gz/.zip)\n\nให้ทำ:\n- บีบอัดเป็น [รูปแบบไฟล์] ([จำนวนไฟล์] ไฟล์)\n- ลบไฟล์เก่ากว่า [จำนวนวัน] วัน ([จำนวนลบ] ไฟล์)\n- แจ้งเตือนเมื่อเสร็จ ([วิธีแจ้งเตือน]): termux-notification\n- ตั้งเวลา cron: [ตั้งเวลา] (ทุกวัน 02:00)\n\nใช้คำสั่งที่มีอยู่แล้ว ([จำนวนคำสั่ง] คำสั่ง)', 
+    favorite: false, rating: 0, tags: ['termux', 'backup'], variables: [
+      { name: "ชื่อสคริปต์", placeholder: "backup.sh" },
+      { name: "โฟลเดอร์ต้นทาง", placeholder: "/data/data/com.termux/files/home" },
+      { name: "ปลายทาง", placeholder: "/sdcard/backup" },
+      { name: "ชื่อไฟล์", placeholder: "backup_$(date +%Y%m%d).tar.gz" },
+      { name: "รูปแบบไฟล์", placeholder: ".tar.gz" },
+      { name: "จำนวนไฟล์", placeholder: "1" },
+      { name: "จำนวนวัน", placeholder: "7" },
+      { name: "จำนวนลบ", placeholder: "5" },
+      { name: "วิธีแจ้งเตือน", placeholder: "termux-notification" },
+      { name: "ตั้งเวลา", placeholder: "0 2 * * *" },
+      { name: "จำนวนคำสั่ง", placeholder: "10" }
     ]
   },
   { 
     cat:'termux', tag:'termux', title:'ใช้งาน GitHub CLI', desc:'ติดตั้งและใช้งาน gh ใน Termux', 
-    prompt:'จงเขียนสคริปต์ติดตั้ง GitHub CLI (gh) บน Termux และ:\n1. ตรวจสอบการติดตั้ง\n2. แนะนำวิธี login\n3. สร้าง repo ใหม่\n4. โคลน repo ที่มีอยู่\n5. push โค้ด\n6. สร้าง issue\n\nให้สคริปต์ทำงานอัตโนมัติทีละขั้น', 
-    favorite: false, rating: 0, tags: [], variables: []
+    prompt:'จงเขียนสคริปต์ติดตั้ง GitHub CLI (gh) บน Termux และ:\n\nรายละเอียด:\n- ชื่อ repo: [ชื่อ repo]\n- ประเภท repo: [ประเภท repo] (public/private)\n- ไฟล์ README: [ไฟล์ README]\n\nให้ทำ:\n1. ตรวจสอบการติดตั้ง ([วิธีตรวจสอบ])\n2. แนะนำวิธี login ([วิธี login])\n3. สร้าง repo ใหม่ ([จำนวน repo] repo)\n4. โคลน repo ที่มีอยู่ ([จำนวน clone] repo): [repo clone]\n5. push โค้ด ([จำนวน push] ครั้ง)\n6. สร้าง issue ([จำนวน issue] issues): [issue content]\n7. ตั้งค่า git config: [git config]\n\nให้สคริปต์ทำงานอัตโนมัติทีละขั้น ([จำนวนขั้นตอน] ขั้น)', 
+    favorite: false, rating: 0, tags: ['termux', 'github', 'cli'], variables: [
+      { name: "ชื่อ repo", placeholder: "my-project" },
+      { name: "ประเภท repo", placeholder: "public" },
+      { name: "ไฟล์ README", placeholder: "README.md" },
+      { name: "วิธีตรวจสอบ", placeholder: "gh --version" },
+      { name: "วิธี login", placeholder: "gh auth login" },
+      { name: "จำนวน repo", placeholder: "1" },
+      { name: "จำนวน clone", placeholder: "1" },
+      { name: "repo clone", placeholder: "https://github.com/user/repo" },
+      { name: "จำนวน push", placeholder: "1" },
+      { name: "จำนวน issue", placeholder: "2" },
+      { name: "issue content", placeholder: "Bug fix needed" },
+      { name: "git config", placeholder: "git config --global user.name" },
+      { name: "จำนวนขั้นตอน", placeholder: "6" }
+    ]
   },
   { 
     cat:'termux', tag:'termux', title:'แปลงไฟล์มีเดีย', desc:'ใช้ ffmpeg แปลงไฟล์เสียง/วิดีโอ', 
-    prompt:'จงเขียนสคริปต์ Termux สำหรับแปลงไฟล์มีเดียด้วย ffmpeg\n\nติดตั้ง ffmpeg ก่อน\n\nให้ทำ:\n1. เลือกไฟล์ input\n2. เลือก format output\n3. ปรับ bitrate/resolution\n4. แสดง progress\n5. ตรวจสอบไฟล์ output\n\nเขียนแบบ interactive (ถามผู้ใช้)', 
-    favorite: false, rating: 0, tags: [], variables: []
+    prompt:'จงเขียนสคริปต์ Termux สำหรับแปลงไฟล์มีเดียด้วย ffmpeg\n\nรายละเอียด:\n- ชื่อสคริปต์: [ชื่อสคริปต์]\n- ไฟล์ input: [input file]\n- format output: [output format] (.mp4/.mp3)\n\nติดตั้ง ffmpeg ก่อน ([คำสั่งติดตั้ง])\n\nให้ทำ:\n1. เลือกไฟล์ input ([จำนวนไฟล์] ไฟล์)\n2. เลือก format output ([format 1], [format 2])\n3. ปรับ bitrate/resolution ([bitrate]/[resolution])\n4. แสดง progress ([วิธีแสดง])\n5. ตรวจสอบไฟล์ output ([วิธีตรวจสอบ])\n6. บันทึก log: [log file]\n\nเขียนแบบ interactive (ถามผู้ใช้) ([จำนวนคำถาม] คำถาม)', 
+    favorite: false, rating: 0, tags: ['termux', 'ffmpeg', 'media'], variables: [
+      { name: "ชื่อสคริปต์", placeholder: "convert.sh" },
+      { name: "input file", placeholder: "video.mp4" },
+      { name: "output format", placeholder: ".mp3" },
+      { name: "คำสั่งติดตั้ง", placeholder: "pkg install ffmpeg" },
+      { name: "จำนวนไฟล์", placeholder: "1" },
+      { name: "format 1", placeholder: "mp4" },
+      { name: "format 2", placeholder: "avi" },
+      { name: "bitrate", placeholder: "128k" },
+      { name: "resolution", placeholder: "720p" },
+      { name: "วิธีแสดง", placeholder: "ffmpeg -progress" },
+      { name: "วิธีตรวจสอบ", placeholder: "ffprobe output.mp3" },
+      { name: "log file", placeholder: "convert.log" },
+      { name: "จำนวนคำถาม", placeholder: "3" }
+    ]
   },
   { 
     cat:'termux', tag:'termux', title:'ตั้งค่า SSH Server', desc:'สคริปต์เปิด SSH server บน Termux', 
-    prompt:'จงเขียนสคริปต์สำหรับ Termux เพื่อ:\n- ติดตั้ง openssh\n- ตั้งรหัสผ่าน\n- เปิด sshd\n- แสดง IP และพอร์ต\n- คำแนะนำการเชื่อมต่อจากเครื่องอื่น\n- วิธีปิดเซิร์ฟเวอร์\n\nใส่ความปลอดภัยพื้นฐาน (เปลี่ยนพอร์ต, ปิด root login)', 
-    favorite: false, rating: 0, tags: [], variables: []
+    prompt:'จงเขียนสคริปต์สำหรับ Termux เพื่อ:\n\nรายละเอียด:\n- ชื่อสคริปต์: [ชื่อสคริปต์]\n- พอร์ต SSH: [พอร์ต] (default 8022)\n- ผู้ใช้: [ผู้ใช้]\n\nให้ทำ:\n- ติดตั้ง openssh ([คำสั่งติดตั้ง])\n- ตั้งรหัสผ่าน ([วิธีตั้งรหัส]): passwd\n- เปิด sshd ([คำสั่งเปิด])\n- แสดง IP และพอร์ต ([จำนวนวิธีแสดง] วิธี): [คำสั่งแสดง]\n- คำแนะนำการเชื่อมต่อจากเครื่องอื่น ([จำนวนคำแนะนำ] ข้อ): [คำแนะนำ]\n- วิธีปิดเซิร์ฟเวอร์ ([คำสั่งปิด])\n- ใส่ความปลอดภัยพื้นฐาน ([จำนวนความปลอดภัย] ข้อ): เปลี่ยนพอร์ต, ปิด root login\n\nเขียนเป็นโค้ด Bash ([จำนวนบรรทัด] บรรทัด)', 
+    favorite: false, rating: 0, tags: ['termux', 'ssh', 'server'], variables: [
+      { name: "ชื่อสคริปต์", placeholder: "setup-ssh.sh" },
+      { name: "พอร์ต", placeholder: "8022" },
+      { name: "ผู้ใช้", placeholder: "termux" },
+      { name: "คำสั่งติดตั้ง", placeholder: "pkg install openssh" },
+      { name: "วิธีตั้งรหัส", placeholder: "passwd" },
+      { name: "คำสั่งเปิด", placeholder: "sshd" },
+      { name: "จำนวนวิธีแสดง", placeholder: "2" },
+      { name: "คำสั่งแสดง", placeholder: "ifconfig" },
+      { name: "จำนวนคำแนะนำ", placeholder: "3" },
+      { name: "คำแนะนำ", placeholder: "ssh user@ip -p 8022" },
+      { name: "คำสั่งปิด", placeholder: "pkill sshd" },
+      { name: "จำนวนความปลอดภัย", placeholder: "2" },
+      { name: "จำนวนบรรทัด", placeholder: "40" }
+    ]
   },
   { 
     cat:'termux', tag:'termux', title:'แจ้งเตือนแบตเตอรี่', desc:'สคริปต์ตรวจสอบแบตเตอรี่และแจ้งเตือน', 
-    prompt:'จงเขียนสคริปต์ Termux ที่:\n- อ่านระดับแบตเตอรี่ทุก 5 นาที\n- หากต่ำกว่า 20% ส่ง notification (termux-notification)\n- หากชาร์จเต็ม 100% ก็แจ้งเตือน\n- ทำงานเป็น background service\n\nใช้คำสั่ง termux-api', 
-    favorite: false, rating: 0, tags: [], variables: []
+    prompt:'จงเขียนสคริปต์ Termux ที่:\n\nรายละเอียด:\n- ชื่อสคริปต์: [ชื่อสคริปต์]\n- ระดับแบตเตอรี่ต่ำสุด: [ระดับต่ำสุด]% (default 20%)\n- ระดับแบตเตอรี่สูงสุด: [ระดับสูงสุด]% (default 100%)\n- ช่วงเวลาตรวจสอบ: [ช่วงเวลา] นาที\n\nให้ทำ:\n- อ่านระดับแบตเตอรี่ทุก [ช่วงเวลา] นาที ([จำนวนรอบ] รอบ)\n- หากต่ำกว่า [ระดับต่ำสุด]% ส่ง notification ([notification ตำ]): termux-notification\n- หากชาร์จเต็ม [ระดับสูงสุด]% ก็แจ้งเตือน ([notification สูง])\n- ทำงานเป็น background service ([วิธีทำงาน])\n- บันทึก log: [log file]\n\nใช้คำสั่ง termux-api ([จำนวนคำสั่ง] คำสั่ง)', 
+    favorite: false, rating: 0, tags: ['termux', 'battery', 'notification'], variables: [
+      { name: "ชื่อสคริปต์", placeholder: "battery-monitor.sh" },
+      { name: "ระดับต่ำสุด", placeholder: "20" },
+      { name: "ระดับสูงสุด", placeholder: "100" },
+      { name: "ช่วงเวลา", placeholder: "5" },
+      { name: "จำนวนรอบ", placeholder: "10" },
+      { name: "notification ตำ", placeholder: "แบตต่ำกว่า 20%" },
+      { name: "notification สูง", placeholder: "ชาร์จเต็มแล้ว" },
+      { name: "วิธีทำงาน", placeholder: "while true; do ...; sleep 300; done &" },
+      { name: "log file", placeholder: "/sdcard/battery.log" },
+      { name: "จำนวนคำสั่ง", placeholder: "5" }
+    ]
   },
   { 
-    cat:'termux', tag:'termux', title:'รัน Jupyter Notebook', desc:'ติดตั้งและรัน Jupyter Notebook บน Termux', 
-    prompt:'จงเขียนสคริปต์ Termux สำหรับติดตั้ง Jupyter Notebook:\n1. ติดตั้ง python, pip\n2. ลง jupyter\n3. สร้าง directory workspace\n4. รัน notebook server\n5. วิธีเข้าใช้งานจาก browser บนมือถือ\n6. ติดตั้ง kernel เพิ่ม (เช่น bash)\n\nมีคำอธิบายทุกขั้น', 
-    favorite: false, rating: 0, tags: [], variables: []
+    cat:'termux', tag:'termux', title:'อ่านค่าเซนเซอร์', desc:'สคริปต์อ่านค่าเซนเซอร์ต่างๆ บน Termux', 
+    prompt:'จงเขียนสคริปต์ Termux ที่อ่านค่าเซนเซอร์ "[เซนเซอร์]" (เช่น แสง, ความชื้น, อุณหภูมิ)\n\nรายละเอียด:\n- จำนวนเซนเซอร์: [จำนวนเซนเซอร์] ตัว\n- ช่วงเวลาอ่าน: [ช่วงเวลา] วินาที\n- วิธีแสดงผล: [วิธีแสดง] (terminal/notification)\n- ไฟล์บันทึก: [ไฟล์บันทึก] (ถ้าต้องการ)\n- เกณฑ์แจ้งเตือน: [เกณฑ์] (เมื่อค่าเกิน)\n- จำนวนการตรวจสอบ: [จำนวนการตรวจสอบ] ครั้ง\n\nให้ทำ:\n1. ตรวจสอบเซนเซอร์ที่มี ([จำนวนตรวจสอบ] ครั้ง)\n2. อ่านค่าแบบ real-time ทุก [ช่วงเวลา] วินาที\n3. แสดงผลทาง [วิธีแสดง]\n4. บันทึกลงไฟล์ [ไฟล์บันทึก] (ถ้าต้องการ)\n5. แจ้งเตือนเมื่อค่าเกินเกณฑ์ [เกณฑ์]\n6. ตั้งค่า auto start: [auto start]\n\nใช้คำสั่ง termux-sensor ([จำนวนคำสั่ง] คำสั่ง)', 
+    favorite: false, rating: 0, tags: ['termux', 'sensor', 'monitoring'], variables: [
+      { name: "เซนเซอร์", placeholder: "แสง/ความชื้น/อุณหภูมิ" },
+      { name: "จำนวนเซนเซอร์", placeholder: "3" },
+      { name: "ช่วงเวลา", placeholder: "5" },
+      { name: "วิธีแสดง", placeholder: "terminal" },
+      { name: "ไฟล์บันทึก", placeholder: "/sdcard/sensor.log" },
+      { name: "เกณฑ์", placeholder: "แสง > 1000" },
+      { name: "จำนวนการตรวจสอบ", placeholder: "10" },
+      { name: "จำนวนตรวจสอบ", placeholder: "2" },
+      { name: "auto start", placeholder: "termux-service" },
+      { name: "จำนวนคำสั่ง", placeholder: "3" }
+    ]
   },
 
   // ===== MUSIC (10) - ใหม่ =====
   { 
     cat:'music', tag:'music', title:'Lyric Writer', desc:'เขียนเนื้อเพลงแนวป๊อป/ร็อค', 
-    prompt:'จงเขียนเนื้อเพลงแนว [แนว] เรื่อง [เรื่อง] ความยาว 3 นาที\n\nโครงสร้าง:\n- Verse 1\n- Chorus\n- Verse 2\n- Chorus\n- Bridge\n- Chorus\n\nให้มีสัมผัสและจังหวะที่ดี', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "แนว", placeholder: "ป๊อป/ร็อค/ลูกทุ่ง" },
-      { name: "เรื่อง", placeholder: "ความรัก/กำลังใจ" }
+    prompt:'จงเขียนเนื้อเพลงแนว "[แนวเพลง]" หัวข้อ "[หัวข้อ]" ความยาวประมาณ "[ความยาว]" ท่อน\n\nรายละเอียด:\nโครงสร้าง: [โครงสร้าง] (Verse, Chorus, Bridge)\nจำนวนท่อน: [จำนวนท่อน] ท่อน\nโทน: [โทน] (เศร้า/สนุก/รัก)\nภาษา: [ภาษา] (ไทย/อังกฤษ)\nจำนวนคำต่อท่อน: [จำนวนคำ] คำ\n\nโครงสร้าง:\n1. Verse 1 ([จำนวนบรรทัด 1] บรรทัด)\n2. Chorus ([จำนวนบรรทัด 2] บรรทัด) (ห้องโปรด)\n3. Verse 2 ([จำนวนบรรทัด 3] บรรทัด)\n4. Chorus\n5. Bridge ([จำนวนบรรทัด 4] บรรทัด)\n6. Chorus สุดท้าย\n\nให้มีสัมผัสและอารมณ์สอดคล้อง ([จำนวนสัมผัส] สัมผัส)', 
+    favorite: false, rating: 0, tags: ['lyrics', 'songwriting'], variables: [
+      { name: "แนวเพลง", placeholder: "ป๊อป/ร็อค" },
+      { name: "หัวข้อ", placeholder: "ความรัก/การเดินทาง" },
+      { name: "ความยาว", placeholder: "3 นาที" },
+      { name: "โครงสร้าง", placeholder: "Verse-Chorus-Bridge" },
+      { name: "จำนวนท่อน", placeholder: "6" },
+      { name: "โทน", placeholder: "เศร้า/สนุก/รัก" },
+      { name: "ภาษา", placeholder: "ไทย" },
+      { name: "จำนวนคำ", placeholder: "50" },
+      { name: "จำนวนบรรทัด 1", placeholder: "4" },
+      { name: "จำนวนบรรทัด 2", placeholder: "6" },
+      { name: "จำนวนบรรทัด 3", placeholder: "4" },
+      { name: "จำนวนบรรทัด 4", placeholder: "2" },
+      { name: "จำนวนสัมผัส", placeholder: "5" }
     ]
   },
   { 
     cat:'music', tag:'music', title:'Suno Prompt', desc:'สร้าง prompt สำหรับ Suno AI', 
-    prompt:'จงสร้าง Suno AI prompt สำหรับเพลง "[ชื่อเพลง]" แนว [แนว]\n\nให้ระบุ:\n- Genre: [genre]\n- Mood: [mood]\n- Tempo: [BPM]\n- Instruments: [instruments]\n- Lyrics style: [style]\n\nเขียนเป็น prompt ภาษาอังกฤษ', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ชื่อเพลง", placeholder: "ความทรงจำ" },
-      { name: "แนว", placeholder: "Pop/Rock/EDM" }
+    prompt:'จงสร้าง Suno AI prompt สำหรับเพลง "[ชื่อเพลง]" แนว "[แนว]"\n\nรายละเอียด:\n- ดนตรี: [ดนตรี] (ป๊อป, ร็อค, ลูกทุ่ง, แจ๊ส)\n- เครื่องดนตรี: [เครื่องดนตรี] (กีตาร์, กลอง, คีย์บอร์ด)\n- อารมณ์: [อารมณ์] (สนุก, เศร้า, ตื่นเต้น)\n- จังหวะ: [BPM] BPM\n- โครงสร้างเพลง: [โครงสร้าง] (Verse-Chorus-Bridge)\n- ระดับความดัง: [ระดับความดัง] (soft, medium, loud)\n- จำนวนท่อน: [จำนวนท่อน] ท่อน\n\nเขียน prompt ภาษาอังกฤษสำหรับ Suno ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['sun o', 'ai-music'], variables: [
+      { name: "ชื่อเพลง", placeholder: "ความรักครั้งสุดท้าย" },
+      { name: "แนว", placeholder: "ป๊อป/ร็อค" },
+      { name: "ดนตรี", placeholder: "ป๊อป" },
+      { name: "เครื่องดนตรี", placeholder: "กีตาร์, กลอง" },
+      { name: "อารมณ์", placeholder: "เศร้า" },
+      { name: "BPM", placeholder: "120" },
+      { name: "โครงสร้าง", placeholder: "Verse-Chorus-Bridge" },
+      { name: "ระดับความดัง", placeholder: "medium" },
+      { name: "จำนวนท่อน", placeholder: "4" },
+      { name: "จำนวนคำ", placeholder: "50" }
     ]
   },
   { 
     cat:'music', tag:'music', title:'Music Production Plan', desc:'วางแผนผลิตเพลง', 
-    prompt:'จงวางแผนผลิตเพลง "[ชื่อเพลง]" สำหรับศิลปิน "[ชื่อศิลปิน]"\n\nขั้นตอน:\n1. แต่งเนื้อ/ทำนอง\n2. บันทึกเสียง\n3. Mixing\n4. Mastering\n5. ส่งออกไฟล์\n\nให้ระบุอุปกรณ์และซอฟต์แวร์ที่แนะนำ', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงวางแผนการผลิตเพลง "[ชื่อเพลง]" แนว "[แนว]" สำหรับศิลปิน "[ชื่อศิลปิน]"\n\nรายละเอียด:\n- งบประมาณ: [งบประมาณ] (บาท)\n- ระยะเวลา: [ระยะเวลา] เดือน\n- จำนวนเพลง: [จำนวนเพลง] เพลง\n\nให้เขียนแผน:\n1. Demo ก่อนบ้าน ([จำนวนขั้นตอน 1] ขั้น)\n2. เลือกโปรดิวเซอร์ ([จำนวนโปรดิวเซอร์] คน): [โปรดิวเซอร์]\n3. เลือกสตูดิโอ ([จำนวนสตูดิโอ] แห่ง): [สตูดิโอ]\n4. ตารางเวลา ([จำนวนวัน] วัน)\n5. งบประมาณ ([จำนวนงบ] ส่วน): [งบแต่ละส่วน]\n6. การตลาด: [การตลาด]\n\nครอบคลุมทุกขั้นตอนจนถึง Master ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['music', 'production'], variables: [
       { name: "ชื่อเพลง", placeholder: "เพลงใหม่" },
-      { name: "ชื่อศิลปิน", placeholder: "ชื่อศิลปิน" }
+      { name: "แนว", placeholder: "ป๊อป" },
+      { name: "ชื่อศิลปิน", placeholder: "นักร้องใหม่" },
+      { name: "งบประมาณ", placeholder: "50000" },
+      { name: "ระยะเวลา", placeholder: "3" },
+      { name: "จำนวนเพลง", placeholder: "1" },
+      { name: "จำนวนขั้นตอน 1", placeholder: "3" },
+      { name: "จำนวนโปรดิวเซอร์", placeholder: "2" },
+      { name: "โปรดิวเซอร์", placeholder: "โปรดิวเซอร์ A" },
+      { name: "จำนวนสตูดิโอ", placeholder: "2" },
+      { name: "สตูดิโอ", placeholder: "สตูดิโอเสียงเพลง" },
+      { name: "จำนวนวัน", placeholder: "30" },
+      { name: "จำนวนงบ", placeholder: "3" },
+      { name: "งบแต่ละส่วน", placeholder: "สตูดิโอ 30000" },
+      { name: "การตลาด", placeholder: "โปรโมท Social Media" },
+      { name: "จำนวนคำ", placeholder: "200" }
     ]
   },
   { 
     cat:'music', tag:'music', title:'Chord Progression', desc:'สร้างชุดคอร์ดเพลง', 
-    prompt:'จงสร้างชุดคอร์ดสำหรับเพลงแนว [แนว] อารมณ์ [อารมณ์]\n\nให้ระบุ:\n- คอร์ดหลัก (I, IV, V, vi)\n- เรียงลำดับคอร์ด\n- ตัวอย่าง旋律 (melody)\n- ความยาว 4-8 ห้อง', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "แนว", placeholder: "ป๊อป/แจ๊ส" },
-      { name: "อารมณ์", placeholder: "เศร้า/สนุก" }
+    prompt:'จงสร้างคอร์ดเพลงแนว "[แนว]" กุญแจเสียง "[กุญแจเสียง]" สำหรับอารมณ์ "[อารมณ์]"\n\nรายละเอียด:\nโครงสร้าง: [โครงสร้าง] (ระบุท่อน)\nจังหวะ: [จังหวะ] BPM\nจำนวนท่อน: [จำนวนท่อน] ท่อน\n\nให้ระบุ:\n- คอร์ดหลัก (I, IV, V, vi): [คอร์ดหลัก]\n- เรียงลำดับคอร์ด (มีความหมาย) ([จำนวนคอร์ด] คอร์ด): [ลำดับคอร์ด]\n- ชื่อคอร์ดจริง (C, G, Am): [ชื่อคอร์ดจริง]\n- วิธีการเล่น: [วิธีการเล่น] (strumming/picking)\n- เครื่องดนตรี: [เครื่องดนตรี] (กีตาร์/เปียโน)\n\nใช้กีตาร์/เปียโน ([จำนวนคำแนะนำ] คำ)', 
+    favorite: false, rating: 0, tags: ['chord', 'progression'], variables: [
+      { name: "แนว", placeholder: "ป๊อป/ร็อค" },
+      { name: "กุญแจเสียง", placeholder: "C Major" },
+      { name: "อารมณ์", placeholder: "เศร้า/มีความสุข" },
+      { name: "โครงสร้าง", placeholder: "Verse-Chorus" },
+      { name: "จังหวะ", placeholder: "120" },
+      { name: "จำนวนท่อน", placeholder: "4" },
+      { name: "คอร์ดหลัก", placeholder: "I, IV, V, vi" },
+      { name: "จำนวนคอร์ด", placeholder: "4" },
+      { name: "ลำดับคอร์ด", placeholder: "C-G-Am-F" },
+      { name: "ชื่อคอร์ดจริง", placeholder: "C, G, Am, F" },
+      { name: "วิธีการเล่น", placeholder: "strumming" },
+      { name: "เครื่องดนตรี", placeholder: "กีตาร์" },
+      { name: "จำนวนคำแนะนำ", placeholder: "50" }
     ]
   },
   { 
     cat:'music', tag:'music', title:'Rap Lyrics', desc:'เขียนเนื้อแรปแนว [แนว]', 
-    prompt:'จงเขียนเนื้อแรปเรื่อง "[เรื่อง]" แนว [แนว]\n\nให้มี:\n- Flow ที่ชัดเจน\n- Rhyme scheme\n- Punchlines\n- 3 verses + Chorus', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "เรื่อง", placeholder: "ชีวิตในเมือง" },
-      { name: "แนว", placeholder: "Trap/Boombap" }
+    prompt:'จงเขียนเนื้อแรปแนว "[แนว]" หัวข้อ "[หัวข้อ]" สำหรับแรปเปอร์ "[ชื่อ]"\n\nรายละเอียด:\nโครงสร้าง: [โครงสร้าง] (Intro, Verse, Hook, Outro)\nจำนวนท่อน: [จำนวนท่อน] ท่อน\nจังหวะ: [BPM] BPM\n\nโครงสร้าง:\n- Intro ([จำนวนบรรทัด 1] บรรทัด)\n- Verse 1 ([จำนวนจังหวะ 1] จังหวะ): [เนื้อ Intro]\n- Hook ([จำนวนบรรทัด 2] บรรทัด - ติดหู): [เนื้อ Hook]\n- Verse 2 ([จำนวนจังหวะ 2] จังหวะ): [เนื้อ Verse 2]\n- Outro ([จำนวนบรรทัด 3] บรรทัด): [เนื้อ Outro]\n\nโทน: [โทน] (ก้าวร้าว/มั่นใจ/เล่าเรื่อง)\nใช้ภาษา: [ภาษา] (ไทย/อังกฤษ)\nจำนวนคำศัพท์สแลง: [จำนวนสแลง] คำ', 
+    favorite: false, rating: 0, tags: ['rap', 'lyrics'], variables: [
+      { name: "แนว", placeholder: "Gangsta/Trap/Conscious" },
+      { name: "หัวข้อ", placeholder: "ชีวิตในเมือง" },
+      { name: "ชื่อ", placeholder: "MC Street" },
+      { name: "โครงสร้าง", placeholder: "Intro-Verse-Hook-Verse-Outro" },
+      { name: "จำนวนท่อน", placeholder: "5" },
+      { name: "BPM", placeholder: "90" },
+      { name: "จำนวนบรรทัด 1", placeholder: "4" },
+      { name: "จำนวนจังหวะ 1", placeholder: "16" },
+      { name: "เนื้อ Intro", placeholder: "Intro เริ่มต้น" },
+      { name: "จำนวนบรรทัด 2", placeholder: "4" },
+      { name: "เนื้อ Hook", placeholder: "Hook ติดหู" },
+      { name: "จำนวนจังหวะ 2", placeholder: "16" },
+      { name: "เนื้อ Verse 2", placeholder: "Verse สอง" },
+      { name: "จำนวนบรรทัด 3", placeholder: "2" },
+      { name: "เนื้อ Outro", placeholder: "Outro จบ" },
+      { name: "โทน", placeholder: "ก้าวร้าว" },
+      { name: "ภาษา", placeholder: "ไทย" },
+      { name: "จำนวนสแลง", placeholder: "5" }
     ]
   },
   { 
     cat:'music', tag:'music', title:'Soundtrack Composer', desc:'แต่งเพลงประกอบภาพยนตร์', 
-    prompt:'จงแต่งเพลงประกอบฉาก "[ฉาก]" อารมณ์ [อารมณ์]\n\nให้ระบุ:\n- เครื่องดนตรีที่ใช้\n- ช่วงเสียง (key)\n- ความยาว\n- จังหวะ (tempo)\n\nเขียนคำอธิบายโครงสร้างเพลง', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ฉาก", placeholder: "ฉากต่อสู้/ฉากรัก" },
-      { name: "อารมณ์", placeholder: "ตื่นเต้น/ซาบซึ้ง" }
+    prompt:'จงแต่งเพลงประกอบฉาก "[ชื่อฉาก]" ในภาพยนตร์แนว "[แนวภาพยนตร์]" ที่มีอารมณ์ "[อารมณ์]"\n\nรายละเอียด:\n- ชื่อเพลง: [ชื่อเพลง]\n- ความยาว: [ความยาว] นาที\n- จังหวะ/เทมโป: [จังหวะ] (Andante, Allegro)\n- จำนวนท่อน: [จำนวนท่อน] ท่อน\n\nให้ระบุ:\n- เครื่องดนตรีหลัก ([จำนวนเครื่อง] ชิ้น): [เครื่องดนตรีหลัก] (Strings, Piano, Synth)\n- โครงสร้าง ([จำนวนโครงสร้าง] ส่วน): [โครงสร้าง] (Intro, Build-up, Climax, Resolution)\n- ระดับความดัง: [ระดับความดัง] (pp, mf, ff)\n- อารมณ์ในแต่ละท่อน: [อารมณ์แต่ละท่อน]\n\nเขียนแนวทางการแต่ง ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['soundtrack', 'composer'], variables: [
+      { name: "ชื่อฉาก", placeholder: "ฉากสู้รบสุดท้าย" },
+      { name: "แนวภาพยนตร์", placeholder: "แอคชั่น/ระทึกขวัญ" },
+      { name: "อารมณ์", placeholder: "ตื่นเต้น/เศร้า" },
+      { name: "ชื่อเพลง", placeholder: "Battle Final" },
+      { name: "ความยาว", placeholder: "3" },
+      { name: "จังหวะ", placeholder: "Allegro" },
+      { name: "จำนวนท่อน", placeholder: "4" },
+      { name: "จำนวนเครื่อง", placeholder: "3" },
+      { name: "เครื่องดนตรีหลัก", placeholder: "Strings, Drums" },
+      { name: "จำนวนโครงสร้าง", placeholder: "4" },
+      { name: "โครงสร้าง", placeholder: "Intro-Build-Climax-Resolution" },
+      { name: "ระดับความดัง", placeholder: "ff" },
+      { name: "อารมณ์แต่ละท่อน", placeholder: " tension → release" },
+      { name: "จำนวนคำ", placeholder: "100" }
     ]
   },
   { 
     cat:'music', tag:'music', title:'Jingle Creator', desc:'สร้างจิงเกิลโฆษณา 30 วิ', 
-    prompt:'จงสร้างจิงเกิล 30 วิ สำหรับแบรนด์ "[ชื่อแบรนด์]" สินค้า "[สินค้า]"\n\nให้มี:\n- ท่อนที่ติดหู (hook)\n- ข้อความสินค้า\n- ทำนองที่จดจำง่าย\n- เรียบเรียงอย่างง่าย', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ชื่อแบรนด์", placeholder: "แบรนด์ของคุณ" },
-      { name: "สินค้า", placeholder: "เครื่องดื่ม/อาหาร" }
+    prompt:'จงสร้างจิงเกิลโฆษณาของ "[สินค้า/แบรนด์]" ความยาว "[ความยาว]" วิ\n\nรายละเอียด:\n- ทํานองหลัก ( hummable melody): [ทํานอง]\n- เนื้อร้อง (ติดหู, สั้น): [เนื้อร้อง] ([จำนวนคำ] คำ)\n- เสียงประกอบ (SFX): [เสียงประกอบ]\n- โทนเสียง: [โทนเสียง] (male, female, choir)\n- จำนวนท่อน: [จำนวนท่อน] ท่อน\n- จังหวะ: [BPM] BPM\n\nให้ระบุ:\n- ทํานองหลัก ([จำนวนทํานอง] ทํานอง)\n- เนื้อร้อง ([จำนวนบรรทัด] บรรทัด - ติดหู, สั้น)\n- เสียงประกอบ ([จำนวน SFX] SFX): [SFX]\n- โทนเสียง ([จำนวนโทน] โทน): [โทนเสียง]\n\nเขียนเป็นแนวทาง ([จำนวนคำแนะนำ] คำ)', 
+    favorite: false, rating: 0, tags: ['jingle', 'commercial'], variables: [
+      { name: "สินค้า/แบรนด์", placeholder: "โค้ก/เป๊ปซี่" },
+      { name: "ความยาว", placeholder: "30 วิ" },
+      { name: "ทํานอง", placeholder: "C-E-G-C" },
+      { name: "เนื้อร้อง", placeholder: "สดชื่นทุกคำ" },
+      { name: "จำนวนคำ", placeholder: "4" },
+      { name: "เสียงประกอบ", placeholder: "เสียงประแดง" },
+      { name: "โทนเสียง", placeholder: "female" },
+      { name: "จำนวนท่อน", placeholder: "2" },
+      { name: "BPM", placeholder: "120" },
+      { name: "จำนวนทํานอง", placeholder: "1" },
+      { name: "จำนวนบรรทัด", placeholder: "2" },
+      { name: "จำนวน SFX", placeholder: "2" },
+      { name: "SFX", placeholder: "ding, pop" },
+      { name: "จำนวนโทน", placeholder: "1" },
+      { name: "จำนวนคำแนะนำ", placeholder: "50" }
     ]
   },
   { 
     cat:'music', tag:'music', title:'Vocal Tuning Guide', desc:'แนะนำการปรับแต่งเสียงร้อง', 
-    prompt:'จงแนะนำการปรับแต่งเสียงร้องสำหรับเพลง "[ชื่อเพลง]" ด้วยซอฟต์แวร์ [ซอฟต์แวร์]\n\nขั้นตอน:\n1. เตรียมเสียง\n2. Pitch correction\n3. Time correction\n4. Effects (reverb, delay)\n5. Final mix', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ชื่อเพลง", placeholder: "เพลงของคุณ" },
-      { name: "ซอฟต์แวร์", placeholder: "Auto-Tune/Melodyne" }
+    prompt:'จงแนะนำการปรับแต่งเสียงร้อง "[ชื่อเพลง]" ของนักร้อง "[ชื่อ]" โดยมีปัญหา "[ปัญหา]"\n\nรายละเอียด:\n- ซอฟต์แวร์: [ซอฟต์แวร์] (Melodyne, Auto-Tune)\n- ระดับความเข้ม tuning: [ระดับ] (subtle, heavy)\n- จำนวนท่อนที่ต้องแก้: [จำนวนท่อน] ท่อน\n\nให้แนะนำ:\n1. เลือกซอฟต์แวร์ ([จำนวนซอฟต์แวร์] ตัว): [ซอฟต์แวร์แนะนำ]\n2. วิธีแก้ปัญหาแต่ละจุด ([จำนวนจุด] จุด): [วิธีแก้]\n3. ระดับความเข้ม tuning ([จำนวนระดับ] ระดับ): [ระดับแนะนำ]\n4. การทำ Doubling/Harmony ([จำนวนวิธี] วิธี): [วิธีDoubling]\n5. Tips เพิ่มความเป็นธรรมชาติ ([จำนวน Tips] ข้อ): [Tips]\n6. การตั้งค่า: [การตั้งค่า]\n\nใช้ภาษาง่ายเหมาะกับมือใหม่ ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['vocal', 'tuning'], variables: [
+      { name: "ชื่อเพลง", placeholder: "เพลงเศร้า" },
+      { name: "ชื่อ", placeholder: "นักร้องนำ" },
+      { name: "ปัญหา", placeholder: "เสียงเพี้ยน, ไม่นิ่ง" },
+      { name: "ซอฟต์แวร์", placeholder: "Auto-Tune" },
+      { name: "ระดับ", placeholder: "subtle" },
+      { name: "จำนวนท่อน", placeholder: "3" },
+      { name: "จำนวนซอฟต์แวร์", placeholder: "2" },
+      { name: "ซอฟต์แวร์แนะนำ", placeholder: "Melodyne" },
+      { name: "จำนวนจุด", placeholder: "5" },
+      { name: "วิธีแก้", placeholder: "ปรับPitch" },
+      { name: "จำนวนระดับ", placeholder: "2" },
+      { name: "ระดับแนะนำ", placeholder: "subtle" },
+      { name: "จำนวนวิธี", placeholder: "2" },
+      { name: "วิธีDoubling", placeholder: "เพิ่ม Layer" },
+      { name: "จำนวน Tips", placeholder: "3" },
+      { name: "Tips", placeholder: "หมั่นหายใจ" },
+      { name: "การตั้งค่า", placeholder: "Retune speed: 20" },
+      { name: "จำนวนคำ", placeholder: "200" }
     ]
   },
   { 
     cat:'music', tag:'music', title:'Music Theory Tutor', desc:'สอนทฤษฎีดนตรีพื้นฐาน', 
-    prompt:'คุณเป็นครูสอนดนตรี จงสอนหัวข้อ "[หัวข้อ]" ระดับ [ระดับ]\n\nเนื้อหา:\n- ทฤษฎีพื้นฐาน\n- ตัวอย่างบนคีย์บอร์ด/กีตาร์\n- แบบฝึกหัด\n- เคล็ดลับการจำ\n\nใช้ภาษาง่าย เข้าใจง่าย', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "หัวข้อ", placeholder: "คอร์ด/สเกล" },
-      { name: "ระดับ", placeholder: "เริ่มต้น/กลาง" }
+    prompt:'จงสอนทฤษฎีดนตรีพื้นฐานให้กับผู้เริ่มต้น "[ระดับ]" โดยเน้น "[หัวข้อ]"\n\nรายละเอียด:\nจำนวนบทเรียน: [จำนวนบทเรียน] บท\nชื่อบทเรียน: [ชื่อบทเรียน]\nเวลาเรียนต่อบท: [เวลา] นาที\n\nให้สอน:\n1. พื้นฐาน ([จำนวนพื้นฐาน] ข้อ): [พื้นฐาน]\n2. ตัวอย่าง: [ตัวอย่าง] (โน๊ต/คอร์ด)\n3. แบบฝึกหัด ([จำนวนแบบฝึกหัด] ข้อ): [แบบฝึกหัด]\n4. สรุป: [สรุป]\n5. แนะนำแหล่งเรียนรู้: [แหล่งเรียนรู้]\n\nใช้ภาษาง่าย เหมาะกับมือใหม่ ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['music-theory', 'tutor'], variables: [
+      { name: "ระดับ", placeholder: "เริ่มต้น/ปานกลาง" },
+      { name: "หัวข้อ", placeholder: "คอร์ด/จังหวะ/กุญแจเสียง" },
+      { name: "จำนวนบทเรียน", placeholder: "5" },
+      { name: "ชื่อบทเรียน", placeholder: "บทที่ 1: โน๊ต" },
+      { name: "เวลา", placeholder: "30" },
+      { name: "จำนวนพื้นฐาน", placeholder: "3" },
+      { name: "พื้นฐาน", placeholder: "ชื่อโน๊ต, ระยะห่าง" },
+      { name: "ตัวอย่าง", placeholder: "C-D-E-F-G" },
+      { name: "จำนวนแบบฝึกหัด", placeholder: "5" },
+      { name: "แบบฝึกหัด", placeholder: "ระบุชื่อโน๊ต" },
+      { name: "สรุป", placeholder: "โน๊ต 7 ตัว" },
+      { name: "แหล่งเรียนรู้", placeholder: "YouTube, หนังสือ" },
+      { name: "จำนวนคำ", placeholder: "200" }
     ]
   },
   { 
     cat:'music', tag:'music', title:'Playlist Curator', desc:'สร้างเพลย์ลิสต์เพลงตามอารมณ์', 
-    prompt:'จงสร้างเพลย์ลิสต์ "[ชื่อเพลย์ลิสต์]" สำหรับอารมณ์ "[อารมณ์]" แนว [แนว]\n\nให้มี:\n- 10 เพลงแนะนำ\n- ทำไมถึงเลือกเพลงเหล่านี้\n- ลำดับการฟัง\n- คำอธิบายสั้นๆ ต่อเพลง', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ชื่อเพลย์ลิสต์", placeholder: "เพลย์ลิสต์ออกกำลังกาย" },
-      { name: "อารมณ์", placeholder: "กระปรี้กระเปร่า/ผ่อนคลาย" }
+    prompt:'จงสร้าง Playlist "[ชื่อ Playlist]" สำหรับอารมณ์ "[อารมณ์]" จำนวน [จำนวนเพลง] เพลง\n\nรายละเอียด:\n- แนวเพลง: [แนวเพลง] (3 แนว): [แนวเพลงตัวอย่าง]\n- ศิลปินแนะนำ: [ศิลปิน] (3 คน): [ศิลปินตัวอย่าง]\n- ระดับความดัง: [ระดับ] (soft, medium, loud)\n- จัดลำดับเพลง: [ลำดับ]\n- เหตุผลแต่ละเพลง: [เหตุผล]\n- ความยาวรวม: [ความยาว] นาที\n- จังหวะเฉลี่ย: [BPM] BPM\n\nให้ครบถ้วนทุกข้อ ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['playlist', 'curator'], variables: [
+      { name: "ชื่อ Playlist", placeholder: "เช้าแจ่มใส" },
+      { name: "อารมณ์", placeholder: "มีความสุข/เศร้า" },
+      { name: "จำนวนเพลง", placeholder: "10" },
+      { name: "แนวเพลง", placeholder: "ป๊อป, อาร์แอนด์บี" },
+      { name: "แนวเพลงตัวอย่าง", placeholder: "Pop, R&B, Jazz" },
+      { name: "ศิลปิน", placeholder: "Taylor Swift, Ed Sheeran" },
+      { name: "ศิลปินตัวอย่าง", placeholder: "Taylor Swift, Ed Sheeran, John Mayer" },
+      { name: "ระดับ", placeholder: "medium" },
+      { name: "ลำดับ", placeholder: "เรียงจากช้าสู่เร็ว" },
+      { name: "เหตุผล", placeholder: "ให้กำลังใจ" },
+      { name: "ความยาว", placeholder: "40" },
+      { name: "BPM", placeholder: "90-120" },
+      { name: "จำนวนคำ", placeholder: "150" }
     ]
   },
 
   // ===== VIDEO (10) - ใหม่ =====
   { 
     cat:'video', tag:'video', title:'Short Video Script', desc:'สคริปต์วิดีโอสั้น 60 วิ', 
-    prompt:'จงเขียนสคริปต์วิดีโอ TikTok/Shorts เรื่อง "[หัวข้อ]" แนว [แนว]\n\nโครงสร้าง:\n- Hook (0-3 วิ)\n- Content (4-50 วิ)\n- CTA (51-60 วิ)\n\nให้มีคำพูดและคำอธิบายภาพ (visual)', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "หัวข้อ", placeholder: "เทรนด์ปัจจุบัน" },
-      { name: "แนว", placeholder: "ตลก/เรียนรู้/ไลฟ์สไตล์" }
+    prompt:'จงเขียนสคริปต์วิดีโอสั้น ([เวลา] วิ) สำหรับแพลตฟอร์ม "[แพลตฟอร์ม]" หัวข้อ "[หัวข้อ]"\n\nรายละเอียด:\n- จำนวนซีน: [จำนวนซีน] ซีน\n- โทนเสียง: [โทนเสียง] (ตื่นเต้น/สงบ/ตลก)\n\nโครงสร้าง:\n- Hook ([เวลา Hook] วิ): [hook content] ตึงดูดความสนใจ\n- Content ([เวลา Content] วิ): [content] เนื้อหาหลัก\n- CTA ([เวลา CTA] วิ): [CTA] เรียกให้กด Like/Subscribe\n\nให้ระบุ:\n- คำพูด (Dialogue) ([จำนวนบรรทัด] บรรทัด): [dialogue]\n- คำบรรยาย (Caption) ([จำนวนคำ] คำ): [caption]\n- คำแนะนำเสียง/ดนตรี: [เสียง/ดนตรี]\n- Transition: [transition]\n\nใช้ภาษา: [ภาษา] ([จำนวนคำแนะนำ] คำ)', 
+    favorite: false, rating: 0, tags: ['short-video', 'script'], variables: [
+      { name: "แพลตฟอร์ม", placeholder: "TikTok/Reels/Shorts" },
+      { name: "หัวข้อ", placeholder: "เคล็ดลับทำอาหาร" },
+      { name: "เวลา", placeholder: "60" },
+      { name: "จำนวนซีน", placeholder: "3" },
+      { name: "โทนเสียง", placeholder: "ตื่นเต้น" },
+      { name: "เวลา Hook", placeholder: "3" },
+      { name: "hook content", placeholder: "คุณรู้ไหม?" },
+      { name: "เวลา Content", placeholder: "40" },
+      { name: "content", placeholder: "วิธีทำ..." },
+      { name: "เวลา CTA", placeholder: "5" },
+      { name: "CTA", placeholder: "กดไลค์!" },
+      { name: "จำนวนบรรทัด", placeholder: "5" },
+      { name: "dialogue", placeholder: "สวัสดีครับ" },
+      { name: "จำนวนคำ", placeholder: "20" },
+      { name: "caption", placeholder: "วิธีทำง่ายๆ" },
+      { name: "เสียง/ดนตรี", placeholder: "เพลงสนุก" },
+      { name: "transition", placeholder: "fade" },
+      { name: "ภาษา", placeholder: "ไทย" },
+      { name: "จำนวนคำแนะนำ", placeholder: "100" }
     ]
   },
   { 
     cat:'video', tag:'video', title:'Sora Prompt', desc:'สร้าง prompt สำหรับ Sora (OpenAI)', 
-    prompt:'จงสร้าง Sora prompt สำหรับวิดีโอ "[คำอธิบายวิดีโอ]" ความยาว [ความยาว]\n\nให้ระบุ:\n- Subject หลัก\n- Motion/Action\n- Camera angle\n- Lighting\n- Style (realistic/animation)\n- Aspect ratio\n\nเขียนเป็น prompt ภาษาอังกฤษ', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "คำอธิบายวิดีโอ", placeholder: "แมวเล่นกับลูกบอล" },
-      { name: "ความยาว", placeholder: "5 วินาที/10 วินาที" }
+    prompt:'จงสร้าง Sora prompt สำหรับวิดีโอ "[หัวข้อวิดีโอ]" ความยาว "[ความยาว]" วินาที\n\nรายละเอียด:\n- ฉาก (location): [location]\n- ตัวละคร (character): [character] ([จำนวนตัวละคร] ตัว)\n- การเคลื่อนไหว (camera movement): [camera movement]\n- แสง/บรรยากาศ: [lighting]\n- สไตล์: [style] (cinematic, anime, realistic)\n- ความละเอียด: [resolution] (1080p, 4K)\n- FPS: [fps] (24, 30, 60)\n\nให้ระบุ:\n- Prompt ภาษาอังกฤษ: [prompt]\n- คำอธิบายภาษาไทย ([จำนวนคำ] คำ): [description]\n- ตัวอย่างเฟรม: [frame example]\n\nเขียน prompt ภาษาอังกฤษ พร้อมคำอธิบายภาษาไทย', 
+    favorite: false, rating: 0, tags: ['sora', 'ai-video'], variables: [
+      { name: "หัวข้อวิดีโอ", placeholder: "เมืองในอนาคต" },
+      { name: "ความยาว", placeholder: "10" },
+      { name: "location", placeholder: "futuristic city" },
+      { name: "character", placeholder: "robot walking" },
+      { name: "จำนวนตัวละคร", placeholder: "2" },
+      { name: "camera movement", placeholder: "pan left" },
+      { name: "lighting", placeholder: "neon lights" },
+      { name: "style", placeholder: "cinematic" },
+      { name: "resolution", placeholder: "1080p" },
+      { name: "fps", placeholder: "30" },
+      { name: "prompt", placeholder: "A robot walking in futuristic city" },
+      { name: "จำนวนคำ", placeholder: "50" },
+      { name: "description", placeholder: "หุ่นยนต์เดินในเมืองอนาคต" },
+      { name: "frame example", placeholder: "เฟรมแรก: หุ่นยนต์..." }
     ]
   },
   { 
     cat:'video', tag:'video', title:'Video Editing Plan', desc:'วางแผนตัดต่อวิดีโอ', 
-    prompt:'จงวางแผนตัดต่อวิดีโอ "[ชื่อวิดีโอ]" ความยาว [ความยาว]\n\nขั้นตอน:\n1. เลือกคลิป\n2. ตัดต่อลำดับ\n3. เพิ่ม effect/transition\n4. ใส่เสียง/เพลง\n5. Color grading\n6. Export\n\nให้ระบุซอฟต์แวร์ที่แนะนำ', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ชื่อวิดีโอ", placeholder: "วิดีโอของคุณ" },
-      { name: "ความยาว", placeholder: "5 นาที/10 นาที" }
+    prompt:'จงวางแผนการตัดต่อวิดีโอ "[ชื่อวิดีโอ]" แนว "[แนว]" ความยาว "[ความยาว]" นาที\n\nรายละเอียด:\n- โปรแกรมตัดต่อ: [โปรแกรม] (Premiere, Final Cut, DaVinci)\n- จำนวนซีน: [จำนวนซีน] ซีน\n- ลำดับการตัดต่อ: [ลำดับ] (Intro, Content, Outro)\n- Effect/Transition ที่ใช้: [Effect]\n- เพลงประกอบ/ซาวนด์เอฟเฟกต์: [เพลง/ซาวน์]\n- ระยะเวลาตัดต่อ: [ระยะเวลา] (วัน)\n- ความละเอียด: [resolution] (1080p, 4K)\n\nให้ระบุ:\n1. โปรแกรมตัดต่อ ([จำนวนโปรแกรม] ตัว): [โปรแกรมแนะนำ]\n2. ลำดับการตัดต่อ ([จำนวนขั้นตอน] ขั้น): [ลำดับการตัดต่อ]\n3. Effect/Transition ([จำนวน Effect] อัน): [Effect ตัวอย่าง]\n4. เพลงประกอบ ([จำนวนเพลง] เพลง): [เพลงตัวอย่าง]\n5. ระยะเวลาตัดต่อ ([จำนวนวัน] วัน)\n\nเขียนเป็นขั้นตอน ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['video-editing', 'plan'], variables: [
+      { name: "ชื่อวิดีโอ", placeholder: "วิดีโอท่องเที่ยว" },
+      { name: "แนว", placeholder: "ท่องเที่ยว/รีวิว" },
+      { name: "ความยาว", placeholder: "10" },
+      { name: "โปรแกรม", placeholder: "DaVinci Resolve" },
+      { name: "จำนวนซีน", placeholder: "5" },
+      { name: "ลำดับ", placeholder: "Intro-Content-Outro" },
+      { name: "Effect", placeholder: "fade, zoom" },
+      { name: "เพลง/ซาวน์", placeholder: "เพลงบรรเลง" },
+      { name: "ระยะเวลา", placeholder: "3" },
+      { name: "resolution", placeholder: "1080p" },
+      { name: "จำนวนโปรแกรม", placeholder: "2" },
+      { name: "โปรแกรมแนะนำ", placeholder: "DaVinci, Premiere" },
+      { name: "จำนวนขั้นตอน", placeholder: "3" },
+      { name: "ลำดับการตัดต่อ", placeholder: "1.Intro 2.Content 3.Outro" },
+      { name: "จำนวน Effect", placeholder: "3" },
+      { name: "Effect ตัวอย่าง", placeholder: "fade, zoom, spin" },
+      { name: "จำนวนเพลง", placeholder: "2" },
+      { name: "เพลงตัวอย่าง", placeholder: "เพลงบรรเลง 1, เพลง pop 1" },
+      { name: "จำนวนวัน", placeholder: "3" },
+      { name: "จำนวนคำ", placeholder: "200" }
     ]
   },
   { 
     cat:'video', tag:'video', title:'YouTube Thumbnail', desc:'ออกแบบรูป Thumbnail สำหรับ YouTube', 
-    prompt:'จงออกแบบ Thumbnail สำหรับวิดีโอ "[หัวข้อ]" แนว [แนว]\n\nให้มี:\n- ภาพหลัก (main image)\n- ข้อความ (text)\n- สีที่ดึงดูด\n- Layout ที่อ่านง่าย\n\nสร้าง prompt สำหรับ AI วาดภาพ', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "หัวข้อ", placeholder: "หัวข้อวิดีโอ" },
-      { name: "แนว", placeholder: "สอนทำ/รีวิว" }
+    prompt:'จงออกแบบ YouTube Thumbnail สำหรับวิดีโอ "[หัวข้อวิดีโอ]" แนว "[แนว]" กลุ่มเป้าหมาย "[กลุ่มเป้าหมาย]"\n\nรายละเอียด:\n- ขนาดรูป: [ขนาด] (1280x720)\n- ข้อความหลักบนรูป (Text): [text] ([จำนวนคำ] คำ)\n- สีโทนหลัก (Color Palette): [color palette] ([จำนวนสี] สี)\n- ภาพประกอบ: [ภาพประกอบ] (ภาพคน, ภาพผลิตภัณฑ์)\n- Layout: [layout] (ตัวอักษรใหญ่, ภาพเต็มจอ)\n- จุดสีสดใส (Pop of color): [pop of color]\n- ฟอนต์: [font]\n\nให้ระบุ:\n1. คำอธิบายรูป ([จำนวนคำอธิบาย] คำ)\n2. Prompt สำหรับ AI วาดรูป: [prompt AI] ([จำนวน prompt] คำ)\n3. เหตุผลการออกแบบ: [เหตุผล]\n\nเขียนคำอธิบายและ prompt สำหรับ AI วาดรูป', 
+    favorite: false, rating: 0, tags: ['youtube', 'thumbnail'], variables: [
+      { name: "หัวข้อวิดีโอ", placeholder: "วิธีทำ SEO" },
+      { name: "แนว", placeholder: "สอน/รีวิว" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "วัยรุ่น/วัยทำงาน" },
+      { name: "ขนาด", placeholder: "1280x720" },
+      { name: "text", placeholder: "SEO ทำง่ายๆ" },
+      { name: "จำนวนคำ", placeholder: "3" },
+      { name: "color palette", placeholder: "ส้ม, ขาว, ดำ" },
+      { name: "จำนวนสี", placeholder: "3" },
+      { name: "ภาพประกอบ", placeholder: "ภาพคนกำลังทำงาน" },
+      { name: "layout", placeholder: "ตัวอักษรใหญ่ตรงกลาง" },
+      { name: "pop of color", placeholder: "ส้มสว่าง" },
+      { name: "font", placeholder: "Bold Sans-serif" },
+      { name: "จำนวนคำอธิบาย", placeholder: "50" },
+      { name: "prompt AI", placeholder: "YouTube thumbnail with text" },
+      { name: "จำนวน prompt", placeholder: "30" },
+      { name: "เหตุผล", placeholder: "ดึงดูดสายตา" }
     ]
   },
   { 
@@ -856,27 +1285,73 @@ const templates = [
     ]
   },
   { 
-    cat:'video', tag:'video', title:'Commercial Ad Script', desc:'สคริปต์โฆษณาทางโทรทัศน์ 30 วิ', 
-    prompt:'จงเขียนสคริปต์โฆษณา 30 วิ สำหรับสินค้า "[สินค้า]" แนว [แนว]\n\nให้มี:\n- Hook (0-5 วิ)\n- Product showcase (6-25 วิ)\n- Offer/CTA (26-30 วิ)\n\nระบุคำพูด นักแสดง และภาพ', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "สินค้า", placeholder: "สมาร์ทโฟน/รถยนต์" },
-      { name: "แนว", placeholder: "ดรามา/ตลก" }
+    cat:'video', tag:'video', title:'Animation Storyboard', desc:'วาดสตอรี่บอร์ดสำหรับแอนิเมชั่น', 
+    prompt:'จงวาด Storyboard สำหรับแอนิเมชั่น "[ชื่อแอนิเมชั่น]" แนว "[แนว]" ความยาว "[ความยาว]" นาที\n\nรายละเอียด:\n- จำนวนซีน: [จำนวนซีน] ซีน\n- อัตราส่วนภาพ: [อัตราส่วน] (16:9, 4:3)\n- สไตล์: [สไตล์] (2D, 3D, Stop motion)\n\nให้ระบุ:\n- จำนวนซีน ([จำนวนซีน] ซีน): [รายละเอียดซีน]\n- มุมกล้อง/การเคลื่อนไหว ([จำนวนมุม] มุม): [มุมกล้อง]\n- คำบรรยายแต่ละเฟรม ([จำนวนเฟรม] เฟรม): [คำบรรยาย]\n- ตัวละคร/พื้นหลัง ([จำนวนตัวละคร] ตัว): [ตัวละคร/พื้นหลัง]\n- Sound effects / BGM: [เสียง/BGM]\n- เวลาแต่ละซีน: [เวลาแต่ละซีน] (นาที)\n\nเขียนเป็นตารางทีละซีน ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['storyboard', 'animation'], variables: [
+      { name: "ชื่อแอนิเมชั่น", placeholder: "ผจญภัยในป่าดำ" },
+      { name: "แนว", placeholder: "แฟนตาซี" },
+      { name: "ความยาว", placeholder: "5" },
+      { name: "จำนวนซีน", placeholder: "5" },
+      { name: "อัตราส่วน", placeholder: "16:9" },
+      { name: "สไตล์", placeholder: "2D" },
+      { name: "รายละเอียดซีน", placeholder: "ซีน 1: เปิดด้วยป่า" },
+      { name: "จำนวนมุม", placeholder: "3" },
+      { name: "มุมกล้อง", placeholder: "wide shot, close-up" },
+      { name: "จำนวนเฟรม", placeholder: "10" },
+      { name: "คำบรรยาย", placeholder: "ตัวเอกเดินเข้าป่า" },
+      { name: "จำนวนตัวละคร", placeholder: "2" },
+      { name: "ตัวละคร/พื้นหลัง", placeholder: "นักสู้, ป่ามืด" },
+      { name: "เสียง/BGM", placeholder: "เสียงนก, เพลงลึกลับ" },
+      { name: "เวลาแต่ละซีน", placeholder: "1" },
+      { name: "จำนวนคำ", placeholder: "200" }
     ]
   },
   { 
     cat:'video', tag:'video', title:'Live Stream Plan', desc:'วางแผนสตรีมมิ่งสด', 
-    prompt:'จงวางแผนสตรีมมิ่งสด "[หัวข้อ]" บนแพลตฟอร์ม [แพลตฟอร์ม]\n\nแผน:\n- หัวข้อที่จะคุย\n- ช่วงโต้ตอบกับผู้ชม\n- ของรางวัล (giveaway)\n- Technical setup (กล้อง, ไมค์)\n- Promotion ก่อนสตรีม', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "หัวข้อ", placeholder: "สอนเขียนโปรแกรม" },
-      { name: "แพลตฟอร์ม", placeholder: "Facebook/TikTok/YouTube" }
+    prompt:'จงวางแผน Live Stream สำหรับ "[หัวข้อ]" แพลตฟอร์ม "[แพลตฟอร์ม]" ระยะเวลา "[ระยะเวลา]" นาที\n\nรายละเอียด:\n- จำนวนผู้ชมคาดหวัง: [จำนวนผู้ชม] คน\n- ช่วงเวลา: [ช่วงเวลา] (Intro, Content, Q&A, Outro)\n- จำนวนกิจกรรม: [จำนวนกิจกรรม] กิจกรรม\n\nให้ระบุ:\n- ช่วงเวลา ([จำนวนช่วง] ช่วง): [ช่วงเวลารายละเอียด]\n- กิจกรรมระหว่างสตรีม ([จำนวนกิจกรรมทำ] กิจกรรม): [กิจกรรม] (Giveaway, Poll)\n- เอาท์จำเป็น (Guest): [guest] ถ้ามี\n- อุปกรณ์ที่ใช้ ([จำนวนอุปกรณ์] ชิ้น): [อุปกรณ์] (กล้อง, ไมค์, ไฟ)\n- Checklist ก่อนสตรีม ([จำนวน checklist] รายการ): [checklist]\n- การโปรโมท: [การโปรโมท]\n\nเขียนเป็นตารางเวลา ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['live-stream', 'planning'], variables: [
+      { name: "หัวข้อ", placeholder: "รีวิวสินค้า" },
+      { name: "แพลตฟอร์ม", placeholder: "Facebook/TikTok" },
+      { name: "ระยะเวลา", placeholder: "60" },
+      { name: "จำนวนผู้ชม", placeholder: "1000" },
+      { name: "ช่วงเวลา", placeholder: "Intro-Content-Q&A-Outro" },
+      { name: "จำนวนกิจกรรม", placeholder: "3" },
+      { name: "จำนวนช่วง", placeholder: "4" },
+      { name: "ช่วงเวลารายละเอียด", placeholder: "0-5 Intro, 5-45 Content" },
+      { name: "จำนวนกิจกรรมทำ", placeholder: "2" },
+      { name: "กิจกรรม", placeholder: "Giveaway, Poll" },
+      { name: "guest", placeholder: "ผู้เชี่ยวชาญ" },
+      { name: "จำนวนอุปกรณ์", placeholder: "3" },
+      { name: "อุปกรณ์", placeholder: "กล้อง, ไมค์, ไฟ" },
+      { name: "จำนวน checklist", placeholder: "5" },
+      { name: "checklist", placeholder: "เช็คเน็ต, เช็คเสียง" },
+      { name: "การโปรโมท", placeholder: "โพสต์ก่อนสด 1 ชม." },
+      { name: "จำนวนคำ", placeholder: "200" }
     ]
   },
   { 
-    cat:'video', tag:'video', title:'Animation Storyboard', desc:'วาดสตอรี่บอร์ดสำหรับแอนิเมชั่น', 
-    prompt:'จงวาดสตอรี่บอร์ดสำหรับแอนิเมชั่นเรื่อง "[เรื่อง]" ความยาว [ความยาว]\n\nให้มี:\n- ภาพสเก็ตช์แต่ละฉาก\n- คำอธิบายการเคลื่อนไหว\n- เสียง/ดนตรีประกอบ\n- หมายเลขฉาก/ช็อต\n\nเขียนคำอธิบายละเอียด', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "เรื่อง", placeholder: "เทพนิยายใหม่" },
-      { name: "ความยาว", placeholder: "5 นาที/10 นาที" }
+    cat:'video', tag:'video', title:'Video SEO', desc:'ปรับแต่งวิดีโอให้ติดอันดับ YouTube', 
+    prompt:'จงปรับแต่ง SEO ให้วิดีโอ "[หัวข้อวิดีโอ]" ของช่อง "[ชื่อช่อง]"\n\nรายละเอียด:\n- คำสำคัญหลัก: [คำสำคัญหลัก]\n- จำนวนคำสำคัญรอง: [จำนวนคำสำคัญ] คำ\n- ระยะเวลาวิดีโอ: [ระยะเวลา] นาที\n\nให้ระบุ:\n- Title ([จำนวน Title] แบบ): [Title examples]\n- Description ([จำนวนคำ] คำ): [Description]\n- Tags ([จำนวน Tags] Tags): [Tags]\n- Timestamps ([จำนวน Timestamps] จุด): [Timestamps]\n- Thumbnail text ([จำนวน Thumbnail] ข้อ): [Thumbnail text]\n- Playlist แนะนำ ([จำนวน Playlist] Playlist): [Playlist]\n\nใช้คำสำคัญ: [คำสำคัญ] ([จำนวนคำสำคัญใช้] ครั้ง)', 
+    favorite: false, rating: 0, tags: ['video-seo', 'youtube'], variables: [
+      { name: "หัวข้อวิดีโอ", placeholder: "สอนทำ SEO" },
+      { name: "ชื่อช่อง", placeholder: "ช่องสอนเทคนิค" },
+      { name: "คำสำคัญหลัก", placeholder: "SEO, YouTube" },
+      { name: "จำนวนคำสำคัญ", placeholder: "5" },
+      { name: "ระยะเวลา", placeholder: "10" },
+      { name: "จำนวน Title", placeholder: "3" },
+      { name: "Title examples", placeholder: "SEO ทำง่ายๆ" },
+      { name: "จำนวนคำ", placeholder: "200" },
+      { name: "Description", placeholder: "วิดีโอสอนทำ SEO..." },
+      { name: "จำนวน Tags", placeholder: "15" },
+      { name: "Tags", placeholder: "SEO, YouTube, วิธีทำ" },
+      { name: "จำนวน Timestamps", placeholder: "5" },
+      { name: "Timestamps", placeholder: "0:00 Intro, 1:00 Content" },
+      { name: "จำนวน Thumbnail", placeholder: "2" },
+      { name: "Thumbnail text", placeholder: "SEO ง่ายๆ" },
+      { name: "จำนวน Playlist", placeholder: "2" },
+      { name: "Playlist", placeholder: "Playlist สอน YouTube" },
+      { name: "คำสำคัญ", placeholder: "SEO" },
+      { name: "จำนวนคำสำคัญใช้", placeholder: "3" }
     ]
   },
   { 
@@ -898,71 +1373,219 @@ const templates = [
   // ===== BUSINESS (10) - ใหม่ =====
   { 
     cat:'business', tag:'business', title:'Business Plan', desc:'ร่างแผนธุรกิจสั้น', 
-    prompt:'จงร่างแผนธุรกิจ "[ประเภทธุรกิจ]" สำหรับ [ระยะเวลา]\n\nโครงสร้าง:\n1. Executive Summary\n2. Company Description\n3. Market Analysis\n4. Products/Services\n5. Marketing Strategy\n6. Financial Plan\n\nความยาว 500-800 คำ', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงร่างแผนธุรกิจ "[ประเภทธุรกิจ]" สำหรับ [ระยะเวลา]\n\nรายละเอียด:\n- งบประมาณ: [งบประมาณ] (บาท)\n- จำนวนพนักงาน: [จำนวนพนักงาน] คน\n- กลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\n\nโครงสร้าง:\n1. Executive Summary ([จำนวนคำ 1] คำ): [executive summary]\n2. Company Description ([จำนวนคำ 2] คำ): [company description]\n3. Market Analysis ([จำนวนคำ 3] คำ): [market analysis]\n4. Products/Services ([จำนวนคำ 4] คำ): [products/services]\n5. Marketing Strategy ([จำนวนคำ 5] คำ): [marketing strategy]\n6. Financial Plan ([จำนวนคำ 6] คำ): [financial plan]\n7. SWOT Analysis ([จำนวนคำ 7] คำ): [swot]\n\nความยาว [ความยาว] คำ', 
+    favorite: false, rating: 0, tags: ['business-plan', 'strategy'], variables: [
       { name: "ประเภทธุรกิจ", placeholder: "ร้านกาแฟ/ออนไลน์" },
-      { name: "ระยะเวลา", placeholder: "1 ปี/3 ปี" }
-    ]
-  },
-  { 
-    cat:'business', tag:'business', title:'Pitch Deck', desc:'สร้างสไลด์นำเสนอขอเงินทุน', 
-    prompt:'จงสร้าง Pitch Deck สำหรับธุรกิจ "[ชื่อธุรกิจ]" จำนวน 10 สไลด์\n\nสไลด์:\n1. Title Slide\n2. Problem\n3. Solution\n4. Market Size\n5. Product\n6. Business Model\n7. Team\n8. Financials\n9. Competition\n10. Ask\n\nให้มีคำอธิบายสั้นๆ ต่อสไลด์', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ชื่อธุรกิจ", placeholder: "แบรนด์ของคุณ" }
-    ]
-  },
-  { 
-    cat:'business', tag:'business', title:'SWOT Analysis', desc:'วิเคราะห์ SWOT บริษัทของคุณ', 
-    prompt:'จงวิเคราะห์ SWOT สำหรับบริษัท "[ชื่อบริษัท]" ในอุตสาหกรรม "[อุตสาหกรรม]"\n\nวิเคราะห์:\n- Strengths (จุดแข็ง)\n- Weaknesses (จุดอ่อน)\n- Opportunities (โอกาส)\n- Threats (อุปสรรค)\n\nให้คำแนะนำเชิงกลยุทธ์', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ชื่อบริษัท", placeholder: "บริษัทของคุณ" },
-      { name: "อุตสาหกรรม", placeholder: "เทคโนโลยี/อาหาร" }
-    ]
-  },
-  { 
-    cat:'business', tag:'business', title:'Pricing Strategy', desc:'ตั้งราคาสินค้า/บริการ', 
-    prompt:'จงแนะนำกลยุทธ์การตั้งราคาสำหรับ "[สินค้า/บริการ]" กลุ่มเป้าหมาย "[กลุ่มเป้าหมาย]"\n\nแนะนำ:\n- Cost-plus pricing\n- Value-based pricing\n- Competitive pricing\n- ราคาที่แนะนำ\n- โปรโมชั่นจูงใจ\n\nวิเคราะห์จุดคุ้มทุน (break-even)', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "สินค้า/บริการ", placeholder: "สินค้าของคุณ" },
-      { name: "กลุ่มเป้าหมาย", placeholder: "วัยรุ่น/วัยทำงาน" }
-    ]
-  },
-  { 
-    cat:'business', tag:'business', title:'Meeting Agenda', desc:'สร้างวาระการประชุม', 
-    prompt:'จงสร้างวาระการประชุม "[หัวข้อประชุม]" สำหรับ [ประเภทประชุม] ระยะเวลา [เวลา]\n\nวาระ:\n1. เปิดประชุม\n2. เรื่องเก่า (จากการประชุมก่อน)\n3. เรื่องใหม่ (3-5 เรื่อง)\n4. ปัญหาและอุปสรรค\n5. มติที่ประชุม\n6. ปิดประชุม\n\nให้ระบุเวลาต่อเรื่อง', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "หัวข้อประชุม", placeholder: "ประชุมตรวจงานรายเดือน" },
-      { name: "ประเภทประชุม", placeholder: "ทีมขาย/ทีมพัฒนา" }
-    ]
-  },
-  { 
-    cat:'business', tag:'business', title:'Customer Persona', desc:'สร้างบุคลิกภาพลูกค้า', 
-    prompt:'จงสร้าง Customer Persona สำหรับธุรกิจ "[ธุรกิจ]" จำนวน 3 คน\n\nแต่ละคนต้องมี:\n- ชื่อ, อายุ, อาชีพ\n- ความต้องการ (needs)\n- ความเจ็บปวด (pain points)\n- พฤติกรรมการซื้อ\n- แชannels ที่ใช้\n\nให้เขียนอย่างละเอียด', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ธุรกิจ", placeholder: "ร้านกาแฟ/ออนไลน์" }
-    ]
-  },
-  { 
-    cat:'business', tag:'business', title:'Financial Projection', desc:'คาดการณ์การเงิน 3 ปี', 
-    prompt:'จงสร้างคาดการณ์การเงินสำหรับธุรกิจ "[ธุรกิจ]" ระยะเวลา 3 ปี\n\nรายงาน:\n- Revenue projection\n- Cost projection\n- Profit & Loss\n- Cash flow\n- Break-even analysis\n\nให้เป็นตารางและกราฟ (อธิบาย)', 
-    favorite: false, rating: 0, tags: [], variables: [
-      { name: "ธุรกิจ", placeholder: "ธุรกิจของคุณ" }
+      { name: "ระยะเวลา", placeholder: "1 ปี/3 ปี" },
+      { name: "งบประมาณ", placeholder: "1 ล้านบาท" },
+      { name: "จำนวนพนักงาน", placeholder: "10" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "วัยรุ่น/วัยทำงาน" },
+      { name: "จำนวนคำ 1", placeholder: "100" },
+      { name: "executive summary", placeholder: "สรุปธุรกิจ" },
+      { name: "จำนวนคำ 2", placeholder: "100" },
+      { name: "company description", placeholder: "รายละเอียดบริษัท" },
+      { name: "จำนวนคำ 3", placeholder: "100" },
+      { name: "market analysis", placeholder: "วิเคราะห์ตลาด" },
+      { name: "จำนวนคำ 4", placeholder: "100" },
+      { name: "products/services", placeholder: "รายการสินค้า" },
+      { name: "จำนวนคำ 5", placeholder: "100" },
+      { name: "marketing strategy", placeholder: "แผนการตลาด" },
+      { name: "จำนวนคำ 6", placeholder: "100" },
+      { name: "financial plan", placeholder: "แผนการเงิน" },
+      { name: "จำนวนคำ 7", placeholder: "100" },
+      { name: "swot", placeholder: "จุดแข็ง/จุดอ่อน" },
+      { name: "ความยาว", placeholder: "700" }
     ]
   },
   { 
     cat:'business', tag:'business', title:'HR Policy', desc:'ร่างนโยบายทรัพยากรบุคคล', 
-    prompt:'จงร่างนโยบาย HR สำหรับบริษัท "[ชื่อบริษัท]" จำนวนพนักงาน [จำนวนคน]\n\nนโยบาย:\n- การทำงาน (เวลา, remote)\n- ค่าตอบแทนและสวัสดิการ\n- การลา\n- วินัย\n- การอบรมพัฒนา\n\nให้ครอบคลุมตามกฎหมายแรงงาน', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงร่างนโยบาย "[ชื่อนโยบาย]" สำหรับบริษัท "[ชื่อบริษัท]" จำนวนพนักงาน "[จำนวนพนักงาน]" คน\n\nรายละเอียด:\n- วันที่มีผลบังคับใช้: [วันที่]\n- ระยะเวลาทดลองงาน: [ระยะเวลา] เดือน\n- จำนวนวันลาพักผ่อน: [จำนวนวัน] วัน/ปี\n\nนโยบายต้องมี:\n- วัตถุประสงค์ ([จำนวนวัตถุประสงค์] ข้อ): [วัตถุประสงค์]\n- ขอบเขตการใช้งาน ([จำนวนขอบเขต] ข้อ): [ขอบเขต]\n- ขั้นตอนการปฏิบัติ ([จำนวนขั้นตอน] ขั้น): [ขั้นตอน]\n- สิทธิ์และผลประโยชน์ ([จำนวนสิทธิ์] ข้อ): [สิทธิ์]\n- การลงโทษเมื่อฝ่าฝืน ([จำนวนการลงโทษ] ระดับ): [การลงโทษ]\n- การทบทวนนโยบาย ([จำนวนการทบทวน] ครั้ง/ปี): [การทบทวน]\n- ผู้รับผิดชอบ: [ผู้รับผิดชอบ]\n\nเขียนเป็นภาษาทางการ ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['hr', 'policy'], variables: [
+      { name: "ชื่อนโยบาย", placeholder: "นโยบายงานจากบ้าน" },
+      { name: "ชื่อบริษัท", placeholder: "บริษัท ABC จำกัด" },
+      { name: "จำนวนพนักงาน", placeholder: "50" },
+      { name: "วันที่", placeholder: "1 มกราคม 2026" },
+      { name: "ระยะเวลา", placeholder: "3" },
+      { name: "จำนวนวัน", placeholder: "10" },
+      { name: "จำนวนวัตถุประสงค์", placeholder: "3" },
+      { name: "วัตถุประสงค์", placeholder: "เพิ่มผลิตภาพ" },
+      { name: "จำนวนขอบเขต", placeholder: "2" },
+      { name: "ขอบเขต", placeholder: "พนักงานประจำ" },
+      { name: "จำนวนขั้นตอน", placeholder: "4" },
+      { name: "ขั้นตอน", placeholder: "1.ยื่นคำร้อง 2.อนุมัติ" },
+      { name: "จำนวนสิทธิ์", placeholder: "3" },
+      { name: "สิทธิ์", placeholder: "ค่าเน็ต, ค่าไฟ" },
+      { name: "จำนวนการลงโทษ", placeholder: "2" },
+      { name: "การลงโทษ", placeholder: "ตักเตือน, ปรับ" },
+      { name: "จำนวนการทบทวน", placeholder: "1" },
+      { name: "การทบทวน", placeholder: "ทุกสิ้นปี" },
+      { name: "ผู้รับผิดชอบ", placeholder: "HR Manager" },
+      { name: "จำนวนคำ", placeholder: "300" }
+    ]
+  },
+  { 
+    cat:'business', tag:'business', title:'SWOT Analysis', desc:'วิเคราะห์ SWOT บริษัทของคุณ', 
+    prompt:'จงวิเคราะห์ SWOT สำหรับบริษัท "[ชื่อบริษัท]" ในอุตสาหกรรม "[อุตสาหกรรม]"\n\nรายละเอียด:\n- จำนวนพนักงาน: [จำนวนพนักงาน] คน\n- ระยะเวลาดำเนินงาน: [ระยะเวลา] ปี\n- งบประมาณ: [งบประมาณ] บาท\n\nวิเคราะห์:\n- Strengths ([จำนวนข้อ 1] ข้อ): [strengths] (จุดแข็ง)\n- Weaknesses ([จำนวนข้อ 2] ข้อ): [weaknesses] (จุดอ่อน)\n- Opportunities ([จำนวนข้อ 3] ข้อ): [opportunities] (โอกาส)\n- Threats ([จำนวนข้อ 4] ข้อ): [threats] (อุปสรรค)\n- คู่แข่งหลัก: [คู่แข่ง]\n- ส่วนแบ่งตลาด: [ส่วนแบ่งตลาด]%\n\nให้คำแนะนำเชิงกลยุทธ์ ([จำนวนคำแนะนำ] ข้อ): [คำแนะนำ] ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['swot', 'analysis'], variables: [
       { name: "ชื่อบริษัท", placeholder: "บริษัทของคุณ" },
-      { name: "จำนวนคน", placeholder: "10-50 คน" }
+      { name: "อุตสาหกรรม", placeholder: "เทคโนโลยี/อาหาร" },
+      { name: "จำนวนพนักงาน", placeholder: "50" },
+      { name: "ระยะเวลา", placeholder: "5" },
+      { name: "งบประมาณ", placeholder: "10 ล้าน" },
+      { name: "จำนวนข้อ 1", placeholder: "3" },
+      { name: "strengths", placeholder: "ทีมแข็งแกร่ง" },
+      { name: "จำนวนข้อ 2", placeholder: "2" },
+      { name: "weaknesses", placeholder: "งบจำกัด" },
+      { name: "จำนวนข้อ 3", placeholder: "3" },
+      { name: "opportunities", placeholder: "ตลาดใหม่" },
+      { name: "จำนวนข้อ 4", placeholder: "2" },
+      { name: "threats", placeholder: "คู่แข่งใหม่" },
+      { name: "คู่แข่ง", placeholder: "Brand A, Brand B" },
+      { name: "ส่วนแบ่งตลาด", placeholder: "15%" },
+      { name: "จำนวนคำแนะนำ", placeholder: "3" },
+      { name: "คำแนะนำ", placeholder: "ขยายตลาด" },
+      { name: "จำนวนคำ", placeholder: "200" }
+    ]
+  },
+  { 
+    cat:'business', tag:'business', title:'Pricing Strategy', desc:'ตั้งราคาสินค้า/บริการ', 
+    prompt:'จงวางแผน Pricing Strategy สำหรับ "[สินค้า/บริการ]" ในตลาด "[ตลาด]" กลุ่มเป้าหมาย "[กลุ่มเป้าหมาย]"\n\nรายละเอียด:\n- ต้นทุนต่อหน่วย: [ต้นทุน] บาท\n- จำนวนคู่แข่ง: [จำนวนคู่แข่ง] ราย\n- ระยะเวลาโปรโมชั่น: [ระยะเวลา] เดือน\n\nให้ระบุ:\n- Cost Structure (ต้นทุน): [cost structure] ([จำนวนข้อ 1] ข้อ)\n- Competitor Pricing (ราคาคู่แข่ง): [competitor pricing] ([จำนวนข้อ 2] ราย)\n- Pricing Model (Cost-plus, Value-based, Dynamic): [pricing model]\n- Price Points (ราคาแต่ละระดับ) ([จำนวนราคา] ระดับ): [price points]\n- Discount Strategy ([จำนวนข้อ 3] ข้อ): [discount strategy]\n- ผลกระทบต่อกำไร: [ผลกระทบ]\n\nเขียนเป็ นตารางและคำอธิบาย ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['pricing', 'strategy'], variables: [
+      { name: "สินค้า/บริการ", placeholder: "ซอฟแวร์/คอร์สออนไลน์" },
+      { name: "ตลาด", placeholder: "B2B/B2C" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "SME/องค์กรใหญ่" },
+      { name: "ต้นทุน", placeholder: "500" },
+      { name: "จำนวนคู่แข่ง", placeholder: "3" },
+      { name: "ระยะเวลา", placeholder: "3" },
+      { name: "cost structure", placeholder: "ต้นทุนคงที่, ผันแปร" },
+      { name: "จำนวนข้อ 1", placeholder: "3" },
+      { name: "competitor pricing", placeholder: "คู่แข่ง A: 1000" },
+      { name: "จำนวนข้อ 2", placeholder: "3" },
+      { name: "pricing model", placeholder: "Value-based" },
+      { name: "จำนวนราคา", placeholder: "3" },
+      { name: "price points", placeholder: "Basic: 500, Pro: 1000" },
+      { name: "จำนวนข้อ 3", placeholder: "2" },
+      { name: "discount strategy", placeholder: "ซื้อ 3 จ่าย 2" },
+      { name: "ผลกระทบ", placeholder: "กำไรเพิ่ม 20%" },
+      { name: "จำนวนคำ", placeholder: "200" }
+    ]
+  },
+  { 
+    cat:'business', tag:'business', title:'Meeting Agenda', desc:'สร้างวาระการประชุม', 
+    prompt:'จงสร้างวาระการประชุม "[หัวข้อประชุม]" สำหรับ "[ประเภทประชุม]" จำนวน [จำนวนคน] คน\n\nรายละเอียด:\n- วันที่: [วันที่]\n- เวลา: [เวลา] (9:00-12:00)\n- สถานที่: [สถานที่] (Onsite/Zoom)\n- จำนวนวาระ: [จำนวนวาระ] วาระ\n\nให้ระบุ:\n- วาระการประชุม ([จำนวนวาระ] ข้อ): [วาระ]\n- ผู้รับผิดชอบแต่ละวาระ ([จำนวนคน] คน): [ผู้รับผิดชอบ]\n- เวลาแต่ละวาระ ([จำนวนเวลา] นาที): [เวลา]\n- เอกสารประกอบ ([จำนวนเอกสาร] ฉบับ): [เอกสาร]\n- เป้าหมายการประชุม: [เป้าหมาย]\n\nเขียนเป็นตารางเวลา ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['meeting', 'agenda'], variables: [
+      { name: "หัวข้อประชุม", placeholder: "วางแผน Q1" },
+      { name: "ประเภทประชุม", placeholder: "ทีมขาย/บริหาร" },
+      { name: "จำนวนคน", placeholder: "10" },
+      { name: "วันที่", placeholder: "1 มกราคม 2026" },
+      { name: "เวลา", placeholder: "9:00-12:00" },
+      { name: "สถานที่", placeholder: "ห้องประชุม A / Zoom" },
+      { name: "จำนวนวาระ", placeholder: "5" },
+      { name: "วาระ", placeholder: "1.สรุป Q4, 2.แผน Q1" },
+      { name: "จำนวนคน", placeholder: "3" },
+      { name: "ผู้รับผิดชอบ", placeholder: "นาย A, นาง B" },
+      { name: "จำนวนเวลา", placeholder: "5" },
+      { name: "เวลา", placeholder: "30, 45, 20..." },
+      { name: "จำนวนเอกสาร", placeholder: "3" },
+      { name: "เอกสาร", placeholder: "รายงาน Q4, แผน Q1" },
+      { name: "เป้าหมาย", placeholder: "อนุมัติแผน Q1" },
+      { name: "จำนวนคำ", placeholder: "200" }
+    ]
+  },
+  { 
+    cat:'business', tag:'business', title:'Customer Persona', desc:'สร้างบุคลิกภาพลูกค้า', 
+    prompt:'จงสร้าง Customer Persona สำหรับธุรกิจ "[ธุรกิจ]" จำนวน [จำนวนคน] คน\n\nรายละเอียดแต่ละคน:\n- ชื่อ, อายุ ([อายุ]), อาชีพ ([อาชีพ])\n- ความต้องการ (needs): [needs]\n- ความเจ็บปวด (pain points): [pain points] ([จำนวน pain points] ข้อ)\n- พฤติกรรมการซื้อ: [behavior]\n- แชannels ที่ใช้ ([จำนวน channels] ช่องทาง): [channels]\n- งบประมาณต่อเดือน: [งบประมาณ] บาท\n- สโลแกนประจำตัว: [สโลแกน]\n\nให้เขียนอย่างละเอียด ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['customer', 'persona'], variables: [
+      { name: "ธุรกิจ", placeholder: "ร้านกาแฟ/ออนไลน์" },
+      { name: "จำนวนคน", placeholder: "3" },
+      { name: "อายุ", placeholder: "25-35 ปี" },
+      { name: "อาชีพ", placeholder: "พนักงานออฟฟิศ" },
+      { name: "needs", placeholder: "หาที่นั่งทำงาน" },
+      { name: "pain points", placeholder: "วifi ช้า" },
+      { name: "จำนวน pain points", placeholder: "3" },
+      { name: "behavior", placeholder: "ซื้อทุกเช้า" },
+      { name: "จำนวน channels", placeholder: "3" },
+      { name: "channels", placeholder: "Facebook, Instagram" },
+      { name: "งบประมาณ", placeholder: "3000" },
+      { name: "สโลแกน", placeholder: "กาแฟเริ่มวันใหม่" },
+      { name: "จำนวนคำ", placeholder: "200" }
+    ]
+  },
+  { 
+    cat:'video', tag:'video', title:'Commercial Ad Script', desc:'สคริปต์โฆษณาทางโทรทัศน์ 30 วิ', 
+    prompt:'จงเขียนสคริปต์โฆษณา "[สินค้า/บริการ]" ความยาว "[ความยาว]" วิ\n\nรายละเอียด:\n- จำนวนซีน: [จำนวนซีน] ซีน\n- โทนเสียง: [โทนเสียง] (ตื่นเต้น/สงบ/ตลก)\n\nโครงสร้าง:\n- Hook ([เวลา Hook] วิ - ดึงดูดความสนใจ): [hook content]\n- Product Showcase ([เวลา Showcase] วิ - แสดงสินค้า): [showcase content]\n- Benefits ([เวลา Benefits] วิ - ประโยชน์): [benefits content]\n- CTA ([เวลา CTA] วิ - เรียกให้ดำเนินการ): [CTA content]\n\nให้ระบุ:\n- คำพูด (Voice-over) ([จำนวนบรรทัด] บรรทัด): [voice-over]\n- คำบรรยาย (Caption) ([จำนวนคำ] คำ): [caption]\n- ดนตรี/เสียงประกอบ: [music/sound]\n- Visual style: [visual style]\n\nใช้ภาษา: [ภาษา] ([จำนวนคำแนะนำ] คำ)', 
+    favorite: false, rating: 0, tags: ['commercial', 'ad-script'], variables: [
+      { name: "สินค้า/บริการ", placeholder: "น้ำหอม/รถยนต" },
+      { name: "ความยาว", placeholder: "30" },
+      { name: "จำนวนซีน", placeholder: "4" },
+      { name: "โทนเสียง", placeholder: "ตื่นเต้น" },
+      { name: "เวลา Hook", placeholder: "5" },
+      { name: "hook content", placeholder: "คุณเคยไหม?" },
+      { name: "เวลา Showcase", placeholder: "15" },
+      { name: "showcase content", placeholder: "แสดงสินค้า..." },
+      { name: "เวลา Benefits", placeholder: "5" },
+      { name: "benefits content", placeholder: "ประโยชน์..." },
+      { name: "เวลา CTA", placeholder: "5" },
+      { name: "CTA content", placeholder: "ซื้อเลย!" },
+      { name: "จำนวนบรรทัด", placeholder: "5" },
+      { name: "voice-over", placeholder: "เสียงบรรยาย..." },
+      { name: "จำนวนคำ", placeholder: "20" },
+      { name: "caption", placeholder: "ซื้อวันนี้!" },
+      { name: "music/sound", placeholder: "เพลงสนุก" },
+      { name: "visual style", placeholder: "Bright, colorful" },
+      { name: "ภาษา", placeholder: "ไทย" },
+      { name: "จำนวนคำแนะนำ", placeholder: "100" }
+    ]
+  },
+  { 
+    cat:'business', tag:'business', title:'Pitch Deck', desc:'สร้างสไลด์นำเสนอขอเงินทุน', 
+    prompt:'จงสร้าง Pitch Deck สำหรับ "[ชื่อธุรกิจ]" ที่ต้องการเงิน "[จำนวนเงิน]" บาท\n\nรายละเอียด:\n- จำนวนสไลด์: [จำนวนสไลด์] สไลด์\n- กลุ่มเป้าหมาย: [กลุ่มเป้าหมาย] (นักลงทุน)\n- สไตล์การนำเสนอ: [สไตล์] (มืออาชีพ, น่าสนใจ)\n\nให้มีสไลด์:\n1. Problem ([จำนวนคำ 1] คำ): [problem]\n2. Solution ([จำนวนคำ 2] คำ): [solution]\n3. Market Size ([จำนวนคำ 3] คำ): [market size]\n4. Business Model ([จำนวนคำ 4] คำ): [business model]\n5. Team ([จำนวนคำ 5] คำ): [team]\n6. Financials ([จำนวนคำ 6] คำ): [financials]\n7. Ask ([จำนวนคำ 7] คำ): [ask]\n\nใช้ภาษาน่าสนใจ กระชับ ([จำนวนคำทั้งหมด] คำ)', 
+    favorite: false, rating: 0, tags: ['pitch-deck', 'funding'], variables: [
+      { name: "ชื่อธุรกิจ", placeholder: "สตาร์ทอัพเทคโนโลยี" },
+      { name: "จำนวนเงิน", placeholder: "5 ล้านบาท" },
+      { name: "จำนวนสไลด์", placeholder: "10" },
+      { name: "กลุ่มเป้าหมาย", placeholder: "นักลงทุน VC" },
+      { name: "สไตล์", placeholder: "มืออาชีพ, น่าสนใจ" },
+      { name: "จำนวนคำ 1", placeholder: "50" },
+      { name: "problem", placeholder: "ปัญหาการขนส่ง" },
+      { name: "จำนวนคำ 2", placeholder: "50" },
+      { name: "solution", placeholder: "แอปเรียกรถ" },
+      { name: "จำนวนคำ 3", placeholder: "30" },
+      { name: "market size", placeholder: "ตลาด 1 หมื่นล้าน" },
+      { name: "จำนวนคำ 4", placeholder: "50" },
+      { name: "business model", placeholder: "ค่าคอมมิชชั่น" },
+      { name: "จำนวนคำ 5", placeholder: "30" },
+      { name: "team", placeholder: "CEO, CTO" },
+      { name: "จำนวนคำ 6", placeholder: "50" },
+      { name: "financials", placeholder: "รายได้ 3 ปี" },
+      { name: "จำนวนคำ 7", placeholder: "20" },
+      { name: "ask", placeholder: "ขอเงิน 5 ล้าน" },
+      { name: "จำนวนคำทั้งหมด", placeholder: "300" }
     ]
   },
   { 
     cat:'business', tag:'business', title:'Partnership Proposal', desc:'ร่างข้อเสนอความร่วมมือ', 
-    prompt:'จงเขียนข้อเสนอความร่วมมือกับ "[ชื่อบริษัท]" สำหรับโปรเจกต์ "[ชื่อโปรเจกต์]"\n\nเนื้อหา:\n- วัตถุประสงค์ความร่วมมือ\n- สิ่งที่แต่ละฝ่ายจะได้รับ\n- ระยะเวลาและขั้นตอน\n- งบประมาณ\n- การแบ่งผลกำไร\n- ข้อตกลงทางกฎหมาย\n\nให้เป็นทางการและชัดเจน', 
-    favorite: false, rating: 0, tags: [], variables: [
+    prompt:'จงเขียนข้อเสนอความร่วมมือกับ "[ชื่อบริษัท]" สำหรับโปรเจกต์ "[ชื่อโปรเจกต์]"\n\nรายละเอียด:\n- ระยะเวลา: [ระยะเวลา] (6 เดือน/1 ปี)\n- งบประมาณ: [งบประมาณ] บาท\n- จำนวนฝ่ายร่วมมือ: [จำนวนฝ่าย] ฝ่าย\n\nเนื้อหา:\n- วัตถุประสงค์ความร่วมมือ ([จำนวนวัตถุประสงค์] ข้อ): [วัตถุประสงค์]\n- สิ่งที่แต่ละฝ่ายจะได้รับ ([จำนวนสิ่งที่ได้รับ] ข้อ): [สิ่งที่ได้รับ]\n- ระยะเวลาและขั้นตอน ([จำนวนขั้นตอน] ขั้น): [ขั้นตอน]\n- งบประมาณ ([จำนวนงบ] ส่วน): [งบ]\n- การแบ่งผลกำไร ([จำนวนการแบ่ง] แบบ): [การแบ่งผลกำไร]\n- ข้อตกลงทางกฎหมาย ([จำนวนข้อตกลง] ข้อ): [ข้อตกลง]\n- ความเสี่ยง: [ความเสี่ยง]\n\nให้เป็นทางการและชัดเจน ([จำนวนคำ] คำ)', 
+    favorite: false, rating: 0, tags: ['partnership', 'proposal'], variables: [
       { name: "ชื่อบริษัท", placeholder: "บริษัทที่จะร่วมมือ" },
-      { name: "ชื่อโปรเจกต์", placeholder: "โปรเจกต์ใหม่" }
+      { name: "ชื่อโปรเจกต์", placeholder: "โปรเจกต์ใหม่" },
+      { name: "ระยะเวลา", placeholder: "1 ปี" },
+      { name: "งบประมาณ", placeholder: "2 ล้านบาท" },
+      { name: "จำนวนฝ่าย", placeholder: "2" },
+      { name: "จำนวนวัตถุประสงค์", placeholder: "3" },
+      { name: "วัตถุประสงค์", placeholder: "เพิ่มยอดขาย" },
+      { name: "จำนวนสิ่งที่ได้รับ", placeholder: "2" },
+      { name: "สิ่งที่ได้รับ", placeholder: "แบ่งปันลูกค้า" },
+      { name: "จำนวนขั้นตอน", placeholder: "4" },
+      { name: "ขั้นตอน", placeholder: "1.วางแผน 2.ดำเนินการ" },
+      { name: "จำนวนงบ", placeholder: "3" },
+      { name: "งบ", placeholder: "บริษัท A 60%, B 40%" },
+      { name: "จำนวนการแบ่ง", placeholder: "2" },
+      { name: "การแบ่งผลกำไร", placeholder: "แบ่ง 50:50" },
+      { name: "จำนวนข้อตกลง", placeholder: "3" },
+      { name: "ข้อตกลง", placeholder: "ไม่เปิดเผยข้อมูล" },
+      { name: "ความเสี่ยง", placeholder: "ลูกค้าลดลง" },
+      { name: "จำนวนคำ", placeholder: "300" }
     ]
   },
   { 
